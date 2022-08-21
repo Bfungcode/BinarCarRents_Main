@@ -1,0 +1,30 @@
+.Header-sty {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    top: 0px;
+    padding: 0%;
+    background: rgba(241, 243, 255, 1);
+}
+
+.Header-sty .Header2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.Header-sty .Header2 .intro {
+    padding-top: 5%;
+    width: 100%;
+    text-align: left;
+}
+
+.Header-sty .Header2 .gambarMobil1 {
+    width: 704px;
+    height: 407px;
+}
+
+.Content-sty {
+    background: white;
+    width: 100%;
+    height: fit-content
+}

@@ -1,0 +1,46 @@
+* {
+    font-size: 16px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.Header-sty {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    top: 0px;
+    padding: 0%;
+    background: rgba(241, 243, 255, 1);
+    z-index: 0;
+}
+
+.Header-sty a {
+    color: black;
+}
+
+.header-sty {
+    text-decoration: none;
+}
+
+.Header-sty .Header2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.Header-sty .Header2 .intro {
+    padding-top: 10%;
+    width: 100%;
+    text-align: left;
+}
+
+.Header-sty .Header2 .gambarMobil1 {
+    position: relative;
+    width: 50%;
+    float: right;
+    left: 3%;
+    padding-bottom: 20%;
+    /* width: 704px;
+    height: 407px; */
+}
