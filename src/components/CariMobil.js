@@ -10,42 +10,44 @@ import {
 const CariMobil = ({ cars, setFilteredCars }) => {
     const [formNamaMobil, setFormNamaMobil] = useState('');
     const [formCategory, setFormCategory] = useState('');
-    const [formPrice, setFormPrice] = useState('');
-    const [formStatus, setFormStatus] = useState(false);
+    const [formPrice, setFormPrice] = useState('default');
 
     const handleSubmit = (e) => {
         const pilihanHarga = (harga) => {
             return (
                 (harga < 400000 && formPrice === 'KURANG_400') ||
                 (harga >= 400000 && harga <= 600000 && formPrice === '400-600') ||
-                (harga > 60000 && formPrice === 'LEBIH_600')
+                (harga > 600000 && formPrice === 'LEBIH_600')
             )
         }
         const carsFiltered = cars.filter((item) =>
-            formNamaMobil === item.name
+            formNamaMobil.includes(item.name) &&
+            item.category === formCategory &&
+            pilihanHarga(item.price)
         );
         setFilteredCars(carsFiltered)
         e.preventDefault();
     }
     return (
-        <div className='wrapper'>
-            <div className='Carimobil-sty'>
-                <Container>
+        <div className='allwrapper>'>
+            <Container>
+                <div className='formwrapper'>
                     <Form>
                         <Row>
                             <Col>
                                 <FormGroup>
                                     <label>Nama Mobil</label>
-                                    <Input type="text" id="namamobil" onChange={(e) => { setFormNamaMobil(e.target.value) }} ></Input>
+                                    <Input type="text" placeholder='Nama Mobil' id="namamobil" onChange={(e) => { setFormNamaMobil(e.target.value) }} ></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
                                     <label>Kategori</label>
                                     <Input type='select' id="kategori" onChange={(e) => setFormCategory(e.target.value)}>
-                                        <option> 2 - 4 orang</option>
-                                        <option> 4 - 6 orang</option>
-                                        <option> 6 - 8 orang</option>
+                                        <option value="" disabled selected>Pilih kapasitas mobil</option>
+                                        <option value={'small' && '2 - 4 orang'}> 2 - 4 orang</option>
+                                        <option value={'4 - 6 orang'}> 4 - 6 orang</option>
+                                        <option value={'6 - 9 orang'}> 6 - 8 orang</option>
                                     </Input>
                                 </FormGroup>
                             </Col>
@@ -53,18 +55,20 @@ const CariMobil = ({ cars, setFilteredCars }) => {
                                 <FormGroup>
                                     <label>Harga</label>
                                     <Input type='select' id="harga" onChange={(e) => setFormPrice(e.target.value)}>
-                                        <option>&gt; Rp 400000</option>
-                                        <option>Rp 400000 - Rp.600000</option>
-                                        <option>&gt; Rp 600000</option>
+                                        <option value="" disabled selected>Harga Mobil</option>
+                                        <option value={'KURANG_400'}>&lt; Rp 400000</option>
+                                        <option value={'400-600'}>Rp 400000 - Rp.600000</option>
+                                        <option value={'LEBIH_600'}>&gt; Rp 600000</option>
                                     </Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
-                                    <Label>Status</Label>
-                                    <Input type='select' id='harga' onChange={(e) => setFormStatus(e.target.value)}>
-                                        <option value={true}>Disewakan</option>
-                                        <option value={false}>Tidak Disewakan</option>
+                                    <label>Status</label>
+                                    <Input type='select' id='harga' onChange={(e) => (e.target.value)}>
+                                        <option value="" disabled selected>Status Mobil</option>
+                                        <option>Disewakan</option>
+                                        <option>Tidak Disewakan</option>
                                     </Input>
                                 </FormGroup>
                             </Col>
@@ -76,9 +80,9 @@ const CariMobil = ({ cars, setFilteredCars }) => {
                             </Col>
                         </Row>
                     </Form>
-                </Container>
-            </div>
-        </div >
+                </div>
+            </Container>
+        </div>
     )
 }
 

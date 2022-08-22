@@ -5,7 +5,7 @@ import Footer from './Footer'
 const LandingPage = () => {
     return (
         <>
-            <Header />
+            <Header isButtonShow={true} />
             <Content />
             <Footer />
         </>

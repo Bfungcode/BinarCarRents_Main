@@ -1,11 +1,52 @@
-import { Row, Col, Container, Card, Button, Accordion, Carousel } from 'react-bootstrap'
+import { Row, Col, Container, Button, Accordion, Carousel, Card } from 'react-bootstrap'
 import React, { useState } from 'react'
 import * as Icon from 'react-bootstrap-icons'
 import '../App'
 import { CardBody } from 'reactstrap'
+import 'swiper/scss'
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
+import 'swiper/scss/scrollbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
+import { Swiper, SwiperSlide, } from 'swiper/react'
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 
+
+const dataTestimonials = [
+    {
+        id: 1,
+        username: 'John Doe',
+        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+    },
+    {
+        id: 2,
+        username: 'Jane Doe',
+        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+    },
+    {
+        id: 3,
+        username: 'Jack Doe',
+        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+    },
+    {
+        id: 4,
+        username: 'Jin Doe',
+        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+    },
+    {
+        id: 5,
+        username: 'Jin Doe',
+        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+    },
+    {
+        id: 6,
+        username: 'Jin Doe',
+        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+    },
+]
 
 const Content = () => {
     const [index, setIndex] = useState(0);
@@ -15,7 +56,7 @@ const Content = () => {
     return (
         <div className='Content-sty'>
             <Container>
-                <div className='mini1'>
+                <div className='mini1' id='ourservices'>
                     <Row>
                         <Col>
                             <img src={require("../media/img_service.png")}></img>
@@ -69,13 +110,17 @@ const Content = () => {
                         </Col>
                     </Row>
                 </div>
-                <div className='mini2'>
+            </Container>
+            <Container>
+                <div className='mini2' id="whyus">
                     <h2>Why Us?</h2>
-                    <p>Mengapa harus pilih Binar Car Rental?</p>
+                    <br></br>
+                    <h4>Mengapa harus pilih Binar Car Rental?</h4>
+                    <br></br>
                     <div className='allcard'>
-                        <div className='card1'>
-                            <Row>
-                                <Col>
+                        <div className='container'>
+                            <div className="row">
+                                <div className='col-sm-12 p-1 col-md-6 col-lg-3'>
                                     <Card>
                                         <Card.Body>
                                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,8 +131,8 @@ const Content = () => {
                                             <p>Tersedia banyak pilihan mobil, kondisi masih baru, bersih, terawat dan nyaman dipakai</p>
                                         </Card.Body>
                                     </Card>
-                                </Col>
-                                <Col>
+                                </div>
+                                <div className='col-sm-12 p-1 col-md-6 col-lg-3'>
                                     <Card>
                                         <Card.Body>
                                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,8 +144,8 @@ const Content = () => {
                                             <p>Harga murah dan bersaing, bisa badingkan harga kami dengan rental mobil lain</p>
                                         </Card.Body>
                                     </Card>
-                                </Col>
-                                <Col>
+                                </div>
+                                <div className='col-sm-12 p-1 col-md-6 col-lg-3'>
                                     <Card>
                                         <Card.Body>
                                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,10 +157,10 @@ const Content = () => {
                                             <p>Siap melayani kebutuhan Anda selama 24jam nonstop. Kami juga tersedia di akhir minggu</p>
                                         </Card.Body>
                                     </Card>
-                                </Col>
-                                <Col>
+                                </div>
+                                <div className='col-sm-12 p-1 col-md-6 col-lg-3'>
                                     <Card>
-                                        <CardBody>
+                                        <Card.Body>
                                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <circle cx="16" cy="16" r="16" fill="#5CB85F" />
                                                 <path d="M16.0001 18.5C19.2217 18.5 21.8334 15.8883 21.8334 12.6667C21.8334 9.44501 19.2217 6.83334 16.0001 6.83334C12.7784 6.83334 10.1667 9.44501 10.1667 12.6667C10.1667 15.8883 12.7784 18.5 16.0001 18.5Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -123,87 +168,188 @@ const Content = () => {
                                             </svg>
                                             <h2>Sopir Profesional</h2>
                                             <p>Sopir yang profesional, berpengalaman, jujur, ramah dan selalu tepat waktu</p>
-                                        </CardBody>
+                                        </Card.Body>
                                     </Card>
-                                </Col>
-                            </Row>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className='mini3'>
+            </Container>
+            <Container>
+                <div className='mini3' id="testimonials">
                     <Row>
                         <h2>Testimonial</h2>
                         <p>Berbagi review positif dari para pelanggan kami</p>
                     </Row>
                 </div>
                 <div className='carouselReview'>
-                    <Carousel activeIndex={index} onSelect={handleSelect}>
-                        <Carousel.Item>
-                            <div className='carouselwrapper'>
-                                <div className='gambartesti'>
-                                    <img src={require("../media/fotoreview1.png")}></img>
+                    <Swiper
+                        spaceBetween={10}
+                        slidesPerView={1}
+                        navigation
+                        pagination={{ clickable: true }}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={swiper => console.log(swiper)}
+                    >
+                        <SwiperSlide className="slide">
+                            <Card>
+                                <div className='slide-content'>
+                                    <div className='testimonials image'>
+                                        <img src={require("../media/fotoreview1.png")}></img>
+                                    </div>
+                                    <div className='reviewtesti'>
+                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                        </svg>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>John Dee 32, Bromo</h5>
+                                    </div>
                                 </div>
-                                <div className='reviewtesti'>
-                                    <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                        <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                        <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                        <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                        <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                    </svg>
-                                    <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
-                                    <h5>John Dee 32, Bromo</h5>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className="slide">
+                            <Card>
+                                <div className='slide-content'>
+                                    <div className='gambartesti'>
+                                        <img src={require("../media/fotoreview1.png")}></img>
+                                    </div>
+                                    <div className='reviewtesti'>
+                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                        </svg>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>John Dee 32, Bromo</h5>
+                                    </div>
                                 </div>
-                            </div>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <div className='carouselwrapper'>
-                                <div className='gambartesti'>
-                                    <img src={require("../media/fotoreview1.png")}></img>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className="slide">
+                            <Card>
+                                <div className='slide-content'>
+                                    <div className='testimonials image'>
+                                        <img src={require("../media/fotoreview1.png")}></img>
+                                    </div>
+                                    <div className='reviewtesti'>
+                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                        </svg>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>John Dee 32, Bromo</h5>
+                                    </div>
                                 </div>
-                                <div className='reviewtesti'>
-                                    <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                        <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                        <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                        <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                        <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                    </svg>
-                                    <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
-                                    <h5>John Dee 32, Bromo</h5>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className="slide">
+                            <Card>
+                                <div className='slide-content'>
+                                    <div className='testimonials image'>
+                                        <img src={require("../media/fotoreview1.png")}></img>
+                                    </div>
+                                    <div className='reviewtesti'>
+                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                        </svg>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>John Dee 32, Bromo</h5>
+                                    </div>
                                 </div>
-                            </div>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <div className='carouselwrapper'>
-                                <div className='gambartesti'>
-                                    <img src={require("../media/fotoreview1.png")}></img>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className="slide">
+                            <Card>
+                                <div className='slide-content'>
+                                    <div className='testimonials image'>
+                                        <img src={require("../media/fotoreview1.png")}></img>
+                                    </div>
+                                    <div className='reviewtesti'>
+                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                        </svg>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>John Dee 32, Bromo</h5>
+                                    </div>
                                 </div>
-                                <div className='reviewtesti'>
-                                    <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                        <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                        <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                        <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                        <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                    </svg>
-                                    <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
-                                    <h5>John Dee 32, Bromo</h5>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className="slide">
+                            <Card>
+                                <div className='slide-content'>
+                                    <div className='testimonials image'>
+                                        <img src={require("../media/fotoreview1.png")}></img>
+                                    </div>
+                                    <div className='reviewtesti'>
+                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                        </svg>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>John Dee 32, Bromo</h5>
+                                    </div>
                                 </div>
-                            </div>
-                        </Carousel.Item>
-                    </Carousel>
+                            </Card>
+                        </SwiperSlide>
+                        <SwiperSlide className="slide">
+                            <Card>
+                                <div className='slide-content'>
+                                    <div className='testimonials image'>
+                                        <img src={require("../media/fotoreview1.png")}></img>
+                                    </div>
+                                    <div className='reviewtesti'>
+                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                        </svg>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>John Dee 32, Bromo</h5>
+                                    </div>
+                                </div>
+                            </Card>
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
+            </Container>
+            <Container>
                 <div className='mini4'>
                     <div className='paragraf'>
                         <h1>Sewa Mobil di Tangerang Sekarang</h1>
                         <br></br>
-                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h5>
+                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, excepturi!.</h5>
                         <br></br>
-                        <Button className='btn-success'>Mulai Sewa Mobil</Button>
+                        <Link to={"/SewaMobil"}>
+                            <Button className="btn-success">Mulai Sewa Mobil</Button>
+                        </Link>
                     </div>
                 </div>
-                <div className='faq-content'>
+            </Container>
+            <Container>
+                <div className='faq-content' id='faq'>
                     <Row>
                         <Col>
                             <h1>Frequently Asked Question</h1>
@@ -249,7 +395,7 @@ const Content = () => {
                         </Col>
                     </Row>
                 </div>
-            </Container >
+            </Container>
         </div >
     )
 }

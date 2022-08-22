@@ -1,34 +1,35 @@
 import React from 'react'
 import * as Icon from 'react-bootstrap-icons'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col, Container } from 'reactstrap'
 import '../App'
+import Content from './Content'
 const Footer = () => {
     return (
         <div className='Footer-sty'>
-            <Container>
-                <Row>
-                    <Col>
+            <div className='container'>
+                <div className='row'>
+                    <div className='col-sm-8 col-md-6 col-lg-3'>
                         <h3>Jalan Suroyo No. 161 Mayangan Kota Probolonggo 672000</h3>
                         <br></br>
                         <h3>binarcarrental@gmail.com</h3>
                         <br></br>
                         <h3>081-233-334-808</h3>
-                    </Col>
-                    <Col>
+                    </div>
+                    <div className='col-sm-8 col-md-4 col-lg-2'>
                         <div className='tulisan4'>
-                            <h5>Our services</h5>
+                            <h5><a href="#ourservices">Our services</a></h5>
                             <br></br>
                             <br></br>
-                            <h5>Why Us</h5>
+                            <h5><a href="#whyus">Why Us</a></h5>
                             <br></br>
                             <br></br>
-                            <h5>Testimonial</h5>
+                            <h5><a href="#testimonials">Testimonial</a></h5>
                             <br></br>
                             <br></br>
-                            <h5>FAQ</h5>
+                            <h5><a href="#faq">FAQ</a></h5>
                         </div>
-                    </Col>
-                    <Col>
+                    </div>
+                    <div className='col-sm-8 col-md-4 col-lg-2'>
                         <h3>Connect with us</h3>
                         <br></br>
                         <svg width="224" height="32" viewBox="0 0 224 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,16 +47,15 @@ const Footer = () => {
                             <circle cx="208" cy="16" r="16" fill="#0D28A6" />
                             <path d="M211.333 15.1666V11.8333M215.5 7.66663H200.5V21H204.667V24.3333L208 21H212.167L215.5 17.6666V7.66663ZM207.167 15.1666V11.8333V15.1666Z" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                    </Col>
-                    <Col>
-                        <h3>Copyright Binar 2022</h3>
-                        <br></br>
-                        <div className='logo'>
+                    </div>
+                    <div className='col-sm-12 col-md-6 col-lg-3 p-1'>
+                        <div className='copyright'>
+                            <h3>Copyright Binar 2022</h3>
                             <h4>Binar Cartal</h4>
                         </div>
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

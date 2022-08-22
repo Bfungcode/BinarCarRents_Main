@@ -1,8 +1,27 @@
 .detailmobil-sty {
+    position: relative;
     margin-top: 5%;
+    display: flex;
 }
 
 .detailmobil-sty .paketMobil {
-    width: 80%;
-    padding-left: 5%;
+    width: 100%;
+    padding-left: 10%;
+    right: 15%;
+}
+
+.detailmobil-sty .paketMobil .jumlahorang {
+    display: flex;
+    padding-bottom: 10%;
+}
+
+.detailmobil-sty .paketMobil .total {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 480px) {
+    .detailmobil-sty .paketMobil {
+        padding-left: 0%;
+    }
 }

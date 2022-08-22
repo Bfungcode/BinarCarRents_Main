@@ -7,7 +7,7 @@ import Footer from './Footer'
 const Pencarian = () => {
     return (
         <div>
-            <Header />
+            <Header isButtonShow={false} />
             <Cari />
             <Footer />
         </div>

@@ -13,6 +13,11 @@
     text-align: start;
 }
 
+.Footer-sty .tulisan4 a {
+    text-decoration: none;
+    color: black;
+}
+
 .Footer-sty .logo {
     background-color: rgba(13, 40, 166, 1);
     color: white;
@@ -20,4 +25,13 @@
     justify-content: center;
     height: 15%;
     padding-top: 2%;
+}
+
+@media screen and (min-width: 480px) {
+    .Footer-sty .tulisan4 {
+        padding-left: 0%;
+    }
+    .Footer-sty .copyright {
+        margin-left: 10%;
+    }
 }

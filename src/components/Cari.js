@@ -40,13 +40,13 @@ const Cari = () => {
                                 filteredCars.length ? (
                                     filteredCars.map((car, index) => {
                                         return (
-                                            <div className="col-lg-4 col-md-6 mb-4">
+                                            <div key={index} className="col-lg-4 col-md-6 mb-4">
                                                 <div className="card p-3 mb-5 d-flex flex-column justify-content-between gap-5" style={{ height: '100%' }}>
-                                                    <img src={car.image}></img>
+                                                    {car.image ? (<img src={car.image} />) : (<img src={require("../media/mobil1.png")} />)}
                                                     <div>
                                                         <p>{car.name}</p>
-                                                        {car.price}
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                                        {car.price ? (<h4>Rp {car.price} / hari</h4>) : (<h4>Rp. 0 </h4>)}
+                                                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </h5>
                                                         <a href={`/SewaMobil/${car.id}`} className="btn btn-success" style={{ width: "100%" }}>Pilih Mobil</a>
                                                     </div>
                                                 </div>
@@ -54,10 +54,10 @@ const Cari = () => {
                                         )
                                     })
                                 ) : (
-                                    <p>Loading</p>
+                                    <h3 className="tidakadahasil">Silahkan mencari mobil yang diinginkan</h3>
                                 )
                             ) : (
-                                <h1 className="text-center">Loading....</h1>
+                                <h1 className="loadingmenu">Loading....</h1>
                             )
                         }
                     </Row>
@@ -65,42 +65,6 @@ const Cari = () => {
             </div>
         </section >
     )
-    // return (
-    //     <div className="page">
-    //         {/* {cars && cars.length && ( */}
-    //         <CariMobil cars={cars} setFilteredCars={setFilteredCars} />
-    //         {/* )} */}
-    //         <Container>
-    //             <Row>
-    //                 {!loading ? (
-    //                     filteredCars.length &&
-    //                     filteredCars.map((car, index) => {
-    //                         return (
-    //                             <Col>
-    //                                 <div className="cardmobil">
-    //                                     <Card>
-    //                                         <CardBody>
-    //                                             <img src={car.image}></img>
-    //                                             <p>{car.name}</p>
-    //                                             <h5>Rp{car.price} / hari</h5>
-    //                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, ipsum.
-    //                                             <br></br>
-    //                                             <Link to={`/SewaMobil/${car.id}`} key={index}>
-    //                                                 <Button>Detail</Button>
-    //                                             </Link>
-    //                                         </CardBody>
-    //                                     </Card>
-    //                                 </div>
-    //                             </Col>
-    //                         ) : (
-    //                     <Container>
-    //                         <h2>Loading...</h2>
-    //                     </Container>
-    //                 )}
-    //             </Row>
-    //         </Container>
-    //     </div >
-    // );
 };
 
 
