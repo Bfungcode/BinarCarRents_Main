@@ -17,7 +17,7 @@ const Header = ({ isButtonShow }) => {
                     <Navbar>
                         <Container>
                             <Navbar.Brand href="/">
-                                <h4>Binar Cartal</h4>
+                                <h5>Binar Cartal</h5>
                             </Navbar.Brand>
                             <Nav>
                                 <Nav.Link href="#ourservices"><strong>Our Services</strong></Nav.Link>

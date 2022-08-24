@@ -1,10 +1,19 @@
 .Footer-sty {
     margin-top: 5%;
     margin-bottom: 6%;
-    display: flex;
 }
 
-.Footer-sty .tulisan4 {
+.Footer-sty #service {
+    padding-left: 2%;
+}
+
+.Footer-sty #service a {
+    text-decoration: none;
+    color: black;
+}
+
+
+/* .Footer-sty .tulisan4 {
     padding-left: 30%;
     display: flex;
     flex-direction: column;
@@ -34,4 +43,4 @@
     .Footer-sty .copyright {
         margin-left: 10%;
     }
-}
+} */

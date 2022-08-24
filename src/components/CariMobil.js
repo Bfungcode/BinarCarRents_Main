@@ -29,20 +29,20 @@ const CariMobil = ({ cars, setFilteredCars }) => {
         e.preventDefault();
     }
     return (
-        <div className='allwrapper>'>
+        <div className='allwrapper'>
             <Container>
                 <div className='formwrapper'>
                     <Form>
                         <Row>
                             <Col>
+                                <Label>Nama</Label>
                                 <FormGroup>
-                                    <label>Nama Mobil</label>
                                     <Input type="text" placeholder='Nama Mobil' id="namamobil" onChange={(e) => { setFormNamaMobil(e.target.value) }} ></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
+                                <Label>Kategori</Label>
                                 <FormGroup>
-                                    <label>Kategori</label>
                                     <Input type='select' id="kategori" onChange={(e) => setFormCategory(e.target.value)}>
                                         <option value="" disabled selected>Pilih kapasitas mobil</option>
                                         <option value={'small' && '2 - 4 orang'}> 2 - 4 orang</option>
@@ -52,8 +52,8 @@ const CariMobil = ({ cars, setFilteredCars }) => {
                                 </FormGroup>
                             </Col>
                             <Col>
+                                <Label>Harga</Label>
                                 <FormGroup>
-                                    <label>Harga</label>
                                     <Input type='select' id="harga" onChange={(e) => setFormPrice(e.target.value)}>
                                         <option value="" disabled selected>Harga Mobil</option>
                                         <option value={'KURANG_400'}>&lt; Rp 400000</option>
@@ -63,8 +63,8 @@ const CariMobil = ({ cars, setFilteredCars }) => {
                                 </FormGroup>
                             </Col>
                             <Col>
+                                <Label>Status</Label>
                                 <FormGroup>
-                                    <label>Status</label>
                                     <Input type='select' id='harga' onChange={(e) => (e.target.value)}>
                                         <option value="" disabled selected>Status Mobil</option>
                                         <option>Disewakan</option>

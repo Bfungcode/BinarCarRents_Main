@@ -134,6 +134,14 @@
     margin-top: 5%;
 }
 
+.faq-content #faq-intro {
+    width: 30%;
+}
+
+.faq-content #style-intro {
+    width: 60%;
+}
+
 
 /* .Content-sty {
     width: 100%;
@@ -260,7 +268,7 @@
     padding-top: 5%;
 } */
 
-@media screen and (min-width: 480px) {
+@media only screen and (min-width: 480px) {
     .mini4 {
         width: 100%;
     }
@@ -268,8 +276,12 @@
         width: 100%;
         justify-content: center;
     }
-    .faq-content {
+    /* .faq-content {
         position: relative;
         display: flex;
+    } */
+    .faq-content #row-style {
+        display: flex;
+        flex-direction: column;
     }
 }

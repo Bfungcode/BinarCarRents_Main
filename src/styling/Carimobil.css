@@ -6,3 +6,16 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
     z-index: 1;
 }
+
+@media only screen and (min-width: 480px) {
+    .allwrapper .container {
+        width: 100%;
+    }
+    .formwrapper {
+        width: 100%;
+        padding: 0%;
+    }
+    .allwrapper .formwrapper .Col {
+        width: 100%;
+    }
+}

@@ -350,7 +350,53 @@ const Content = () => {
             </Container>
             <Container>
                 <div className='faq-content' id='faq'>
-                    <Row>
+                    <div className='row'>
+                        <div className='col-lg-6'>
+                            <h1>Frequently Asked Question</h1>
+                            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint atque saepe modi voluptatibus! Reiciendis, odio!</h5>
+                        </div>
+                        <div className='col-lg-6'>
+                            <div className='row- mx-1'>
+                                <Accordion>
+                                    <Accordion.Item eventKey="0">
+                                        <Accordion.Header><h5>Apa saja syarat yang dibutuhkan?</h5></Accordion.Header>
+                                        <Accordion.Body>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, ipsa.
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                    <br></br>
+                                    <Accordion.Item eventKey="1">
+                                        <Accordion.Header><h5>Berapa hari minimal sewa mobil lepas kunci?</h5></Accordion.Header>
+                                        <Accordion.Body>
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, eos!
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                    <br></br>
+                                    <Accordion.Item eventKey="2">
+                                        <Accordion.Header><h5>Berapa hari sebelumnya sabaiknya booking sewa mobil?</h5></Accordion.Header>
+                                        <Accordion.Body>
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, eos!
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                    <br></br>
+                                    <Accordion.Item eventKey="3">
+                                        <Accordion.Header><h5>Apakah Ada Biaya antar-jemput ?</h5></Accordion.Header>
+                                        <Accordion.Body>
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, eos!
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                    <br></br>
+                                    <Accordion.Item eventKey="4">
+                                        <Accordion.Header><h5>Berapa hari minimal sewa mobil lepas kunci?</h5></Accordion.Header>
+                                        <Accordion.Body>
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, eos!
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                </Accordion>
+                            </div>
+                        </div>
+                    </div>
+                    {/* <Row>
                         <Col>
                             <h1>Frequently Asked Question</h1>
                             <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint atque saepe modi voluptatibus! Reiciendis, odio!</h5>
@@ -393,9 +439,9 @@ const Content = () => {
                                 </Accordion.Item>
                             </Accordion>
                         </Col>
-                    </Row>
+                    </Row> */}
                 </div>
-            </Container>
+            </Container >
         </div >
     )
 }

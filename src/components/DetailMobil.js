@@ -80,7 +80,7 @@ const DetailMobil = () => {
                         <Col>
                             <div className="paketMobil">
                                 <Card>
-                                    <img src={detail?.image}></img>
+                                    {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
                                     <Card.Body>
                                         <h5>{detail?.name}</h5>
                                         <div className="jumlahorang">
