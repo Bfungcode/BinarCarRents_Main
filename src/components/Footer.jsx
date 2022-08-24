@@ -1,6 +1,5 @@
 import React from 'react'
 import * as Icon from 'react-bootstrap-icons'
-import { Row, Col, Container } from 'reactstrap'
 import '../App'
 import Content from './Content'
 const Footer = () => {

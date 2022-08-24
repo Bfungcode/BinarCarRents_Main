@@ -9,9 +9,8 @@ import './styling/Carimobil.css'
 import './styling/Cari.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import LandingPage from './components/LandingPage';
-import CariMobil from './components/CariMobil'
-import Pencarian from './components/Pencarian';
+import LandingPage from './pages/LandingPage';
+import Pencarian from './pages/Pencarian';
 import DetailMobil from './components/DetailMobil';
 
 

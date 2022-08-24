@@ -7,7 +7,6 @@ import 'swiper/scss'
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import 'swiper/scss/scrollbar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide, } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
@@ -167,7 +166,7 @@ const Content = () => {
                                                 <path d="M12.8416 17.575L11.8333 25.1667L15.9999 22.6667L20.1666 25.1667L19.1583 17.5667" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                             <h2>Sopir Profesional</h2>
-                                            <p>Sopir yang profesional, berpengalaman, jujur, ramah dan selalu tepat waktu</p>
+                                            <p>Sopir yang dijamin profesional, berpengalaman, jujur, ramah dan selalu tepat waktu</p>
                                         </Card.Body>
                                     </Card>
                                 </div>
@@ -396,50 +395,6 @@ const Content = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <Row>
-                        <Col>
-                            <h1>Frequently Asked Question</h1>
-                            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint atque saepe modi voluptatibus! Reiciendis, odio!</h5>
-                        </Col>
-                        <Col>
-                            <Accordion>
-                                <Accordion.Item eventKey="0">
-                                    <Accordion.Header><h5>Apa saja syarat yang dibutuhkan?</h5></Accordion.Header>
-                                    <Accordion.Body>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, ipsa.
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <br></br>
-                                <Accordion.Item eventKey="1">
-                                    <Accordion.Header><h5>Berapa hari minimal sewa mobil lepas kunci?</h5></Accordion.Header>
-                                    <Accordion.Body>
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, eos!
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <br></br>
-                                <Accordion.Item eventKey="2">
-                                    <Accordion.Header><h5>Berapa hari sebelumnya sabaiknya booking sewa mobil?</h5></Accordion.Header>
-                                    <Accordion.Body>
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, eos!
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <br></br>
-                                <Accordion.Item eventKey="3">
-                                    <Accordion.Header><h5>Apakah Ada Biaya antar-jemput ?</h5></Accordion.Header>
-                                    <Accordion.Body>
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, eos!
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <br></br>
-                                <Accordion.Item eventKey="4">
-                                    <Accordion.Header><h5>Berapa hari minimal sewa mobil lepas kunci?</h5></Accordion.Header>
-                                    <Accordion.Body>
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, eos!
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                            </Accordion>
-                        </Col>
-                    </Row> */}
                 </div>
             </Container >
         </div >

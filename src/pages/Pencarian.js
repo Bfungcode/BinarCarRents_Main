@@ -1,8 +1,8 @@
 import React from 'react'
-import CariMobil from './CariMobil'
-import Cari from './Cari'
-import Header from './Header'
-import Footer from './Footer'
+import CariMobil from '../components/CariMobil'
+import Cari from '../components/Cari'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 const Pencarian = () => {
     return (

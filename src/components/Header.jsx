@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
-import { Navbar, Container, Nav, NavbarBrand, Button, Row, Col } from 'react-bootstrap'
+import { Navbar, Container, Nav, NavbarBrand, Button, Row, Col, NavDropdown } from 'react-bootstrap'
 import * as Icon from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
 import '../App'
-import Content from './Content'
 
 const Header = ({ isButtonShow }) => {
-    const [sidebar, setSidebar] = useState('collapse');
-    window.addEventListener('scroll', () => {
-        setSidebar('collapse');
-    })
     return (
         <div className='Header-sty'>
             <Container>
@@ -17,17 +12,17 @@ const Header = ({ isButtonShow }) => {
                     <Navbar>
                         <Container>
                             <Navbar.Brand href="/">
-                                <h5>Binar Cartal</h5>
+                                <h3>Binar Cartal</h3>
                             </Navbar.Brand>
                             <Nav>
-                                <Nav.Link href="#ourservices"><strong>Our Services</strong></Nav.Link>
+                                < Nav.Link href="#ourservices"><strong>Our Services</strong></Nav.Link>
                                 <Nav.Link href="#whyus"><strong>Why Us</strong></Nav.Link>
                                 <Nav.Link href="#testimonials"><strong>Testimonials</strong></Nav.Link>
                                 <Nav.Link href="#faq"><strong>FAQ</strong></Nav.Link>
                             </Nav>
                         </Container>
                     </Navbar>
-                </div>
+                </div >
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-lg-6 pb-3 d-flex flex-column justify-content-center">
@@ -47,7 +42,7 @@ const Header = ({ isButtonShow }) => {
                         </div>
                     </div>
                 </div>
-            </Container>
+            </Container >
         </div >
     )
 }

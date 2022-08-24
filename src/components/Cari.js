@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CariMobil from './CariMobil'
 import '../App'
-import { Card, CardBody, Button, CardSubtitle, CardTitle } from 'reactstrap'
 import { Container, Row, Col } from 'react-bootstrap'
-import { CardText } from "react-bootstrap-icons";
 
 const Cari = () => {
     const [cars, setCars] = useState([]);
