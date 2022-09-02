@@ -4,14 +4,17 @@ import { useParams } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import CariMobil from "./CariMobil";
+import CalendarView from "./Calendar";
 import { Container, Row, Col, Card, } from 'react-bootstrap'
 import * as Icon from "react-bootstrap-icons";
+
 
 const DetailMobil = () => {
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
     const { id } = useParams();
     const controller = new AbortController();
+
     //spread operator -> mengeluarkan properti dari object
     const loadDetail = async () => {
         setLoading(true);
@@ -86,6 +89,10 @@ const DetailMobil = () => {
                                         <div className="jumlahorang">
                                             <i><Icon.People /></i>
                                             <h5>{detail?.category}</h5>
+                                        </div>
+                                        <div>
+                                            <h5>Tentukan lama sewa mobil :</h5>
+                                            <CalendarView />
                                         </div>
                                         <div className="total">
                                             <h5>Total</h5>
