@@ -8,26 +8,64 @@ import {
 
 
 const CariMobil = ({ cars, setFilteredCars }) => {
-    const [formNamaMobil, setFormNamaMobil] = useState('');
-    const [formCategory, setFormCategory] = useState('');
-    const [formPrice, setFormPrice] = useState('default');
+    const [formNamaMobil, setFormNamaMobil] = useState();
+    const [formCategory, setFormCategory] = useState();
+    const [formPrice, setFormPrice] = useState();
+    const [formStatus, setFormStatus] = useState();
 
     const handleSubmit = (e) => {
-        const pilihanHarga = (harga) => {
-            return (
-                (harga < 400000 && formPrice === 'KURANG_400') ||
-                (harga >= 400000 && harga <= 600000 && formPrice === '400-600') ||
-                (harga > 600000 && formPrice === 'LEBIH_600')
-            )
-        }
-        const carsFiltered = cars.filter((item) =>
-            formNamaMobil.includes(item.name) &&
-            item.category === formCategory &&
-            pilihanHarga(item.price)
-        );
-        setFilteredCars(carsFiltered)
         e.preventDefault();
+      alert (formStatus)
+
+        const carsFiltered = cars.filter((item)=>{
+
+        if (formNamaMobil) {
+             if (item.name === formNamaMobil) {
+                return true
+                } else return false
+         }
+
+        if (formCategory) {
+          if (item.category === formCategory) {
+             return true
+             } else return false
+        }
+
+         if (formPrice) {
+              if (formPrice === "KURANG_400") {
+                  return item.price < 400000
+              } if (formPrice === "400-600") {
+                  return item.price >= 400000 && item.price <= 800000 
+              } if (formPrice === "LEBIH_600") {
+                  return item.price > 800000
+              } else return false
+          }
+
+          if (formStatus) {
+            if (formStatus === "Available") {
+              return item.status===false;
+            } else return item.status===true;
+          }  
+        })
+        setFilteredCars (carsFiltered);
+        console.log(carsFiltered);
+
+        // const pilihanHarga = (harga) => {
+        //     return (
+        //         (harga < 400000 && formPrice === 'KURANG_400') ||
+        //         (harga >= 400000 && harga <= 600000 && formPrice === '400-600') ||
+        //         (harga > 600000 && formPrice === 'LEBIH_600')
+        //     )
+        // }
+        // const carsFiltered = cars.filter((item) =>
+        //     formNamaMobil.includes(item.name) &&
+        //     item.category === formCategory &&
+        //     pilihanHarga(item.price)
+        // );
+        // setFilteredCars(carsFiltered)
+        // e.preventDefault();
     }
+
     return (
         <div className='allwrapper'>
             <Container>
@@ -37,7 +75,7 @@ const CariMobil = ({ cars, setFilteredCars }) => {
                             <Col>
                                 <Label>Nama</Label>
                                 <FormGroup>
-                                    <Input type="text" placeholder='Nama Mobil' id="namamobil" onChange={(e) => { setFormNamaMobil(e.target.value) }} ></Input>
+                                    <Input type="text" placeholder='Nama Mobil' id="namamobil" onChange={(e) => setFormNamaMobil(e.target.value)} ></Input>
                                 </FormGroup>
                             </Col>
                             <Col>
@@ -65,10 +103,10 @@ const CariMobil = ({ cars, setFilteredCars }) => {
                             <Col>
                                 <Label>Status</Label>
                                 <FormGroup>
-                                    <Input type='select' id='harga' onChange={(e) => (e.target.value)}>
+                                    <Input type='select' id='harga' onChange={(e) => setFormStatus(e.target.value)}>
                                         <option value="" disabled selected>Status Mobil</option>
-                                        <option>Disewakan</option>
-                                        <option>Tidak Disewakan</option>
+                                        <option value={'Available'}>Disewakan</option>
+                                        <option value={'Sedang Disewa'}>Tidak Disewakan</option>
                                     </Input>
                                 </FormGroup>
                             </Col>

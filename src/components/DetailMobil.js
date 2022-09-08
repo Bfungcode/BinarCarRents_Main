@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import CariMobil from "./CariMobil";
 import CalendarView from "./Calendar";
-import { Container, Row, Col, Card, } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button, } from 'react-bootstrap'
 import * as Icon from "react-bootstrap-icons";
+import '../styling/detailMobil.css';
 
 
 const DetailMobil = () => {
@@ -14,6 +15,7 @@ const DetailMobil = () => {
     const [loading, setLoading] = useState(false);
     const { id } = useParams();
     const controller = new AbortController();
+    const navigate = useNavigate();
 
     //spread operator -> mengeluarkan properti dari object
     const loadDetail = async () => {
@@ -82,7 +84,7 @@ const DetailMobil = () => {
                         </Col>
                         <Col>
                             <div className="paketMobil">
-                                <Card>
+                                <Card classname="cardstyle" >
                                     {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
                                     <Card.Body>
                                         <h5>{detail?.name}</h5>
@@ -90,15 +92,19 @@ const DetailMobil = () => {
                                             <i><Icon.People /></i>
                                             <h5>{detail?.category}</h5>
                                         </div>
+
+                                        <div className="total">
+                                            <h5>Sewa per hari</h5>
+                                            <h5>Rp {detail?.price}</h5>
+                                        </div>
+
                                         <div>
                                             <h5>Tentukan lama sewa mobil :</h5>
                                             <CalendarView />
                                         </div>
-                                        <div className="total">
-                                            <h5>Total</h5>
-                                            <h5>Rp {detail?.price}</h5>
-                                        </div>
+                                    
                                     </Card.Body>
+                                    <Button classname="lanjutkanpembayaran" onClick={() => navigate("/")}>Lanjutkan Pembayaran</Button>
                                 </Card>
                             </div>
                         </Col>
