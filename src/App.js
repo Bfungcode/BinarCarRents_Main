@@ -12,6 +12,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import LandingPage from './pages/LandingPage';
 import Pencarian from './pages/Pencarian';
 import DetailMobil from './components/DetailMobil';
+import Pembayaran from './components/Pembayaran';
+import Tiket from './components/Tiket';
+import Konfirmasi from './components/Konfirmasi';
 
 
 function App() {
@@ -21,6 +24,9 @@ function App() {
       <Route path='SewaMobil'>
         <Route index element={<Pencarian />} />
         <Route path=':id' element={<DetailMobil />} />
+        <Route path='Pembayaran' element={<Pembayaran />} />
+        <Route path='Konfirmasi' element={<Konfirmasi />} />
+        <Route path='Tiket' element={<Tiket />} />
       </Route>
     </Routes >
   )
