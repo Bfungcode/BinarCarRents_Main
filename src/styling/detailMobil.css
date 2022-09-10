@@ -20,6 +20,15 @@
     justify-content: space-between;
 }
 
+.lanjutkanpembayaran {
+    width: 90%;
+    margin: 20px;
+}
+
+.cardstyle {
+    padding: 20px;
+}
+
 @media screen and (min-width: 480px) {
     .detailmobil-sty .paketMobil {
         padding-left: 0%;
