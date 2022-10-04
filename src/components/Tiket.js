@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
+import { FcOk } from "react-icons/fc";
+import { BiArrowToBottom } from "react-icons/bi";
 import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/5.7.2/pdf.worker.js`;
 
@@ -17,7 +19,7 @@ const Tiket = () => {
         <>
             <Header />
             <div class="text-center" style={{ marginTop: "20px" }}>
-                <p style={{ textAlign: "center" }}> &#10004; </p>
+                <FcOk size = "40px"/>
                 <p style={{ fontWeight: "bold" }}> Pembayaran Berhasil! </p>
                 <p style={{ color: "grey" }}> Tunjukkan invoice ini ke petugas BCR di titik temu. </p>
             </div>
@@ -32,8 +34,10 @@ const Tiket = () => {
                                     <p> *no invoice </p>
                                 </div>
                                 <div class="col-6">
-                                    <a href="">
-                                        <p class="text-end"> Unduh </p>
+                                    <a href="" style={{color: "#0D28A6"}}>
+                                        <p class="text-end" >
+                                            <span style={{border: "2px solid #0D28A6", padding: "5px", borderRadius: "2px"}}> <BiArrowToBottom size="23px"/> Unduh </span>
+                                        </p>
                                     </a>
                                 </div>
                             </div>

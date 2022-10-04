@@ -76,7 +76,7 @@ const Konfirmasi = () => {
                             <div class="row">
                                 <div class="col">
                                     <p style={{ fontWeight: "bold" }}> Selesaikan Pembayaran Sebelum </p>
-                                    <p> {moment(endTime).format('LLL')} </p>
+                                    <p> {moment(endTime).format('LLL')} WIB </p>
                                     {/* <p> {expirationDate.toString()} </p> */}
                                 </div>
                                 <div class="col" style={{ marginBottom: "10px" }}>
@@ -120,7 +120,7 @@ const Konfirmasi = () => {
                                     )}
                                 </div>
                                 <div class="col">
-                                    <div className={activeMenu==='atm' ? 'active' : 'inactive'}
+                                    <div className={activeMenu==='m-bca' ? 'active' : 'inactive'}
                                         onClick={()=>setActiveMenu('m-bca')}> M-BCA 
                                     </div>
                                     {activeMenu==='m-bca' && (
@@ -128,7 +128,7 @@ const Konfirmasi = () => {
                                     )}
                                 </div>
                                 <div class="col">
-                                    <div className={activeMenu==='atm' ? 'active' : 'inactive'}
+                                    <div className={activeMenu==='klik' ? 'active' : 'inactive'}
                                         onClick={()=>setActiveMenu('klik')}> BCA Klik 
                                     </div>
                                     {activeMenu==='klik' && (
@@ -136,7 +136,7 @@ const Konfirmasi = () => {
                                     )}
                                 </div>
                                 <div class="col">
-                                    <div className={activeMenu==='atm' ? 'active' : 'inactive'}
+                                    <div className={activeMenu==='banking' ? 'active' : 'inactive'}
                                         onClick={()=>setActiveMenu('banking')}> Internet Banking 
                                     </div>
                                     {activeMenu==='banking' && (
@@ -191,7 +191,7 @@ const Konfirmasi = () => {
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="col-4" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
                         <div class="row">
                             <div class="col">
@@ -215,7 +215,6 @@ const Konfirmasi = () => {
                                 <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Upload </p>
                             </button>
                         </a>
-                        
                     </div>
                 </div>
             </div>

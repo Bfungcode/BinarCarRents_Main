@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Navigate, useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import * as Icon from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
+import { FcCheckmark } from "react-icons/fc";
 
 const Pembayaran = () => {
     
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [activeMenu, setActiveMenu] = useState('start');
     const { id } = useParams();
     const controller = new AbortController();
     
@@ -67,20 +69,56 @@ const Pembayaran = () => {
                             <p style={{ fontWeight: "bold", fontSize: "18px" }}> Pilih Bank Transfer </p>
                             <p> Kamu bisa membayar dengan transfer melalui ATM, Internet Banking atau Mobile Banking </p>
                             <div class="row" style={{ paddingTop: "25px" }}>
-                                <div style={{ marginBottom: "30px" }}>
-                                    <p style={{ display: "inline", color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> BCA </p>
-                                    <p style={{ display: "inline", color: "black" }}> BCA Transfer </p>
-                                    <hr style={{ margin: "35px 0px 0px 0px", color: "black" }}></hr>
+                                <div style={{ marginBottom: "30px"}} className={activeMenu==='BCA' ? 'active' : 'inactive'}
+                                    onClick={()=>setActiveMenu('BCA')}>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>
+                                                <span style={{ color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> BCA </span>
+                                                <span style={{ color: "black" }}> BCA Transfer </span>
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            {activeMenu==='BCA' && (
+                                                <h5 style={{textAlign: "right", marginRight: "30px"}}><FcCheckmark size= "25px" /></h5> 
+                                            )}
+                                        </div>
+                                    </div>
+                                    <hr style={{ margin: "10px 0px 0px 0px", color: "black" }}></hr>
                                 </div>
-                                <div style={{ marginBottom: "30px" }}>
-                                    <p style={{ display: "inline", color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> BNI </p>
-                                    <p style={{ display: "inline", color: "black" }}> BNI Transfer </p>
-                                    <hr style={{ margin: "35px 0px 0px 0px", color: "black" }}></hr>
+                                <div style={{ marginBottom: "30px" }} className={activeMenu==='BNI' ? 'active' : 'inactive'}
+                                    onClick={()=>setActiveMenu('BNI')}>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>
+                                                <span style={{ color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> BNI </span>
+                                                <span style={{ color: "black" }}> BNI Transfer </span>
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            {activeMenu==='BNI' && (
+                                                <h5 style={{textAlign: "right", marginRight: "30px"}}> <FcCheckmark size= "25px" /> </h5>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <hr style={{ margin: "10px 0px 0px 0px", color: "black" }}></hr>
                                 </div>
-                                <div>
-                                    <p style={{ display: "inline", color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> Mandiri </p>
-                                    <p style={{ display: "inline", color: "black" }}> Mandiri Transfer </p>
-                                    <hr style={{ margin: "35px 0px 0px 0px", color: "black" }}></hr>
+                                <div className={activeMenu==='Mandiri' ? 'active' : 'inactive'}
+                                    onClick={()=>setActiveMenu('Mandiri')}>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>
+                                                <span style={{ color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> Mandiri </span>
+                                                <span style={{ color: "black" }}> Mandiri Transfer </span>
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            {activeMenu==='Mandiri' && (
+                                                <h5 style={{textAlign: "right", marginRight: "30px"}}><FcCheckmark size= "25px" /></h5>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <hr style={{ margin: "10px 0px 0px 0px", color: "black" }}></hr>
                                 </div>
                             </div>
                         </div>
@@ -136,11 +174,32 @@ const Pembayaran = () => {
                                         <p class="text-end" style={{ fontWeight: "bold" }}> Rp {detail?.price.toLocaleString('en-US')} </p>
                                     </div>
                                 </div>
-                                <Link to={"Konfirmasi"}>
-                                    <button style={{ backgroundColor: "#DEF1DF", width: "100%", height: "40px", marginBottom: "10px" }}>
-                                        <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
-                                    </button>
-                                </Link>
+                                {activeMenu==='start' && (
+                                        <button style={{ backgroundColor: "#DEF1DF", width: "100%", height: "40px", marginBottom: "10px" }}>
+                                            <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
+                                        </button>
+                                )}
+                                {activeMenu==='BCA' && (
+                                    <Link to={"Konfirmasi"}>
+                                        <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
+                                            <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
+                                        </button>
+                                    </Link>
+                                )}
+                                {activeMenu==='BNI' && (
+                                    <Link to={"Konfirmasi"}>
+                                        <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
+                                            <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
+                                        </button>
+                                    </Link>
+                                )}
+                                {activeMenu==='Mandiri' && (
+                                    <Link to={"Konfirmasi"}>
+                                        <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
+                                            <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
+                                        </button>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -150,5 +209,15 @@ const Pembayaran = () => {
         </>
     )
 }
+
+// const getAuthHeader = () => {
+//     const user = JSON.parse(localStorage.getItem("user"));
+//     if(user && user.access_token){
+//         return {Authorization :  `Bearer ${user.access_token}` }
+//     }
+//     else{
+//         return {};
+//     }
+// }
 
 export default Pembayaran;
