@@ -1,35 +1,11 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Navigate, useParams, useNavigate } from "react-router-dom";
+import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import * as Icon from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
 const Pembayaran = () => {
-    
-    const [detail, setDetail] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const { id } = useParams();
-    const controller = new AbortController();
-    
-    const loadDetail = async () => {
-        setLoading(true);
-        try {
-            const url = "https://bootcamp-rent-car.herokuapp.com/admin/car/" + id;
-            const { data } = await axios.get(url, {
-                signal: controller.signal,
-            });
-            setDetail(data);
-        } catch (error) {
-            console.log(error);
-        }
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        loadDetail();
-    }, []);
+    const halaman = 1;
 
     return (
         <>
@@ -41,11 +17,11 @@ const Pembayaran = () => {
                         <div class="row">
                             <div class="col">
                                 <p> Nama/Tipe Mobil </p>
-                                <p style={{ color: "gray" }}> {detail?.name} </p>
+                                <p style={{ color: "gray" }}> Innova </p>
                             </div>
                             <div class="col">
                                 <p> Kategori </p>
-                                <p style={{ color: "gray" }}> {detail?.category} </p>
+                                <p style={{ color: "gray" }}> 6 - 8 orang </p>
                             </div>
                             <div class="col">
                                 <p> Tanggal Mulai Sewa </p>
@@ -63,7 +39,7 @@ const Pembayaran = () => {
             <div class="container" style={{ marginTop: "20px" }}>
                 <div class="row justify-content-md-center" style={{ gap: "20px" }}>
                     <div class="col-6" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
-                        <div>
+                        <div className="pembayaran-box">
                             <p style={{ fontWeight: "bold", fontSize: "18px" }}> Pilih Bank Transfer </p>
                             <p> Kamu bisa membayar dengan transfer melalui ATM, Internet Banking atau Mobile Banking </p>
                             <div class="row" style={{ paddingTop: "25px" }}>
@@ -87,11 +63,11 @@ const Pembayaran = () => {
                     </div>
 
                     <div class="col-4" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px" }}>
-                        <div>
+                        <div className="pembayaran-box">
                             <div style={{ marginBottom: "30px" }}>
-                                <p style={{ fontWeight: "bold", lineHeight: "0px" }}> {detail?.name} </p>
+                                <p style={{ fontWeight: "bold", lineHeight: "0px" }}> Innova </p>
                                 <i style={{ display: "inline" }}> <Icon.People /> </i>
-                                <p style={{ display: "inline", color: "gray" }}> {detail?.category} </p>
+                                <p style={{ display: "inline", color: "gray" }}> 6-8 orang </p>
                             </div>
 
                             <div class="row">
@@ -99,7 +75,7 @@ const Pembayaran = () => {
                                     <p> Total </p>
                                 </div>
                                 <div class="col">
-                                    <p class="text-end" style={{ fontWeight: "bold" }}> Rp {detail?.price.toLocaleString('en-US')} </p>
+                                    <p class="text-end" style={{ fontWeight: "bold" }}> Rp 3.500.000 </p>
                                 </div>
                             </div>
                             <div>
@@ -109,7 +85,7 @@ const Pembayaran = () => {
                                         <p> Sewa Mobil Rp 500.000 x 7 hari </p>
                                     </div>
                                     <div class="col">
-                                        <p class="text-end"> Rp {detail?.price.toLocaleString('en-US')} </p>
+                                        <p class="text-end"> Rp 3.500.000 </p>
                                     </div>
                                 </div>
                                 <p style={{ fontWeight: "bold" }}> Biaya Lainnya </p>
@@ -133,10 +109,10 @@ const Pembayaran = () => {
                                         <p style={{ fontWeight: "bold" }}> Total </p>
                                     </div>
                                     <div class="col">
-                                        <p class="text-end" style={{ fontWeight: "bold" }}> Rp {detail?.price.toLocaleString('en-US')} </p>
+                                        <p class="text-end" style={{ fontWeight: "bold" }}> Rp 3.500.000 </p>
                                     </div>
                                 </div>
-                                <Link to={"Konfirmasi"}>
+                                <Link to={"/Tiket"}>
                                     <button style={{ backgroundColor: "#DEF1DF", width: "100%", height: "40px", marginBottom: "10px" }}>
                                         <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
                                     </button>
