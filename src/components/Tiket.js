@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import { FcOk } from "react-icons/fc";
@@ -7,13 +7,6 @@ import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/5.7.2/pdf.worker.js`;
 
 const Tiket = () => {
-
-    const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
-  
-    function onDocumentLoadSuccess({ numPages }) {
-      setNumPages(numPages);
-    }
 
     return (
         <>
@@ -41,14 +34,8 @@ const Tiket = () => {
                                     </a>
                                 </div>
                             </div>
-                            <div>
-                                <Document file="/PDF.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-                                    <Page pageNumber={pageNumber} />
-                                </Document>
-                                <p>
-                                    Page {pageNumber} of {numPages}
-                                </p>
-
+                            <div style={{ border: "1px dashed black", borderRadius: "5px", backgroundColor: "lightgrey", height: "100px" }}>
+                                <p class="text-center" style={{ lineHeight: "100px" }}> PDF Viewer </p>
                             </div>
                         </div>
                     </div>
