@@ -1,0 +1,13 @@
+.Footer-sty {
+    margin-top: 5%;
+    margin-bottom: 6%;
+}
+
+.Footer-sty #service {
+    padding-left: 2%;
+}
+
+.Footer-sty #service a {
+    text-decoration: none;
+    color: black;
+}

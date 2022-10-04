@@ -1,0 +1,19 @@
+.wrappermobil {
+    margin-top: 2.5%;
+}
+
+.wrappermobil .tidakadahasil {
+    width: 100%;
+    text-align: center;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px #00000026;
+    border-radius: 8px;
+}
+
+.wrappermobil .loadingmenu {
+    width: 100%;
+    text-align: center;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px #00000026;
+    border-radius: 8px;
+}
