@@ -20,13 +20,18 @@ import Konfirmasi from './components/Konfirmasi';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<LandingPage />} /> 
       <Route path='SewaMobil'>
         <Route index element={<Pencarian />} />
         <Route path=':id' element={<DetailMobil />} />
-        <Route path='Pembayaran' element={<Pembayaran />} />
-        <Route path='Konfirmasi' element={<Konfirmasi />} />
-        <Route path='Tiket' element={<Tiket />} />
+      </Route>
+      <Route path='Pembayaran'>
+        <Route index element={<DetailMobil />} />
+        <Route path=':id'>
+          <Route index element={<Pembayaran/>} />
+          <Route path='Konfirmasi' element={<Konfirmasi/>} />
+          <Route path='Tiket' element={<Tiket />} />
+        </Route>
       </Route>
     </Routes >
   )

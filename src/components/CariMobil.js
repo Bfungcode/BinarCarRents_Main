@@ -21,8 +21,8 @@ const CariMobil = ({ cars, setFilteredCars }) => {
             )
         }
         const carsFiltered = cars.filter((item) =>
-            formNamaMobil.includes(item.name) &&
-            item.category === formCategory &&
+            formNamaMobil.includes(item.name) ||
+            item.category === formCategory ||
             pilihanHarga(item.price)
         );
         setFilteredCars(carsFiltered)
