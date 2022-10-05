@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import { FcOk } from "react-icons/fc";
@@ -7,6 +7,13 @@ import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/5.7.2/pdf.worker.js`;
 
 const Tiket = () => {
+
+    const [numPages, setNumPages] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1);
+  
+    function onDocumentLoadSuccess({ numPages }) {
+      setNumPages(numPages);
+    }
 
     return (
         <>
@@ -23,7 +30,7 @@ const Tiket = () => {
                         <div class="col-5" style={{ boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", padding: "20px", borderRadius: "5px" }}>
                             <div class="row">
                                 <div class="col-6">
-                                    <p> invoice </p>
+                                    <p style={{fontWeight: "bold"}}> Invoice </p>
                                     <p> *no invoice </p>
                                 </div>
                                 <div class="col-6">
@@ -34,8 +41,14 @@ const Tiket = () => {
                                     </a>
                                 </div>
                             </div>
-                            <div style={{ border: "1px dashed black", borderRadius: "5px", backgroundColor: "lightgrey", height: "100px" }}>
-                                <p class="text-center" style={{ lineHeight: "100px" }}> PDF Viewer </p>
+                            <div>
+                                <Document file="/PDF.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+                                    <Page pageNumber={pageNumber} />
+                                </Document>
+                                <p>
+                                    Page {pageNumber} of {numPages}
+                                </p>
+
                             </div>
                         </div>
                     </div>

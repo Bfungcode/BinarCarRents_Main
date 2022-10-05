@@ -29,10 +29,12 @@ const Pembayaran = () => {
         setLoading(false);
     };
 
+    const biayaHarian = detail?.price / 5;
+    console.log(biayaHarian);
+
     useEffect(() => {
         loadDetail();
     }, []);
-    const halaman = 1;
 
     return (
         <>
@@ -44,11 +46,11 @@ const Pembayaran = () => {
                         <div class="row">
                             <div class="col">
                                 <p> Nama/Tipe Mobil </p>
-                                <p style={{ color: "gray" }}> Innova </p>
+                                <p style={{ color: "gray" }}> {detail?.name} </p>
                             </div>
                             <div class="col">
                                 <p> Kategori </p>
-                                <p style={{ color: "gray" }}> 6 - 8 orang </p>
+                                <p style={{ color: "gray" }}> {detail?.category} </p>
                             </div>
                             <div class="col">
                                 <p> Tanggal Mulai Sewa </p>
@@ -66,7 +68,7 @@ const Pembayaran = () => {
             <div class="container" style={{ marginTop: "20px" }}>
                 <div class="row justify-content-md-center" style={{ gap: "20px" }}>
                     <div class="col-6" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
-                        <div className="pembayaran-box">
+                        <div>
                             <p style={{ fontWeight: "bold", fontSize: "18px" }}> Pilih Bank Transfer </p>
                             <p> Kamu bisa membayar dengan transfer melalui ATM, Internet Banking atau Mobile Banking </p>
                             <div class="row" style={{ paddingTop: "25px" }}>
@@ -126,11 +128,11 @@ const Pembayaran = () => {
                     </div>
 
                     <div class="col-4" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px" }}>
-                        <div className="pembayaran-box">
+                        <div>
                             <div style={{ marginBottom: "30px" }}>
-                                <p style={{ fontWeight: "bold", lineHeight: "0px" }}> Innova </p>
+                                <p style={{ fontWeight: "bold", lineHeight: "0px" }}> {detail?.name} </p>
                                 <i style={{ display: "inline" }}> <Icon.People /> </i>
-                                <p style={{ display: "inline", color: "gray" }}> 6-8 orang </p>
+                                <p style={{ display: "inline", color: "gray" }}> {detail?.category} </p>
                             </div>
 
                             <div class="row">
@@ -138,17 +140,17 @@ const Pembayaran = () => {
                                     <p> Total </p>
                                 </div>
                                 <div class="col">
-                                    <p class="text-end" style={{ fontWeight: "bold" }}> Rp 3.500.000 </p>
+                                    <p class="text-end" style={{ fontWeight: "bold" }}> Rp {detail?.price.toLocaleString('en-US')} </p>
                                 </div>
                             </div>
                             <div>
                                 <p style={{ fontWeight: "bold" }}> Harga </p>
                                 <div class="row">
                                     <div class="col-8">
-                                        <p> Sewa Mobil Rp 500.000 x 7 hari </p>
+                                        <p> Sewa Mobil Rp {biayaHarian.toLocaleString('en-US')} x 5 hari </p>
                                     </div>
                                     <div class="col">
-                                        <p class="text-end"> Rp 3.500.000 </p>
+                                        <p class="text-end"> Rp {detail?.price.toLocaleString('en-US')} </p>
                                     </div>
                                 </div>
                                 <p style={{ fontWeight: "bold" }}> Biaya Lainnya </p>
@@ -172,7 +174,7 @@ const Pembayaran = () => {
                                         <p style={{ fontWeight: "bold" }}> Total </p>
                                     </div>
                                     <div class="col">
-                                        <p class="text-end" style={{ fontWeight: "bold" }}> Rp 3.500.000 </p>
+                                        <p class="text-end" style={{ fontWeight: "bold" }}> Rp {detail?.price.toLocaleString('en-US')} </p>
                                     </div>
                                 </div>
                                 {activeMenu==='start' && (
@@ -201,11 +203,6 @@ const Pembayaran = () => {
                                         </button>
                                     </Link>
                                 )}
-                                <Link to={"/Tiket"}>
-                                    <button style={{ backgroundColor: "#DEF1DF", width: "100%", height: "40px", marginBottom: "10px" }}>
-                                        <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
-                                    </button>
-                                </Link>
                             </div>
                         </div>
                     </div>
