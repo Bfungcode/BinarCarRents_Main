@@ -38,7 +38,7 @@ const Header = ({ isButtonShow }) => {
                             </a>
                         </div>
                         <div className="col-lg-6 position-relative" id='carwrapper'>
-                            <img className="car-img" src={require("../media/img_car.png")}></img>
+                            <img className="car-img" src={require("../media/alien.jpg")}></img>
                         </div>
                     </div>
                 </div>
