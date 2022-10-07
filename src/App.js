@@ -14,8 +14,6 @@ import Pencarian from './pages/Pencarian';
 import DetailMobil from './components/DetailMobil';
 import Pembayaran from './components/Pembayaran';
 import Tiket from './components/Tiket';
-import Konfirmasi from './components/Konfirmasi';
-
 
 function App() {
   return (
@@ -29,7 +27,6 @@ function App() {
         <Route index element={<DetailMobil />} />
         <Route path=':id'>
           <Route index element={<Pembayaran/>} />
-          <Route path='Konfirmasi' element={<Konfirmasi/>} />
           <Route path='Tiket' element={<Tiket />} />
         </Route>
       </Route>
