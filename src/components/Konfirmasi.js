@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Navigate, useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import Countdown from './Countdown';
@@ -49,20 +49,32 @@ const Konfirmasi = () => {
         setLoading(false);
     };
 
-    const postData = async () => {
-        await axios
-            .post('https://bootcamp-rent-car.herokuapp.com/customer/order',{
-                id: id,
-                mulaiSewa: '4 Oktober 2022',
-                akhirSewa: '10 Oktober 2022' 
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.error(error);
-            })
-    };
+    // const postData = async () => {
+    //     await axios
+    //         .post('https://bootcamp-rent-car.herokuapp.com/customer/order',{
+    //             id: id,
+    //             mulaiSewa: '4 Oktober 2022',
+    //             akhirSewa: '10 Oktober 2022' 
+    //         })
+    //         .then(response => {
+    //             console.log(response);
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         })
+    // };
+
+    const postData = () => {
+        const key = JSON.parse(localStorage.getItem("access_token")); 
+        return axios.post('https://bootcamp-rent-car.herokuapp.com/customer/order', {
+            id: id,
+            mulaiSewa: '5 Oktober 2022',
+            akhirSewa: '10 Oktober 2022'
+        }, {Authorization :  `Bearer ${key}` })
+        .then((res) => {
+            return res.data
+        })
+    }
 
     useEffect(() => {
         loadDetail();
@@ -115,14 +127,16 @@ const Konfirmasi = () => {
                                 </span>
                             </p>
                             <p style={{ color: "#3C3C3C" }}> Total Bayar </p>
-                            <p style={{ border: "1px solid black", padding: "5px", borderRadius: "2px" }}>
-                                <span> Rp {detail?.price.toLocaleString('en-US')} </span>
-                                <span>
-                                    <CopyToClipboard text={detail?.price.toLocaleString('en-US')}>
-                                        <FiCopy size="18px" />
-                                    </CopyToClipboard>
-                                </span>
-                            </p>
+                            <div>
+                                <p style={{ border: "1px solid black", padding: "5px", borderRadius: "2px" }}>
+                                    <span> Rp {detail?.price.toLocaleString('en-US')} </span>
+                                    <span>
+                                        <CopyToClipboard text={detail?.price.toLocaleString('en-US')}>
+                                            <FiCopy size="18px" />
+                                        </CopyToClipboard>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
 
                         <div style={{ boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", marginBottom: "20px", padding: "20px" }}>
@@ -212,9 +226,9 @@ const Konfirmasi = () => {
                     <div class="col-4" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
                         {uploadMenu==='konfirmasi' && (
                             <>
-                            <div className={uploadMenu==='upload' ? 'active' : 'inactive'}
+                            <p> Klik konfirmasi pembayaran untuk mempercepat proses pengecekan </p>
+                            <div className={uploadMenu==='konfirmasi' ? 'active' : 'inactive'}
                                 onClick={()=>setUploadMenu('upload')}>
-                                    <p> Klik konfirmasi pembayaran untuk mempercepat proses pengecekan </p>
                                     <button onClick={postData} style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
                                         <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Konfirmasi </p>
                                     </button>     
