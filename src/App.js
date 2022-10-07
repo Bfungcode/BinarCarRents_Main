@@ -35,8 +35,8 @@ function App() {
           <Route path='Tiket' element={<Tiket />} />
         </Route>
       </Route>
-      <Route path="login-user" element={<Login />} />
-      <Route path="register-user" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Routes >
   )
 }

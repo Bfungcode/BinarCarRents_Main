@@ -4,15 +4,19 @@ import { useParams } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import * as Icon from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FcCheckmark } from "react-icons/fc";
 import moment from 'moment'
+import { useNavigate } from "react-router-dom";
 const Pembayaran = () => {
 
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
     const [activeMenu, setActiveMenu] = useState('start');
     const { id } = useParams();
+    const { isLoggedIn } = useSelector((state) => state.auth)
+    const navigate = useNavigate();
     const controller = new AbortController();
 
     const loadDetail = async () => {
@@ -35,7 +39,11 @@ const Pembayaran = () => {
     useEffect(() => {
         loadDetail();
     }, []);
-
+    React.useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/');
+        }
+    }, [!isLoggedIn])
     return (
         <>
             <Header />

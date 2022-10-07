@@ -8,7 +8,11 @@ a:link {
     text-decoration: none;
 }
 
-.Header-sty {
+.hijau {
+    background-color: lightgreen;
+}
+
+.nav .Header-sty {
     position: static;
     width: 100%;
     height: 100%;

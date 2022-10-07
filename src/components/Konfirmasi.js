@@ -8,6 +8,7 @@ import moment from 'moment';
 import 'moment/locale/id';
 import { FiImage, FiCopy } from "react-icons/fi";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useSelector } from "react-redux";
 
 const Konfirmasi = () => {
 
@@ -17,6 +18,8 @@ const Konfirmasi = () => {
     const [uploadMenu, setUploadMenu] = useState('konfirmasi');
     const { id } = useParams();
     const controller = new AbortController();
+    const { isLoggedIn } = useSelector((state) => state.auth)
+    const navigate = useNavigate();
 
     const endTime = new Date().getTime() + 3600000 * 24;
     const createdDate = moment(new Date()).utc().format();
@@ -68,6 +71,11 @@ const Konfirmasi = () => {
         loadDetail();
         postData();
     }, []);
+    React.useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/');
+        }
+    }, [!isLoggedIn])
 
     return (
         <>

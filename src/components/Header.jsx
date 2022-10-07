@@ -15,10 +15,12 @@ const Header = ({ isButtonShow }) => {
                                 <h3>Binar Cartal</h3>
                             </Navbar.Brand>
                             <Nav>
-                                < Nav.Link href="#ourservices"><strong>Our Services</strong></Nav.Link>
+                                <Nav.Link href="#ourservices"><strong>Our Services</strong></Nav.Link>
                                 <Nav.Link href="#whyus"><strong>Why Us</strong></Nav.Link>
                                 <Nav.Link href="#testimonials"><strong>Testimonials</strong></Nav.Link>
                                 <Nav.Link href="#faq"><strong>FAQ</strong></Nav.Link>
+                                <Nav.Link href="/register"><Button className='btn-success pt-1 mb-1'>
+                                    Register</Button></Nav.Link>
                             </Nav>
                         </Container>
                     </Navbar>

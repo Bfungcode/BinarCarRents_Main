@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import Footer from "./Footer";
 import Header from "./Header";
 import { FcOk } from "react-icons/fc";
@@ -10,10 +12,17 @@ const Tiket = () => {
 
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
+    const { isLoggedIn } = useSelector((state) => state.auth)
+    const navigate = useNavigate();
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
     }
+    React.useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/');
+        }
+    }, [!isLoggedIn])
 
     return (
         <>
