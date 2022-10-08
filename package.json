@@ -12,25 +12,14 @@
         "@testing-library/user-event": "^13.5.0",
         "axios": "^0.27.2",
         "bootstrap": "^5.2.0",
-<<<<<<< HEAD
-        "date-fns": "^2.29.2",
-=======
         "date-fns": "^2.29.3",
-        "formik": "^2.2.9",
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
+        "formik-yup": "^0.0.5",
         "moment": "^2.29.4",
         "react": "^18.2.0",
         "react-bootstrap": "^2.5.0",
         "react-bootstrap-icons": "^1.8.4",
-<<<<<<< HEAD
-        "react-copy-to-clipboard": "^5.1.0",
         "react-date-range": "^1.4.0",
         "react-dom": "^18.2.0",
-        "react-icons": "^4.4.0",
-=======
-        "react-date-range": "^1.4.0",
-        "react-dom": "^18.2.0",
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
         "react-pdf": "^5.7.2",
         "react-router": "^6.3.0",
         "react-router-dom": "^6.3.0",
@@ -41,14 +30,8 @@
         "rsuite": "^5.18.0",
         "sass": "^1.54.4",
         "style-loader": "^3.3.1",
-<<<<<<< HEAD
-        "swiper": "^8.3.2",
-        "web-vitals": "^2.1.4"
-=======
         "swiper": "^8.4.3",
-        "web-vitals": "^2.1.4",
-        "yup": "^0.32.11"
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
+        "web-vitals": "^2.1.4"
     },
     "scripts": {
         "start": "react-scripts start",

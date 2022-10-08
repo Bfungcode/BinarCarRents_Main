@@ -38,11 +38,7 @@ const Header = ({ isButtonShow }) => {
                             </a>
                         </div>
                         <div className="col-lg-6 position-relative" id='carwrapper'>
-<<<<<<< HEAD
-                            <img className="car-img" src={require("../media/alien.jpg")}></img>
-=======
                             <img className="car-img" src={require("../media/img_car.png")}></img>
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
                         </div>
                     </div>
                 </div>

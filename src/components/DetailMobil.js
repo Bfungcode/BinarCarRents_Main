@@ -90,8 +90,6 @@ const DetailMobil = () => {
                                             <i><Icon.People /></i>
                                             <h5>{detail?.category}</h5>
                                         </div>
-<<<<<<< HEAD
-=======
 
                                         <div>
                                             <br></br>
@@ -99,19 +97,11 @@ const DetailMobil = () => {
                                             <CalendarView />
                                         </div>
 
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
                                         <div className="total">
                                             <h5>Total</h5>
                                             <h5>Rp {detail?.price}</h5>
                                         </div>
-<<<<<<< HEAD
-                                        <div>
-                                            <h5>Tentukan lama sewa mobil :</h5>
-                                            <CalendarView />
-                                        </div>
-=======
-                                        
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
+
                                     </Card.Body>
                                     <Link to={"/Pembayaran/" + id}>
                                         <Button className="btn-success">Mulai Sewa Mobil</Button>

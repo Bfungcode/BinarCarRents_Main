@@ -6,7 +6,7 @@ import Header from "./Header";
 import * as Icon from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { FcCheckmark } from "react-icons/fc";
-
+import moment from 'moment'
 const Pembayaran = () => {
 
     const [detail, setDetail] = useState(null);
@@ -54,11 +54,11 @@ const Pembayaran = () => {
                             </div>
                             <div class="col">
                                 <p> Tanggal Mulai Sewa </p>
-                                <p style={{ color: "gray" }}> {moment(tanggalAwal).format("MMMM Do YYYY")} </p>
+                                <p style={{ color: "gray" }}> 9 September 2022 </p>
                             </div>
                             <div class="col">
                                 <p> Tanggal Akhir Sewa </p>
-                                <p style={{ color: "gray" }}> {moment(tanggalAkhir).format("MMMM Do YYYY")} </p>
+                                <p style={{ color: "gray" }}> 16 September 2022 </p>
                             </div>
                         </div>
                     </div>

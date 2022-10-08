@@ -15,8 +15,8 @@ const CariMobil = ({ cars, setFilteredCars }) => {
     const handleSubmit = (e) => {
         const pilihanHarga = (harga) => {
             return (
-                (harga < 400000 && formPrice === 'KURANG_400') ||
-                (harga >= 400000 && harga <= 600000 && formPrice === '400-600') ||
+                (harga < 400000 && formPrice === 'KURANG_400') &&
+                (harga >= 400000 && harga <= 600000 && formPrice === '400-600') &&
                 (harga > 600000 && formPrice === 'LEBIH_600')
             )
         }

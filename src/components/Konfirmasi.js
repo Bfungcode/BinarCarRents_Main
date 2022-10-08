@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate, useParams, useNavigate } from "react-router-dom";
@@ -8,7 +7,7 @@ import Countdown from './Countdown';
 import moment from 'moment';
 import 'moment/locale/id';
 import { FiImage, FiCopy } from "react-icons/fi";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const Konfirmasi = () => {
 
@@ -32,10 +31,10 @@ const Konfirmasi = () => {
     const hours = Math.floor(timeLeft / 3600000) % 60;
     const minutes = Math.floor(timeLeft / 60000) % 60;
     const seconds = Math.floor(timeLeft / 1000) % 60;
-  
+
     const minutes2 = Math.floor(timeLeft / 60000) % 10;
     const seconds2 = Math.floor(timeLeft / 1000) % 60;
-    
+
     const loadDetail = async () => {
         setLoading(true);
         try {
@@ -52,10 +51,10 @@ const Konfirmasi = () => {
 
     const postData = async () => {
         await axios
-            .post('https://bootcamp-rent-car.herokuapp.com/customer/order',{
+            .post('https://bootcamp-rent-car.herokuapp.com/customer/order', {
                 id: id,
                 mulaiSewa: '4 Oktober 2022',
-                akhirSewa: '10 Oktober 2022' 
+                akhirSewa: '10 Oktober 2022'
             })
             .then(response => {
                 console.log(response);
@@ -70,14 +69,6 @@ const Konfirmasi = () => {
         postData();
     }, []);
 
-=======
-import React from "react";
-import Footer from "./Footer";
-import Header from "./Header";
-
-const Konfirmasi = () => {
-
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
     return (
         <>
             <Header />
@@ -88,24 +79,17 @@ const Konfirmasi = () => {
                             <div class="row">
                                 <div class="col">
                                     <p style={{ fontWeight: "bold" }}> Selesaikan Pembayaran Sebelum </p>
-<<<<<<< HEAD
                                     <p> {moment(endTime).format('LLL')} WIB </p>
                                     {/* <p> {expirationDate.toString()} </p> */}
                                 </div>
                                 <div class="col" style={{ marginBottom: "10px" }}>
-                                    <p style={{textAlign : "right"}}>
-                                        <span style={{backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white"}}>{hours.toString().length === 1 ? "0" : null}{hours}</span>
+                                    <p style={{ textAlign: "right" }}>
+                                        <span style={{ backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white" }}>{hours.toString().length === 1 ? "0" : null}{hours}</span>
                                         <span> : </span>
-                                        <span style={{backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white"}}>{minutes.toString().length === 1 ? "0" : null}{minutes}</span>
+                                        <span style={{ backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white" }}>{minutes.toString().length === 1 ? "0" : null}{minutes}</span>
                                         <span> : </span>
-                                        <span style={{backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white"}}>{seconds.toString().length === 1 ? "0" : null}{seconds}</span>
+                                        <span style={{ backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white" }}>{seconds.toString().length === 1 ? "0" : null}{seconds}</span>
                                     </p>
-=======
-                                    <p> Jumat, 9 September 2022 jam 13.00 WIB </p>
-                                </div>
-                                <div class="col" style={{ marginBottom: "10px" }}>
-                                    <p class="text-end"> 23 : 59 : 59 </p>
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
                                 </div>
                             </div>
                         </div>
@@ -122,7 +106,6 @@ const Konfirmasi = () => {
                                 </div>
                             </div>
                             <p style={{ color: "#3C3C3C" }}> Nomor Rekening </p>
-<<<<<<< HEAD
                             <p style={{ border: "1px solid black", padding: "5px", borderRadius: "2px" }}>
                                 <span> 54104257877 </span>
                                 <span>
@@ -140,52 +123,46 @@ const Konfirmasi = () => {
                                     </CopyToClipboard>
                                 </span>
                             </p>
-=======
-                            <p style={{ border: "1px solid black", padding: "5px", borderRadius: "2px" }}> 54104257877 </p>
-                            <p style={{ color: "#3C3C3C" }}> Total Bayar </p>
-                            <p style={{ border: "1px solid black", padding: "5px", borderRadius: "2px" }}> Rp 3.500.000 </p>
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
                         </div>
 
                         <div style={{ boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", marginBottom: "20px", padding: "20px" }}>
                             <p style={{ fontWeight: "bold" }}> Intruksi Pembayaran </p>
-<<<<<<< HEAD
                             <div class='row'>
                                 <div class="col">
-                                    <div className={activeMenu==='atm' ? 'active' : 'inactive'}
-                                        onClick={()=>setActiveMenu('atm')}> Atm BCA 
+                                    <div className={activeMenu === 'atm' ? 'active' : 'inactive'}
+                                        onClick={() => setActiveMenu('atm')}> Atm BCA
                                     </div>
-                                    {activeMenu==='atm' && (
-                                        <p style={{borderBottom: "2px solid #5CB85F"}}> </p>
+                                    {activeMenu === 'atm' && (
+                                        <p style={{ borderBottom: "2px solid #5CB85F" }}> </p>
                                     )}
                                 </div>
                                 <div class="col">
-                                    <div className={activeMenu==='m-bca' ? 'active' : 'inactive'}
-                                        onClick={()=>setActiveMenu('m-bca')}> M-BCA 
+                                    <div className={activeMenu === 'm-bca' ? 'active' : 'inactive'}
+                                        onClick={() => setActiveMenu('m-bca')}> M-BCA
                                     </div>
-                                    {activeMenu==='m-bca' && (
-                                        <p style={{borderBottom: "2px solid #5CB85F"}}> </p>
+                                    {activeMenu === 'm-bca' && (
+                                        <p style={{ borderBottom: "2px solid #5CB85F" }}> </p>
                                     )}
                                 </div>
                                 <div class="col">
-                                    <div className={activeMenu==='klik' ? 'active' : 'inactive'}
-                                        onClick={()=>setActiveMenu('klik')}> BCA Klik 
+                                    <div className={activeMenu === 'klik' ? 'active' : 'inactive'}
+                                        onClick={() => setActiveMenu('klik')}> BCA Klik
                                     </div>
-                                    {activeMenu==='klik' && (
-                                        <p style={{borderBottom: "2px solid #5CB85F"}}> </p>
+                                    {activeMenu === 'klik' && (
+                                        <p style={{ borderBottom: "2px solid #5CB85F" }}> </p>
                                     )}
                                 </div>
                                 <div class="col">
-                                    <div className={activeMenu==='banking' ? 'active' : 'inactive'}
-                                        onClick={()=>setActiveMenu('banking')}> Internet Banking 
+                                    <div className={activeMenu === 'banking' ? 'active' : 'inactive'}
+                                        onClick={() => setActiveMenu('banking')}> Internet Banking
                                     </div>
-                                    {activeMenu==='banking' && (
-                                        <p style={{borderBottom: "2px solid #5CB85F"}}> </p>
+                                    {activeMenu === 'banking' && (
+                                        <p style={{ borderBottom: "2px solid #5CB85F" }}> </p>
                                     )}
                                 </div>
                             </div>
                             <div>
-                                {activeMenu==='atm' && (
+                                {activeMenu === 'atm' && (
                                     <div style={{ padding: "20px", color: "grey" }}>
                                         <li> Masukkan kartu ATM, lalu PIN </li>
                                         <li> Pilih menu “Transaksi Lainnya” – “Transfer” – “Ke Rek BCA Virtual Account” </li>
@@ -196,7 +173,7 @@ const Konfirmasi = () => {
                                         <li> Ambil dan simpanlah bukti transaksi tersebut </li>
                                     </div>
                                 )}
-                                {activeMenu==='m-bca' && (
+                                {activeMenu === 'm-bca' && (
                                     <div style={{ padding: "20px", color: "grey" }}>
                                         <li> Masuk ke menu m-BCA </li>
                                         <li> Klik menu “m-Transfer” kemudian tekan YES/OK </li>
@@ -206,7 +183,7 @@ const Konfirmasi = () => {
                                         <li> Lalu tekan OK </li>
                                     </div>
                                 )}
-                                {activeMenu==='klik' && (
+                                {activeMenu === 'klik' && (
                                     <div style={{ padding: "20px", color: "grey" }}>
                                         <li> Buka https://ibank.klikbca.com </li>
                                         <li> Masukkan user ID dan PIN klik BCA </li>
@@ -219,7 +196,7 @@ const Konfirmasi = () => {
                                         <li> Tunggu respon KEYBCA APLLI 1, kirim dan tunggu bukti transfer uang muncul </li>
                                     </div>
                                 )}
-                                {activeMenu==='banking' && (
+                                {activeMenu === 'banking' && (
                                     <div style={{ padding: "20px", color: "grey" }}>
                                         <li> Login dengan user ID dan password pada Internet Banking anda </li>
                                         <li> Pilih menu "Transfer". Pilih pilihan "Transfer Antar Bank" </li>
@@ -231,38 +208,38 @@ const Konfirmasi = () => {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-4" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
-                        {uploadMenu==='konfirmasi' && (
+                        {uploadMenu === 'konfirmasi' && (
                             <>
-                            <div className={uploadMenu==='upload' ? 'active' : 'inactive'}
-                                onClick={()=>setUploadMenu('upload')}>
+                                <div className={uploadMenu === 'upload' ? 'active' : 'inactive'}
+                                    onClick={() => setUploadMenu('upload')}>
                                     <p> Klik konfirmasi pembayaran untuk mempercepat proses pengecekan </p>
                                     <button onClick={postData} style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
                                         <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Konfirmasi </p>
-                                    </button>     
-                            </div>
+                                    </button>
+                                </div>
                             </>
                         )}
-                        {uploadMenu==='upload' && (
+                        {uploadMenu === 'upload' && (
                             <>
-                            <div class="row">
-                                <div class="col">
-                                    <p style={{ fontWeight: "bold" }}> Konfirmasi Pembayaran </p>
+                                <div class="row">
+                                    <div class="col">
+                                        <p style={{ fontWeight: "bold" }}> Konfirmasi Pembayaran </p>
+                                    </div>
+                                    <div class="col">
+                                        <p style={{ textAlign: "right" }}>
+                                            <span style={{ backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white" }}>{minutes2.toString().length === 1 ? "0" : null}{minutes2}</span>
+                                            <span> : </span>
+                                            <span style={{ backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white" }}>{seconds2.toString().length === 1 ? "0" : null}{seconds2}</span>
+                                        </p>
+                                    </div>
                                 </div>
-                            <div class="col">
-                                <p style={{textAlign : "right"}}>
-                                    <span style={{backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white"}}>{minutes2.toString().length === 1 ? "0" : null}{minutes2}</span>
-                                    <span> : </span>
-                                    <span style={{backgroundColor: "#FA2C5A", padding: "0px 2px", color: "white"}}>{seconds2.toString().length === 1 ? "0" : null}{seconds2}</span>
-                                </p>
-                            </div>
-                            </div>
                                 <p> Terima kasih telah melakukan konfirmasi pembayaran. Pembayaranmu akan segera kami cek tunggu kurang lebih 10 menit untuk mendapatkan konfirmasi. </p>
                                 <br />
                                 <p> Upload Bukti Pembayaran </p>
                                 <p> Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa upload bukti bayarmu </p>
-                                <p class="text-center" style={{ border: "1px dashed black", backgroundColor: "lightgrey", height: "200px", lineHeight: "200px" }}> <FiImage size="25px"/> </p>
+                                <p class="text-center" style={{ border: "1px dashed black", backgroundColor: "lightgrey", height: "200px", lineHeight: "200px" }}> <FiImage size="25px" /> </p>
                                 <a href="Tiket">
                                     <button onClick={postData} style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
                                         <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Upload </p>
@@ -270,54 +247,6 @@ const Konfirmasi = () => {
                                 </a>
                             </>
                         )}
-=======
-                            <div class="row">
-                                <div class="col">
-                                    <p> ATM BCA </p>
-                                </div>
-                                <div class="col">
-                                    <p> M-BCA </p>
-                                </div>
-                                <div class="col">
-                                    <p> BCA Klik </p>
-                                </div>
-                                <div class="col">
-                                    <p> Internet Banking </p>
-                                </div>
-                            </div>
-                            <hr style={{ margin: "0px" }}></hr>
-                            <div style={{ padding: "20px", color: "grey" }}>
-                                <li> Masukkan kartu ATM, lalu PIN </li>
-                                <li> Pilih menu “Transaksi Lainnya” – ‘Transfer” – “Ke Rek BCA Virtual Account” </li>
-                                <li> Masukkan nomor BCA Virtual Account: 70020+Order ID </li>
-                                <p> Contoh: </p>
-                                <p> No. Peserta: 12345678, maka ditulis 7002012345678 </p>
-                                <li> Layar ATM akan menampilkan konfirmasi, ikuti instruksi untuk menyelesaikan transaksi </li>
-                                <li> Ambil dan simpanlah bukti transaksi tersebut </li>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-4" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
-                        <div class="row">
-                            <div class="col">
-                                <p style={{ fontWeight: "bold" }}> Konfirmasi Pembayaran </p>
-                            </div>
-                            <div class="col">
-                                <p class="text-end"> 09 : 55 </p>
-                            </div>
-                        </div>
-                        <p> Terima kasih telah melakukan konfirmasi pembayaran. Pembayaranmu akan segera kami cek tunggu kurang lebih 10 menit untuk mendapatkan konfirmasi. </p>
-                        <br />
-                        <p> Upload Bukti Pembayaran </p>
-                        <p> Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa upload bukti bayarmu </p>
-                        <p class="text-center" style={{ border: "1px dashed black", backgroundColor: "lightgrey", height: "200px", lineHeight: "200px" }}> img </p>
-                        <a href="/sewamobil/tiket">
-                            <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
-                                <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Upload </p>
-                            </button>
-                        </a>
->>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
                     </div>
                 </div>
             </div>
