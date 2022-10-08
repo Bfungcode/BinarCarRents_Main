@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useRef, useState } from 'react'
 import { DateRange } from 'react-date-range'
 
@@ -9,6 +10,43 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
 const CalendarView = () => {
+=======
+import React, { useEffect, useState, useRef } from "react";
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import axios from "axios";
+import { Navigate, useParams, useNavigate, Link } from "react-router-dom";
+//Calendar
+import { DateRange, DateRangePicker } from 'react-date-range'
+import format from 'date-fns/format'
+import { addDays } from 'date-fns'
+
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
+import '../styling/detailMobil.css'
+
+import moment from 'moment';
+
+const CalendarView = () => {
+    const [detail, setDetail] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const { id } = useParams();
+    const controller = new AbortController();
+    const navigate = useNavigate();
+    
+    const loadDetail = async () => {
+        setLoading(true);
+        try {
+            const url = "https://bootcamp-rent-car.herokuapp.com/admin/car/" + id;
+            const { data } = await axios.get(url, {
+                signal: controller.signal,
+            });
+            setDetail(data);
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false);
+    };
+>>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
 
     // date state
     const [range, setRange] = useState([
@@ -25,12 +63,15 @@ const CalendarView = () => {
     // get the target element to toggle 
     const refOne = useRef(null)
 
+<<<<<<< HEAD
     useEffect(() => {
         // event listeners
         document.addEventListener("keydown", hideOnEscape, true)
         document.addEventListener("click", hideOnClickOutside, true)
     }, [])
 
+=======
+>>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
     // hide dropdown on ESC press
     const hideOnEscape = (e) => {
         // console.log(e.key)
@@ -51,6 +92,7 @@ const CalendarView = () => {
     // menu pilih tanggal
     const pilihtanggal = (e) => {
         // setOpen(open => !open);
+<<<<<<< HEAD
         console.log(range);
         console.log(setRange);
         setOpen(open => !open);
@@ -84,6 +126,62 @@ const CalendarView = () => {
             </div>
 
         </div>
+=======
+        // console.log(setRange);
+        setOpen(open => !open);
+        localStorage.setItem("tanggalMulai",range[0].startDate);
+        localStorage.setItem("tanggalSelesai",range[0].endDate);
+        console.log(range);
+        e.preventDefault();
+
+    }
+    
+    useEffect(() => {
+        loadDetail();
+        return () => {
+        };
+        document.addEventListener("keydown", hideOnEscape, true);
+        document.addEventListener("click", hideOnClickOutside, true);
+    }, []);
+
+    const tanggalAwal1 = localStorage.getItem("tanggalMulai");
+    const tanggalAkhir1 = localStorage.getItem("tanggalSelesai");
+
+    //Hitung selisih waktu
+    const Difference_In_Time = range[0].endDate.getTime() - range[0].startDate.getTime();
+    //Hitung Selisih hari
+    const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+    
+    return (
+        <>
+            <input
+                value={ `${format(range[0].startDate, "MM/dd/yyyy")} sampai ${format(range[0].endDate, "MM/dd/yyyy")}` }
+                readOnly
+                className="inputBoxCalendar"
+                onClick={() => setOpen(open => !open)}
+            />
+                        
+            <div className="calendarBox">
+                <div ref={refOne}>
+                    {open &&
+                        <Row>
+                            <DateRange
+                                onChange={item => setRange([item.selection])}
+                                editableDateInputs={true}
+                                moveRangeOnFirstSelection={false}
+                                ranges={range}
+                                months={1}
+                                direction="horizontal"
+                                className="calendarElement"
+                            />
+                            <Button onClick={(e) => { pilihtanggal(e) }}>Pilih Tanggal</Button>
+                        </Row>
+                    }
+                </div>
+
+            </div>
+        </>
+>>>>>>> 2bc7369 (get star date dan end date di pembayaran page)
     )
 }
 

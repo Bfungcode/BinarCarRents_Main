@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 import { FcCheckmark } from "react-icons/fc";
 
 const Pembayaran = () => {
-    
+
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
     const [activeMenu, setActiveMenu] = useState('start');
     const { id } = useParams();
     const controller = new AbortController();
-    
+
     const loadDetail = async () => {
         setLoading(true);
         try {
@@ -54,11 +54,11 @@ const Pembayaran = () => {
                             </div>
                             <div class="col">
                                 <p> Tanggal Mulai Sewa </p>
-                                <p style={{ color: "gray" }}> 9 September 2022 </p>
+                                <p style={{ color: "gray" }}> {moment(tanggalAwal).format("MMMM Do YYYY")} </p>
                             </div>
                             <div class="col">
                                 <p> Tanggal Akhir Sewa </p>
-                                <p style={{ color: "gray" }}> 16 September 2022 </p>
+                                <p style={{ color: "gray" }}> {moment(tanggalAkhir).format("MMMM Do YYYY")} </p>
                             </div>
                         </div>
                     </div>
@@ -72,8 +72,8 @@ const Pembayaran = () => {
                             <p style={{ fontWeight: "bold", fontSize: "18px" }}> Pilih Bank Transfer </p>
                             <p> Kamu bisa membayar dengan transfer melalui ATM, Internet Banking atau Mobile Banking </p>
                             <div class="row" style={{ paddingTop: "25px" }}>
-                                <div style={{ marginBottom: "30px"}} className={activeMenu==='BCA' ? 'active' : 'inactive'}
-                                    onClick={()=>setActiveMenu('BCA')}>
+                                <div style={{ marginBottom: "30px" }} className={activeMenu === 'BCA' ? 'active' : 'inactive'}
+                                    onClick={() => setActiveMenu('BCA')}>
                                     <div class="row">
                                         <div class="col">
                                             <p>
@@ -82,15 +82,15 @@ const Pembayaran = () => {
                                             </p>
                                         </div>
                                         <div class="col">
-                                            {activeMenu==='BCA' && (
-                                                <h5 style={{textAlign: "right", marginRight: "30px"}}><FcCheckmark size= "25px" /></h5> 
+                                            {activeMenu === 'BCA' && (
+                                                <h5 style={{ textAlign: "right", marginRight: "30px" }}><FcCheckmark size="25px" /></h5>
                                             )}
                                         </div>
                                     </div>
                                     <hr style={{ margin: "10px 0px 0px 0px", color: "black" }}></hr>
                                 </div>
-                                <div style={{ marginBottom: "30px" }} className={activeMenu==='BNI' ? 'active' : 'inactive'}
-                                    onClick={()=>setActiveMenu('BNI')}>
+                                <div style={{ marginBottom: "30px" }} className={activeMenu === 'BNI' ? 'active' : 'inactive'}
+                                    onClick={() => setActiveMenu('BNI')}>
                                     <div class="row">
                                         <div class="col">
                                             <p>
@@ -99,15 +99,15 @@ const Pembayaran = () => {
                                             </p>
                                         </div>
                                         <div class="col">
-                                            {activeMenu==='BNI' && (
-                                                <h5 style={{textAlign: "right", marginRight: "30px"}}> <FcCheckmark size= "25px" /> </h5>
+                                            {activeMenu === 'BNI' && (
+                                                <h5 style={{ textAlign: "right", marginRight: "30px" }}> <FcCheckmark size="25px" /> </h5>
                                             )}
                                         </div>
                                     </div>
                                     <hr style={{ margin: "10px 0px 0px 0px", color: "black" }}></hr>
                                 </div>
-                                <div className={activeMenu==='Mandiri' ? 'active' : 'inactive'}
-                                    onClick={()=>setActiveMenu('Mandiri')}>
+                                <div className={activeMenu === 'Mandiri' ? 'active' : 'inactive'}
+                                    onClick={() => setActiveMenu('Mandiri')}>
                                     <div class="row">
                                         <div class="col">
                                             <p>
@@ -116,8 +116,8 @@ const Pembayaran = () => {
                                             </p>
                                         </div>
                                         <div class="col">
-                                            {activeMenu==='Mandiri' && (
-                                                <h5 style={{textAlign: "right", marginRight: "30px"}}><FcCheckmark size= "25px" /></h5>
+                                            {activeMenu === 'Mandiri' && (
+                                                <h5 style={{ textAlign: "right", marginRight: "30px" }}><FcCheckmark size="25px" /></h5>
                                             )}
                                         </div>
                                     </div>
@@ -177,26 +177,26 @@ const Pembayaran = () => {
                                         <p class="text-end" style={{ fontWeight: "bold" }}> Rp {detail?.price.toLocaleString('en-US')} </p>
                                     </div>
                                 </div>
-                                {activeMenu==='start' && (
-                                        <button style={{ backgroundColor: "#DEF1DF", width: "100%", height: "40px", marginBottom: "10px" }}>
-                                            <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
-                                        </button>
+                                {activeMenu === 'start' && (
+                                    <button style={{ backgroundColor: "#DEF1DF", width: "100%", height: "40px", marginBottom: "10px" }}>
+                                        <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
+                                    </button>
                                 )}
-                                {activeMenu==='BCA' && (
+                                {activeMenu === 'BCA' && (
                                     <Link to={"Konfirmasi"}>
                                         <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
                                             <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
                                         </button>
                                     </Link>
                                 )}
-                                {activeMenu==='BNI' && (
+                                {activeMenu === 'BNI' && (
                                     <Link to={"Konfirmasi"}>
                                         <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
                                             <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
                                         </button>
                                     </Link>
                                 )}
-                                {activeMenu==='Mandiri' && (
+                                {activeMenu === 'Mandiri' && (
                                     <Link to={"Konfirmasi"}>
                                         <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
                                             <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>

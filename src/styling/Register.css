@@ -1,0 +1,73 @@
+.rowRegister {
+    display: flex;
+}
+
+.formregister {
+    justify-content: center;
+    justify-items: center;
+    margin: 20%;
+}
+
+.input {
+    width: 100%;
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+.registerpic {
+    height: 50%;
+    background-color: blue;
+}
+
+.rectangle {
+    /* position: absolute; */
+    width: 720px;
+    height: 600px;
+    right: 0px;
+    top: 0px;
+
+    /* background: #0D28A6; */
+    background-color: #abbaff;
+}
+
+.smallrectangle {
+    width: 150px;
+    height: 50px;
+    background: #abbaff;
+}
+
+
+.buttonregister {
+    width: 100%;
+    background-color: #0D28A6;
+    padding: 5px;
+    margin-top: 5%;
+    border-radius: 5px;
+    color: white;
+    border-color: #0D28A6;
+    font-size: 14px;
+}
+
+.textsignin {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 480px) {
+    .rowRegister {
+        display: grid;
+    }
+
+    .rightCol {
+        display: none;
+    }
+
+    .formregister {
+        justify-content: center;
+        justify-items: center;
+        margin: 10%;
+    }
+}
