@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate, Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import CariMobil from "./CariMobil";
-import { Container, Row, Col, Card, } from 'react-bootstrap'
+import CalendarView from "./Calendar";
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import * as Icon from "react-bootstrap-icons";
+import '../styling/detailMobil.css'
 
 const DetailMobil = () => {
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
     const { id } = useParams();
     const controller = new AbortController();
+    const navigate = useNavigate();
     //spread operator -> mengeluarkan properti dari object
     const loadDetail = async () => {
         setLoading(true);
@@ -79,7 +82,7 @@ const DetailMobil = () => {
                         </Col>
                         <Col>
                             <div className="paketMobil">
-                                <Card>
+                                <Card className="cardstyle">
                                     {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
                                     <Card.Body>
                                         <h5>{detail?.name}</h5>
@@ -91,7 +94,15 @@ const DetailMobil = () => {
                                             <h5>Total</h5>
                                             <h5>Rp {detail?.price}</h5>
                                         </div>
+                                        <div>
+                                            <h5>Tentukan lama sewa mobil :</h5>
+                                            <CalendarView />
+                                        </div>
                                     </Card.Body>
+                                    <Link to={"/Pembayaran/" + id}>
+                                        <Button className="btn-success">Mulai Sewa Mobil</Button>
+                                    </Link>
+                                    {/* <Button className="lanjutkanpembayaran" onClick={() => navigate(`${urlPage}/pembayaran`)}>Lanjutkan</Button> */}
                                 </Card>
                             </div>
                         </Col>
