@@ -75,7 +75,7 @@ const CariMobil = ({ cars, setFilteredCars }) => {
                             <Col>
                                 <FormGroup>
                                     <br></br>
-                                    <Button className="btn-success" type="submit" onClick={(e) => { handleSubmit(e) }}> Cari Mobil</Button>
+                                    <Button className="btn-success" type="button" onClick={(e) => { handleSubmit(e) }}> Cari Mobil</Button>
                                 </FormGroup>
                             </Col>
                         </Row>

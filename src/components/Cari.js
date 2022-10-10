@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { getAllCars } from "../features/rental/rentalSlice";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CariMobil from './CariMobil'
 import '../App'
 import { Container, Row, Col } from 'react-bootstrap'
 
 const Cari = () => {
+    const dispatch = useDispatch();
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(false);
     const controller = new AbortController();
@@ -14,10 +17,9 @@ const Cari = () => {
     const loadCars = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.get("https://bootcamp-rent-car.herokuapp.com/admin/car", {
-                signal: controller.signal,
-            });
-            setCars(data);
+            dispatch(getAllCars())
+                .unwrap()
+                .then((data) => setCars(data));
         } catch (error) {
             console.log(error);
         }

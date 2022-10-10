@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux'
 import axios from "axios";
 import { Navigate, useParams, useNavigate, Link } from "react-router-dom";
+import { getCarById } from "../features/rental/rentalSlice";
 import Header from "./Header";
 import Footer from "./Footer";
 import CariMobil from "./CariMobil";
@@ -15,15 +17,14 @@ const DetailMobil = () => {
     const { id } = useParams();
     const controller = new AbortController();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     //spread operator -> mengeluarkan properti dari object
     const loadDetail = async () => {
         setLoading(true);
         try {
-            const url = "https://bootcamp-rent-car.herokuapp.com/admin/car/" + id;
-            const { data } = await axios.get(url, {
-                signal: controller.signal,
-            });
-            setDetail(data);
+            dispatch(getCarById(id))
+                .unwrap()
+                .then((data) => setDetail(data));
         } catch (error) {
             console.log(error);
         }

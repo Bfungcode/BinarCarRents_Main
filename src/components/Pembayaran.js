@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import * as Icon from "react-bootstrap-icons";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FcCheckmark } from "react-icons/fc";
 import moment from 'moment'
 import { useNavigate } from "react-router-dom";
+import { getOrder, getCarById } from "../features/rental/rentalSlice";
 const Pembayaran = () => {
 
     const [detail, setDetail] = useState(null);
@@ -18,7 +19,7 @@ const Pembayaran = () => {
     const { isLoggedIn } = useSelector((state) => state.auth)
     const navigate = useNavigate();
     const controller = new AbortController();
-
+    const dispatch = useDispatch();
     const loadDetail = async () => {
         setLoading(true);
         try {
@@ -27,6 +28,9 @@ const Pembayaran = () => {
                 signal: controller.signal,
             });
             setDetail(data);
+            // dispatch(getOrder(id))
+            //     .unwrap()
+            //     .then((data) => setDetail(data));
         } catch (error) {
             console.log(error);
         }
@@ -62,11 +66,11 @@ const Pembayaran = () => {
                             </div>
                             <div class="col">
                                 <p> Tanggal Mulai Sewa </p>
-                                <p style={{ color: "gray" }}> 9 September 2022 </p>
+                                <p style={{ color: "gray" }}> {detail?.finish_rent_at} </p>
                             </div>
                             <div class="col">
                                 <p> Tanggal Akhir Sewa </p>
-                                <p style={{ color: "gray" }}> 16 September 2022 </p>
+                                <p style={{ color: "gray" }}> {detail?.finish_rent_at}</p>
                             </div>
                         </div>
                     </div>
