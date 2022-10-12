@@ -45,7 +45,7 @@ const Login = () => {
     });
     React.useEffect(() => {
         if (isLoggedIn) {
-            navigate('/dashboard');
+            navigate('/login');
         }
     }, [isLoggedIn])
 
@@ -97,7 +97,7 @@ const Login = () => {
                                 <button className="buttonlogin" type="submit" >Sign In</button>
                             </div>
                             <div>
-                                <p className="textsignup">Don't have an account? <a href="./register-user" className="textsignup">Sign Up for free</a></p>
+                                <p className="textsignup">Don't have an account? <a href="/register" className="textsignup">Sign Up for free</a></p>
                             </div>
 
                         </form>

@@ -116,7 +116,7 @@ const Register = () => {
                             </div>
 
                             <div>
-                                <p className="textsignin">Already have an account? <a href="./login-user" className="textsignin">Sign in here</a></p>
+                                <p className="textsignin">Already have an account? <a href='/login' className="textsignin">Sign in here</a></p>
                             </div>
                         </form>
                     </div>

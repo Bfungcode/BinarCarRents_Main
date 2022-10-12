@@ -18,32 +18,32 @@ const dataTestimonials = [
     {
         id: 1,
         username: 'John Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+        testimonial: 'Lorem ipsum dolor sit amet consectetur'
     },
     {
         id: 2,
         username: 'Jane Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+        testimonial: 'Lorem ipsum dolor sit amet consectetur'
     },
     {
         id: 3,
         username: 'Jack Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+        testimonial: 'Lorem ipsum dolor sit amet consectetur'
     },
     {
         id: 4,
         username: 'Jin Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+        testimonial: 'Lorem ipsum dolor sit amet consectetur'
     },
     {
         id: 5,
         username: 'Jin Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+        testimonial: 'Lorem ipsum dolor sit amet consectetur'
     },
     {
         id: 6,
         username: 'Jin Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste!'
+        testimonial: 'Lorem ipsum dolor sit amet consectetur'
     },
 ]
 
@@ -56,9 +56,9 @@ const Content = () => {
         <div className='Content-sty'>
             <Container>
                 <div className='mini1' id='ourservices'>
-                    <Row>
+                    <div className='contain'>
                         <Col>
-                            <img src={require("../media/img_service.png")}></img>
+                            <img className="gambarService" src={require("../media/img_service.png")}></img>
                         </Col>
                         <Col>
                             <div className='tulisan1'>
@@ -107,7 +107,7 @@ const Content = () => {
                                 </div>
                             </div>
                         </Col>
-                    </Row>
+                    </div>
                 </div>
             </Container>
             <Container>
@@ -191,13 +191,13 @@ const Content = () => {
                         onSlideChange={() => console.log('slide change')}
                         onSwiper={swiper => console.log(swiper)}
                     >
-                        <SwiperSlide className="slide">
-                            <Card>
-                                <div className='slide-content'>
+                        <SwiperSlide className="container">
+                            <div className='row'>
+                                <div className='col d-flex flex-column justify-cposition-relative'>
                                     <div className='testimonials image'>
-                                        <img src={require("../media/fotoreview1.png")}></img>
+                                        <img className="" src={require("../media/fotoreview1.png")}></img>
                                     </div>
-                                    <div className='reviewtesti'>
+                                    <div className='col justify-content-center'>
                                         <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
                                             <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
@@ -205,11 +205,11 @@ const Content = () => {
                                             <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
                                             <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
                                         </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
                                         <h5>John Dee 32, Bromo</h5>
                                     </div>
                                 </div>
-                            </Card>
+                            </div>
                         </SwiperSlide>
                         <SwiperSlide className="slide">
                             <Card>
@@ -225,7 +225,7 @@ const Content = () => {
                                             <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
                                             <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
                                         </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
                                         <h5>John Dee 32, Bromo</h5>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@ const Content = () => {
                                             <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
                                             <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
                                         </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
                                         <h5>John Dee 32, Bromo</h5>
                                     </div>
                                 </div>
@@ -265,7 +265,7 @@ const Content = () => {
                                             <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
                                             <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
                                         </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
                                         <h5>John Dee 32, Bromo</h5>
                                     </div>
                                 </div>
@@ -285,7 +285,7 @@ const Content = () => {
                                             <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
                                             <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
                                         </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
                                         <h5>John Dee 32, Bromo</h5>
                                     </div>
                                 </div>
@@ -305,7 +305,7 @@ const Content = () => {
                                             <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
                                             <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
                                         </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
                                         <h5>John Dee 32, Bromo</h5>
                                     </div>
                                 </div>
@@ -325,7 +325,7 @@ const Content = () => {
                                             <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
                                             <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
                                         </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod”</h5>
+                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
                                         <h5>John Dee 32, Bromo</h5>
                                     </div>
                                 </div>
