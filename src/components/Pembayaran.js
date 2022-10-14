@@ -10,6 +10,11 @@ import { FcCheckmark } from "react-icons/fc";
 import moment from 'moment'
 import { useNavigate } from "react-router-dom";
 import { getOrder, getCarById } from "../features/rental/rentalSlice";
+
+// Indonesian locale
+var idLocale = require('moment/locale/id'); 
+moment.locale('id', idLocale);
+
 const Pembayaran = () => {
 
     const [detail, setDetail] = useState(null);
@@ -20,6 +25,13 @@ const Pembayaran = () => {
     const navigate = useNavigate();
     const controller = new AbortController();
     const dispatch = useDispatch();
+    //get tanggal
+    const selisihHari = localStorage.getItem("selisihHari");
+
+    // const [tanggalMulaiSewa, setTanggalMulaiSewa] = useState(moment(localStorage.getItem("tanggalMulai")).format("LL"));
+    const [tanggalMulaiSewa, setTanggalMulaiSewa] = useState();
+    const [tanggalAkhirSewa, setTanggalAkhirSewa] = useState();
+
     const loadDetail = async () => {
         setLoading(true);
         try {
@@ -28,6 +40,8 @@ const Pembayaran = () => {
                 signal: controller.signal,
             });
             setDetail(data);
+            setTanggalMulaiSewa(moment(localStorage.getItem("tanggalMulai")).format("LL"));
+            setTanggalAkhirSewa(moment(localStorage.getItem("tanggalSelesai")).format("LL"));
             // dispatch(getOrder(id))
             //     .unwrap()
             //     .then((data) => setDetail(data));
@@ -42,6 +56,7 @@ const Pembayaran = () => {
 
     useEffect(() => {
         loadDetail();
+        alert("Selisih tanggal sewa = "+selisihHari+" hari");
     }, []);
     React.useEffect(() => {
         if (!isLoggedIn) {
@@ -66,11 +81,11 @@ const Pembayaran = () => {
                             </div>
                             <div class="col">
                                 <p> Tanggal Mulai Sewa </p>
-                                <p style={{ color: "gray" }}> {detail?.finish_rent_at} </p>
+                                <p style={{ color: "gray" }}> {tanggalMulaiSewa} </p>
                             </div>
                             <div class="col">
                                 <p> Tanggal Akhir Sewa </p>
-                                <p style={{ color: "gray" }}> {detail?.finish_rent_at}</p>
+                                <p style={{ color: "gray" }}> {tanggalAkhirSewa}</p>
                             </div>
                         </div>
                     </div>

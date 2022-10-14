@@ -3,10 +3,12 @@
 }
 
 .formregister {
-    justify-content: center;
-    justify-items: center;
-    margin: 20%;
+    position: relative;
+    padding: 10% 20%;
+    width: auto;
+    height: auto;
 }
+
 
 .input {
     width: 100%;
@@ -53,7 +55,13 @@
 .textsignin {
     text-align: center;
     padding-top: 20px;
-    font-size: 12px;
+    font-size: 16px;
+}
+
+.bgImage {
+    display: block;
+    width: auto;
+    height: auto;
 }
 
 @media screen and (max-width: 480px) {
@@ -68,6 +76,5 @@
     .formregister {
         justify-content: center;
         justify-items: center;
-        margin: 10%;
     }
 }

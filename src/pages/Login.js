@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/auth/authSlice";
-import { Button, Form, FormGroup, Label, Input, FormText, Row, Col, Table, Card, CardImg } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Row, Col, Table, Card, CardImg, img } from 'reactstrap';
 import '../styling/Login.css';
 import axios from "axios";
 
@@ -52,7 +52,7 @@ const Login = () => {
     return (
         <>
             <Row className="rowLogin">
-                <Col>
+                <Col className="leftCol">
                     <div className="formlogin">
                         <div className="smallrectangle"></div>
                         <br></br>
@@ -105,13 +105,14 @@ const Login = () => {
                 </Col>
 
                 <Col className="rightCol">
-                    <Card inverse>
+                    <img class="bgImage" src="../Rectangle.jpg" alt="" />
+                    {/* <Card inverse>
                         <CardImg
                             alt="Card image cap"
                             src="../Rectangle.jpg"
                             width="100%"
-                            height="100%" />
-                    </Card>
+                            height="auto" />
+                    </Card> */}
                 </Col>
 
             </Row>
