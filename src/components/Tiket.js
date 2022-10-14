@@ -45,7 +45,7 @@ const Tiket = () => {
                             <AiOutlineArrowLeft/>
                             <span style={{fontWeight: "bold"}}> Tiket </span>
                         </p>
-                        <p style={{marginLeft: "20px", fontSize: "14px"}}> Order ID: 86754231 </p>
+                        <p style={{marginLeft: "20px", fontSize: "14px"}}> Order ID: xxxxxxxx </p>
                     
                     </div>
                     <div class="col" style={{textAlign: "right"}}>

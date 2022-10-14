@@ -99,7 +99,7 @@ const Pembayaran = () => {
                                     <AiOutlineArrowLeft/>
                                     <span style={{fontWeight: "bold"}}> {bankMenu} Transfer </span>
                                 </p>
-                                <p style={{marginLeft: "20px", fontSize: "14px"}}> Order ID: 86754231 </p>
+                                <p style={{marginLeft: "20px", fontSize: "14px"}}> Order ID: xxxxxxxx </p>
                             </>
                         )}
                         </div>
