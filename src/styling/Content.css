@@ -1,0 +1,120 @@
+.Content-sty {
+    width: 100%;
+    margin-top: 5%;
+}
+
+
+/* 
+.Content-sty .mini1 {
+    display: flex;
+    flex-direction: column;
+} */
+
+.Content-sty .contain {
+    display: flex;
+}
+
+.Content-sty .mini1 .listverif {
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    gap: 2%;
+}
+
+.Content-sty .mini3 {
+    margin-top: 3%;
+}
+
+.Content-sty .swipper-button-prev {
+    position: relative;
+}
+
+.Content-sty .carouselReview {
+    /* position: static;
+    Width: 100%;
+    Height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10%; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.Content-sty .carouselReview .slide .slide-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    flex-direction: row;
+    background: #F1F3FF;
+}
+
+.Content-sty .carouselReview .slide .slide-content .gambartesti {
+    width: 30%;
+    padding-left: 10%;
+}
+
+.Content-sty .carouselReview .slide .slide-content .reviewtesti {
+    width: 70%;
+}
+
+.mini4 {
+    width: 100%;
+    background-color: #0D28A6;
+    border-radius: 13px;
+    margin-top: 5%;
+}
+
+.mini4 .paragraf {
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 5%;
+}
+
+.faq-content {
+    margin-top: 5%;
+}
+
+.faq-content #faq-intro {
+    width: 30%;
+}
+
+.faq-content #style-intro {
+    width: 60%;
+}
+
+@media only screen and (max-width: 480px) {
+    /* .Content-sty .mini1 {
+        display: flex;
+        flex-direction: row;
+    } */
+    .Content-sty .contain {
+        display: contents;
+    }
+    .Content-sty .gambarService {
+        width: 100%;
+    }
+    .mini4 {
+        padding: 10%;
+    }
+    /* .mini4 {
+        width: 100%;
+    }
+    .mini4 .paragraf {
+        width: 100%;
+        justify-content: center;
+    }
+    .faq-content #row-style {
+        display: flex;
+        flex-direction: column;
+    } */
+}
