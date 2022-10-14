@@ -7,10 +7,12 @@ import * as Icon from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { FcCheckmark } from "react-icons/fc";
 import { FiImage, FiCopy } from "react-icons/fi";
+import { AiOutlineArrowLeft, AiOutlineLine, AiOutlineCheck } from "react-icons/ai";
 import moment from 'moment';
 import 'moment/locale/id';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Countdown from './Countdown';
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 const Pembayaran = () => {
     
@@ -19,6 +21,7 @@ const Pembayaran = () => {
     const [loading, setLoading] = useState(false);
     const [bankMenu, setBankMenu] = useState('start');
     const [activeMenu, setActiveMenu] = useState('atm');
+    const [metodeMenu, setMetodeMenu] = useState('metode')
     const [uploadMenu, setUploadMenu] = useState('konfirmasi');
     const { id } = useParams();
     const controller = new AbortController();
@@ -63,7 +66,74 @@ const Pembayaran = () => {
 
     return (
         <>
-        <Header />
+            {/* HEADER */}
+            <div className='Header-sty'>
+                <Container>
+                    <div className='navbar1'>
+                        <Navbar>
+                            <Container>
+                                <Navbar.Brand href="/">
+                                    <h3>Binar Cartal</h3>
+                                </Navbar.Brand>
+                                <Nav>
+                                    <Nav.Link href="#ourservices"><strong>Our Services</strong></Nav.Link>
+                                    <Nav.Link href="#whyus"><strong>Why Us</strong></Nav.Link>
+                                    <Nav.Link href="#testimonials"><strong>Testimonials</strong></Nav.Link>
+                                    <Nav.Link href="#faq"><strong>FAQ</strong></Nav.Link>
+                                    <Button style={{backgroundColor: "#5CB85F", fontWeight: "bold", padding:"7px"}}> Register </Button>
+                                </Nav>
+                            </Container>
+                        </Navbar>
+                    </div>
+                    <div class="row" style={{margin: "20px 80px 0px 80px", paddingBottom: "10px"}}>
+                        <div class="col">
+                        {metodeMenu==='metode' && (
+                            <p>
+                                <AiOutlineArrowLeft/>
+                                <span style={{fontWeight: "bold"}}> Pembayaran </span>
+                            </p>
+                        )}
+                        {metodeMenu==='bayar' && (
+                            <>
+                                <p style={{marginBottom: "0px"}}>
+                                    <AiOutlineArrowLeft/>
+                                    <span style={{fontWeight: "bold"}}> {bankMenu} Transfer </span>
+                                </p>
+                                <p style={{marginLeft: "20px", fontSize: "14px"}}> Order ID: 86754231 </p>
+                            </>
+                        )}
+                        </div>
+                        <div class="col" style={{textAlign: "right"}}>
+                        {metodeMenu==='metode' && (
+                            <p>
+                                <span style={{border: "1px solid #0D28A6", padding:"0px 6px", borderRadius: "50%", color: "white", backgroundColor: "#0D28A6"}}>1</span>
+                                <span> Pilih Metode </span>
+                                <span> <AiOutlineLine size= "25px" color= "#0D28A6"/> </span>
+                                <span style={{border: "1px solid #0D28A6", padding:"0px 6px", borderRadius: "50%"}}>2</span>
+                                <span> Bayar </span>
+                                <span> <AiOutlineLine size= "25px" color= "#0D28A6"/> </span>
+                                <span style={{border: "1px solid #0D28A6", padding:"0px 6px", borderRadius: "50%"}}>3</span>
+                                <span> Tiket </span>
+                            </p>
+                        )}
+
+                        {metodeMenu==='bayar' && (
+                            <p>
+                                <span style={{border: "1px solid #0D28A6", padding:"0px 3px", borderRadius: "50%", color: "white", backgroundColor: "#0D28A6"}}><AiOutlineCheck color= "white" size= "15px"/></span>
+                                <span> Pilih Metode </span>
+                                <span> <AiOutlineLine size= "25px" color= "#0D28A6"/> </span>
+                                <span style={{border: "1px solid #0D28A6", padding:"0px 6px", borderRadius: "50%", color: "white", backgroundColor: "#0D28A6"}}>2</span>
+                                <span> Bayar </span>
+                                <span> <AiOutlineLine size= "25px" color= "#0D28A6"/> </span>
+                                <span style={{border: "1px solid #0D28A6", padding:"0px 6px", borderRadius: "50%"}}>3</span>
+                                <span> Tiket </span>
+                            </p>
+                        )}
+                        </div>
+                    </div>
+                </Container >
+            </div>
+        
         { menu? (
         <>
             <div class="container" style={{ width: "78%" }}>
@@ -211,19 +281,25 @@ const Pembayaran = () => {
                                 )}
                                 {bankMenu==='BCA' && (
                                     <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}
-                                        onClick={()=>setMenu(!menu)}>
+                                        onClick={()=>{
+                                            setMenu(!menu)
+                                            setMetodeMenu('bayar')}} >
                                         <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
                                     </button>
                                 )}
                                 {bankMenu==='BNI' && (
                                     <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}
-                                        onClick={()=>setMenu(!menu)}>
+                                        onClick={()=>{
+                                            setMenu(!menu)
+                                            setMetodeMenu('bayar')}} >
                                         <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
                                     </button>
                                 )}
                                 {bankMenu==='Mandiri' && (
                                     <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}
-                                        onClick={()=>setMenu(!menu)}>
+                                        onClick={()=>{
+                                            setMenu(!menu)
+                                            setMetodeMenu('bayar')}} >
                                         <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Bayar </p>
                                     </button>
                                 )}
