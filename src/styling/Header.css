@@ -28,6 +28,16 @@ a:link {
     transform: translateX(0);
 }
 
+#buttonHeader {
+    background-color: #5CB85F;
+    border-style: none;
+    border-radius: 1%;
+}
+
+#buttonHeader a {
+    color: white;
+}
+
 .Header-sty .Header2 {
     position: static;
     width: 100%;

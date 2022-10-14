@@ -35,9 +35,9 @@ const Header = ({ isButtonShow }) => {
                                 <li className="nav-item mr-3 fw-bold">
                                     <a className="nav-link" href="/#faq">FAQ</a>
                                 </li>
-                                <li className="nav-item mr-3 fw-bold">
-                                    <a className="nav-link" href="/register">Register</a>
-                                </li>
+                                <button className="nav-item mr-3 fw-bold" id='buttonHeader'>
+                                    <a className="nav-link" id="aHeader" href="/register">Register</a>
+                                </button>
                             </ul>
                         </div>
                     </div>

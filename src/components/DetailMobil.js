@@ -43,9 +43,9 @@ const DetailMobil = () => {
             <Header />
             <CariMobil />
             <div className="detailmobil-sty">
-                <Container>
-                    <Row>
-                        <Col>
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
                             <div className="paragraf1">
                                 <h4>Tentang Paket</h4>
                                 <br></br>
@@ -80,8 +80,8 @@ const DetailMobil = () => {
                                     <li>Tidak termasuk akomodasi penginapan</li>
                                 </ul>
                             </div>
-                        </Col>
-                        <Col>
+                        </div>
+                        <div className="col">
                             <div className="paketMobil">
                                 <Card className="cardstyle">
                                     {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
@@ -110,9 +110,9 @@ const DetailMobil = () => {
                                     {/* <Button className="lanjutkanpembayaran" onClick={() => navigate(`${urlPage}/pembayaran`)}>Lanjutkan</Button> */}
                                 </Card>
                             </div>
-                        </Col>
-                    </Row>
-                </Container>
+                        </div>
+                    </div>
+                </div>
             </div>
             <Footer />
         </div>

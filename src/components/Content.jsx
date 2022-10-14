@@ -12,41 +12,6 @@ import { Swiper, SwiperSlide, } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
-
-
-const dataTestimonials = [
-    {
-        id: 1,
-        username: 'John Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur'
-    },
-    {
-        id: 2,
-        username: 'Jane Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur'
-    },
-    {
-        id: 3,
-        username: 'Jack Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur'
-    },
-    {
-        id: 4,
-        username: 'Jin Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur'
-    },
-    {
-        id: 5,
-        username: 'Jin Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur'
-    },
-    {
-        id: 6,
-        username: 'Jin Doe',
-        testimonial: 'Lorem ipsum dolor sit amet consectetur'
-    },
-]
-
 const Content = () => {
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
@@ -185,152 +150,78 @@ const Content = () => {
                 <div className='carouselReview'>
                     <Swiper
                         spaceBetween={10}
-                        slidesPerView={1}
+                        slidesPerView={2}
                         navigation
                         pagination={{ clickable: true }}
                         onSlideChange={() => console.log('slide change')}
                         onSwiper={swiper => console.log(swiper)}
                     >
-                        <SwiperSlide className="container">
-                            <div className='row'>
-                                <div className='col d-flex flex-column justify-cposition-relative'>
-                                    <div className='testimonials image'>
-                                        <img className="" src={require("../media/fotoreview1.png")}></img>
-                                    </div>
-                                    <div className='col justify-content-center'>
-                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                        </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
-                                        <h5>John Dee 32, Bromo</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className="slide">
-                            <Card>
-                                <div className='slide-content'>
-                                    <div className='gambartesti'>
-                                        <img src={require("../media/fotoreview1.png")}></img>
-                                    </div>
-                                    <div className='reviewtesti'>
-                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                        </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
-                                        <h5>John Dee 32, Bromo</h5>
+                        <div className='swiperBungkus'>
+                            <SwiperSlide className="container">
+                                <div className='row p-3'>
+                                    <div className='col d-flex flex-column justify-cposition-relative rightCol'>
+                                        <div className='testimonials image'>
+                                            <img className="" src={require("../media/fotoreview1.png")}></img>
+                                        </div>
+                                        <div className='col justify-content-center'>
+                                            <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                                <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                                <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                                <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                                <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                            </svg>
+                                            <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
+                                            <h5>John Dee 32, Bromo</h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </Card>
-                        </SwiperSlide>
-                        <SwiperSlide className="slide">
-                            <Card>
-                                <div className='slide-content'>
-                                    <div className='testimonials image'>
-                                        <img src={require("../media/fotoreview1.png")}></img>
-                                    </div>
-                                    <div className='reviewtesti'>
-                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                        </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
-                                        <h5>John Dee 32, Bromo</h5>
-                                    </div>
-                                </div>
-                            </Card>
-                        </SwiperSlide>
-                        <SwiperSlide className="slide">
-                            <Card>
-                                <div className='slide-content'>
-                                    <div className='testimonials image'>
-                                        <img src={require("../media/fotoreview1.png")}></img>
-                                    </div>
-                                    <div className='reviewtesti'>
-                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                        </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
-                                        <h5>John Dee 32, Bromo</h5>
+                            </SwiperSlide>
+                        </div>
+                        <div className='swiperBungkus'>
+                            <SwiperSlide className="container">
+                                <div className='row p-3'>
+                                    <div className='col d-flex flex-column justify-cposition-relative rightCol'>
+                                        <div className='testimonials image'>
+                                            <img className="" src={require("../media/fotoreview1.png")}></img>
+                                        </div>
+                                        <div className='col justify-content-center'>
+                                            <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                                <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                                <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                                <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                                <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                            </svg>
+                                            <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
+                                            <h5>John Dee 32, Bromo</h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </Card>
-                        </SwiperSlide>
-                        <SwiperSlide className="slide">
-                            <Card>
-                                <div className='slide-content'>
-                                    <div className='testimonials image'>
-                                        <img src={require("../media/fotoreview1.png")}></img>
-                                    </div>
-                                    <div className='reviewtesti'>
-                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                        </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
-                                        <h5>John Dee 32, Bromo</h5>
-                                    </div>
-                                </div>
-                            </Card>
-                        </SwiperSlide>
-                        <SwiperSlide className="slide">
-                            <Card>
-                                <div className='slide-content'>
-                                    <div className='testimonials image'>
-                                        <img src={require("../media/fotoreview1.png")}></img>
-                                    </div>
-                                    <div className='reviewtesti'>
-                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                        </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
-                                        <h5>John Dee 32, Bromo</h5>
+                            </SwiperSlide>
+                        </div>
+                        <div className='swiperBungkus'>
+                            <SwiperSlide className="container">
+                                <div className='row p-3'>
+                                    <div className='col d-flex flex-column justify-cposition-relative rightCol'>
+                                        <div className='testimonials image'>
+                                            <img className="" src={require("../media/fotoreview1.png")}></img>
+                                        </div>
+                                        <div className='col justify-content-center'>
+                                            <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
+                                                <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
+                                                <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
+                                                <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
+                                                <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
+                                            </svg>
+                                            <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
+                                            <h5>John Dee 32, Bromo</h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </Card>
-                        </SwiperSlide>
-                        <SwiperSlide className="slide">
-                            <Card>
-                                <div className='slide-content'>
-                                    <div className='testimonials image'>
-                                        <img src={require("../media/fotoreview1.png")}></img>
-                                    </div>
-                                    <div className='reviewtesti'>
-                                        <svg width="80" height="16" viewBox="0 0 80 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" fill="#F9CC00" />
-                                            <path d="M24 0L25.7961 5.52786H31.6085L26.9062 8.94427L28.7023 14.4721L24 11.0557L19.2977 14.4721L21.0938 8.94427L16.3915 5.52786H22.2039L24 0Z" fill="#F9CC00" />
-                                            <path d="M40 0L41.7961 5.52786H47.6085L42.9062 8.94427L44.7023 14.4721L40 11.0557L35.2977 14.4721L37.0938 8.94427L32.3915 5.52786H38.2039L40 0Z" fill="#F9CC00" />
-                                            <path d="M56 0L57.7961 5.52786H63.6085L58.9062 8.94427L60.7023 14.4721L56 11.0557L51.2977 14.4721L53.0938 8.94427L48.3915 5.52786H54.2039L56 0Z" fill="#F9CC00" />
-                                            <path d="M72 0L73.7961 5.52786H79.6085L74.9062 8.94427L76.7023 14.4721L72 11.0557L67.2977 14.4721L69.0938 8.94427L64.3915 5.52786H70.2039L72 0Z" fill="#F9CC00" />
-                                        </svg>
-                                        <h5>“Lorem ipsum dolor sit amet, consectetur”</h5>
-                                        <h5>John Dee 32, Bromo</h5>
-                                    </div>
-                                </div>
-                            </Card>
-                        </SwiperSlide>
+                            </SwiperSlide>
+                        </div>
                     </Swiper>
                 </div>
             </Container>
