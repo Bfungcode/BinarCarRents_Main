@@ -27,9 +27,9 @@ const Content = () => {
                         </Col>
                         <Col>
                             <div className='tulisan1'>
-                                <h2>Best Car Rental for any kind of trip in (Lokasimu)!</h2>
+                                <h2>Best Car Rental for any kind of trip in Tangerang!</h2>
                                 <br></br>
-                                <h5>Sewa mobil di (Lokasimu) bersama Binar Car Rental jaminan harga lebih murah dibandingkan yang lain, kondisi mobil baru, serta kualitas pelayanan terbaik untuk perjalanan wisata, bisnis, wedding, meeting, dll.</h5>
+                                <h5>Sewa mobil di Tangerang bersama Binar Car Rental jaminan harga lebih murah dibandingkan yang lain, kondisi mobil baru, serta kualitas pelayanan terbaik untuk perjalanan wisata, bisnis, wedding, meeting, dll.</h5>
                                 <div className='listverif'>
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="12" r="12" fill="#CFD4ED" />

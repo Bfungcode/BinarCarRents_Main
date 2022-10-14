@@ -14,6 +14,15 @@ a:link {
     height: 100%;
 }
 
+.navbar-brand {
+    background: #0D28A6;
+    padding: 1%;
+}
+
+.navbar-brand h4 {
+    color: white;
+}
+
 #navbarNav {
     justify-content: right;
 }

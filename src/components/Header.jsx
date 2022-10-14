@@ -14,9 +14,9 @@ const Header = ({ isButtonShow }) => {
             <Container>
                 <nav className="navbar navbar-expand-lg navbar-light">
                     <div className="container mt-3">
-                        <Navbar.Brand href="/">
-                            <h3>Binar Cartal</h3>
-                        </Navbar.Brand>
+                        <a className='navbar-brand'>
+                            <h4>Binar Cartal</h4>
+                        </a>
                         <button onClick={() => sidebar === 'collapse' ? setSidebar(null) : setSidebar('collapse')}
                             className="navbar-toggler" type="button">
                             <span className="navbar-toggler-icon"></span>
