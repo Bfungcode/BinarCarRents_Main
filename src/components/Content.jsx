@@ -10,6 +10,7 @@ import 'swiper/scss/scrollbar';
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide, } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import axios from 'axios'
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 const Content = () => {

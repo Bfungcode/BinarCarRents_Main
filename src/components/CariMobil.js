@@ -4,29 +4,37 @@ import {
     CardBody, Card, Button, Form, FormText, FormGroup,
     Input, Label, Container, Row, Col
 } from 'reactstrap';
+import axios from 'axios';
 
 
 
 const CariMobil = ({ cars, setFilteredCars }) => {
-    const [formNamaMobil, setFormNamaMobil] = useState('');
-    const [formCategory, setFormCategory] = useState('');
-    const [formPrice, setFormPrice] = useState('default');
+    const [formNamaMobil, setFormNamaMobil] = useState(null);
+    const [formCategory, setFormCategory] = useState(null);
+    const [formPrice, setFormPrice] = useState(null);
+    const [formStatus, setFormStatus] = useState(null)
 
-    const handleSubmit = (e) => {
-        const pilihanHarga = (harga) => {
-            return (
-                (harga < 400000 && formPrice === 'KURANG_400') &&
-                (harga >= 400000 && harga <= 600000 && formPrice === '400-600') &&
-                (harga > 600000 && formPrice === 'LEBIH_600')
-            )
-        }
-        const carsFiltered = cars.filter((item) =>
-            formNamaMobil.includes(item.name) ||
-            item.category === formCategory ||
-            pilihanHarga(item.price)
-        );
-        setFilteredCars(carsFiltered)
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        let url = 'https://bootcamp-rent-cars.herokuapp.com/customer/v2/car'
+        try {
+            const res = await axios.get(url, {
+                params: {
+                    page: 1,
+                    pageSize: 10,
+                    name: formNamaMobil ? formNamaMobil : '',
+                    category: formCategory ? formCategory : '',
+                    isRented: formStatus ? formStatus : '',
+                    minPrice: formPrice ? formPrice : '',
+                }
+            });
+            let data = res.data
+            setFilteredCars(res.data.cars)
+            return data;
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
     return (
         <div className='allwrapper'>
@@ -44,38 +52,34 @@ const CariMobil = ({ cars, setFilteredCars }) => {
                                 <Label>Kategori</Label>
                                 <FormGroup>
                                     <Input type='select' id="kategori" onChange={(e) => setFormCategory(e.target.value)}>
-                                        <option value="" disabled selected>Pilih kapasitas mobil</option>
-                                        <option value={'small' && '2 - 4 orang'}> 2 - 4 orang</option>
-                                        <option value={'4 - 6 orang'}> 4 - 6 orang</option>
-                                        <option value={'6 - 9 orang'}> 6 - 8 orang</option>
+                                        <option value="">Pilih kapasitas mobil</option>
+                                        <option value={'small'}> 2 - 4 orang</option>
+                                        <option value={'medium'}> 4 - 6 orang</option>
+                                        <option value={'large'}> 6 - 8 orang</option>
                                     </Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <Label>Harga</Label>
                                 <FormGroup>
-                                    <Input type='select' id="harga" onChange={(e) => setFormPrice(e.target.value)}>
-                                        <option value="" disabled selected>Harga Mobil</option>
-                                        <option value={'KURANG_400'}>&lt; Rp 400000</option>
-                                        <option value={'400-600'}>Rp 400000 - Rp.600000</option>
-                                        <option value={'LEBIH_600'}>&gt; Rp 600000</option>
+                                    <Input type='text' id="harga" onChange={(e) => setFormPrice(parseInt(e.target.value))}>
                                     </Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <Label>Status</Label>
                                 <FormGroup>
-                                    <Input type='select' id='harga' onChange={(e) => (e.target.value)}>
-                                        <option value="" disabled selected>Status Mobil</option>
-                                        <option>Disewakan</option>
-                                        <option>Tidak Disewakan</option>
+                                    <Input type='select' id='harga' onChange={(e) => setFormStatus(e.target.value)}>
+                                        <option value="">Status Mobil</option>
+                                        <option value={true}>Disewakan</option>
+                                        <option value={false}>Tidak Disewakan</option>
                                     </Input>
                                 </FormGroup>
                             </Col>
                             <Col>
                                 <FormGroup>
                                     <br></br>
-                                    <Button className="btn-success" type="button" onClick={(e) => { handleSubmit(e) }}> Cari Mobil</Button>
+                                    <Button className="btn-success" type="submit" onClick={(e) => { handleSubmit(e) }}> Cari Mobil</Button>
                                 </FormGroup>
                             </Col>
                         </Row>

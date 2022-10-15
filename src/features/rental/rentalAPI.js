@@ -1,10 +1,10 @@
 import axios from "axios";
 import { getAuthHeader } from "../auth/tokenHeader";
 
-const API_URL = "https://bootcamp-rent-car.herokuapp.com/";
+const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
 
 const getALlCars = () => {
-    const response = axios.get(`${API_URL}admin/car`);
+    const response = axios.get(`${API_URL}customer/v2/car`);
     return response;
 };
 
