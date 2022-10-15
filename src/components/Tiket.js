@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Footer from "./Footer";
 import Header from "./Header";
 import { FcOk } from "react-icons/fc";
@@ -7,16 +8,43 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineArrowLeft, AiOutlineLine } from "react-icons/ai";
 import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5';
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
+import PropagateLoader from "react-spinners/PropagateLoader";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/5.7.2/pdf.worker.js`;
 
 const Tiket = () => {
 
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
+    const [detail, setDetail] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const { id } = useParams();
+    const controller = new AbortController();
+
+    const navigate = useNavigate();
   
     function onDocumentLoadSuccess({ numPages }) {
       setNumPages(numPages);
     }
+
+    const loadDetail = async () => {
+        setLoading(true);
+        try {
+            const url = "https://bootcamp-rent-cars.herokuapp.com/customer/car" + id;
+            const { data } = await axios.get(url, {
+                signal: controller.signal,
+            });
+            setDetail(data);
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        loadDetail();
+    }, []);
 
     return (
         <>
@@ -30,10 +58,10 @@ const Tiket = () => {
                                 <h3>Binar Cartal</h3>
                             </Navbar.Brand>
                             <Nav>
-                                <Nav.Link href="#ourservices"><strong>Our Services</strong></Nav.Link>
-                                <Nav.Link href="#whyus"><strong>Why Us</strong></Nav.Link>
-                                <Nav.Link href="#testimonials"><strong>Testimonials</strong></Nav.Link>
-                                <Nav.Link href="#faq"><strong>FAQ</strong></Nav.Link>
+                                <Nav.Link><strong>Our Services</strong></Nav.Link>
+                                <Nav.Link><strong>Why Us</strong></Nav.Link>
+                                <Nav.Link><strong>Testimonials</strong></Nav.Link>
+                                <Nav.Link><strong>FAQ</strong></Nav.Link>
                                 <Button style={{backgroundColor: "#5CB85F", fontWeight: "bold", padding:"7px"}}> Register </Button>
                             </Nav>
                         </Container>
@@ -41,12 +69,11 @@ const Tiket = () => {
                 </div>
                 <div class="row" style={{margin: "20px 80px 0px 80px", paddingBottom: "10px"}}>
                     <div class="col">
-                        <p style={{marginBottom: "0px"}}>
+                        <p onClick={()=>navigate(-1)} style={{marginBottom: "0px"}}>
                             <AiOutlineArrowLeft/>
                             <span style={{fontWeight: "bold"}}> Tiket </span>
                         </p>
                         <p style={{marginLeft: "20px", fontSize: "14px"}}> Order ID: xxxxxxxx </p>
-                    
                     </div>
                     <div class="col" style={{textAlign: "right"}}>
                         <p>
@@ -65,9 +92,11 @@ const Tiket = () => {
             </Container >
         </div>
 
+        {detail?.status? (
+        <>
             <div class="text-center" style={{ marginTop: "20px" }}>
-                <FcOk size = "40px"/>
-                <p style={{ fontWeight: "bold" }}> Pembayaran Berhasil! </p>
+                <FcOk size = "50px"/>
+                <p style={{ fontWeight: "bold", fontSize: "18px", marginTop: "10px"}}> Pembayaran Berhasil! </p>
                 <p style={{ color: "grey" }}> Tunjukkan invoice ini ke petugas BCR di titik temu. </p>
             </div>
 
@@ -95,13 +124,24 @@ const Tiket = () => {
                                 <p>
                                     Page {pageNumber} of {numPages}
                                 </p>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <Footer />
+        </>
+        ) : (
+        <>
+            <h4 class="text-center" style={{marginTop: "40px"}}> Menunggu Konfirmasi Pembayaran </h4>
+            <p style={{textAlign: "center", marginTop:"50px", marginBottom: "250px"}}> 
+                <PropagateLoader
+                    size={20}
+                    color="#5CB85F"
+                    speedMultiplier={1} /> 
+            </p>
+        </>
+        )}
+        <Footer />
         </>
     )
 }

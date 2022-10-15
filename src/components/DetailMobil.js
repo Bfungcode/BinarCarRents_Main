@@ -19,7 +19,7 @@ const DetailMobil = () => {
     const loadDetail = async () => {
         setLoading(true);
         try {
-            const url = "https://bootcamp-rent-car.herokuapp.com/admin/car/" + id;
+            const url = "https://bootcamp-rent-cars.herokuapp.com/customer/car/" + id;
             const { data } = await axios.get(url, {
                 signal: controller.signal,
             });

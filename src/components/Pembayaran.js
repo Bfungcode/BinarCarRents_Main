@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "./Footer";
-import Header from "./Header";
 import * as Icon from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { FcCheckmark } from "react-icons/fc";
@@ -13,26 +12,26 @@ import 'moment/locale/id';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Countdown from './Countdown';
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Pembayaran = () => {
     
-    const [menu, setMenu] = useState(true);
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [menu, setMenu] = useState(true);
     const [bankMenu, setBankMenu] = useState('start');
     const [activeMenu, setActiveMenu] = useState('atm');
     const [metodeMenu, setMetodeMenu] = useState('metode')
     const [uploadMenu, setUploadMenu] = useState('konfirmasi');
+    const [rekening, setRekening] = useState('');
     const { id } = useParams();
+    const navigate = useNavigate();
     const controller = new AbortController();
 
     const endTime = new Date().getTime() + 3600000 * 24;
-    const createdDate = moment(new Date()).utc().format();
-    const expirationDate = moment(createdDate).add(1, 'd').format('LLL');
     moment.locale("id");
-    // console.log(endTime);
-    // console.log(createdDate);
-    console.log(expirationDate);
+    console.log(endTime);
 
     const [timeLeft, setEndTime] = Countdown(endTime);
 
@@ -42,11 +41,21 @@ const Pembayaran = () => {
   
     const minutes2 = Math.floor(timeLeft / 60000) % 10;
     const seconds2 = Math.floor(timeLeft / 1000) % 60;
+
+    const customId = "custom-id-yes";
+    const notify = () => {
+        toast("Copied to Clipboard!", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: true,
+            toastId: customId
+          })
+    }
     
     const loadDetail = async () => {
         setLoading(true);
         try {
-            const url = "https://bootcamp-rent-car.herokuapp.com/admin/car/" + id;
+            const url = "https://bootcamp-rent-cars.herokuapp.com/customer/car/" + id;
             const { data } = await axios.get(url, {
                 signal: controller.signal,
             });
@@ -76,10 +85,10 @@ const Pembayaran = () => {
                                     <h3>Binar Cartal</h3>
                                 </Navbar.Brand>
                                 <Nav>
-                                    <Nav.Link href="#ourservices"><strong>Our Services</strong></Nav.Link>
-                                    <Nav.Link href="#whyus"><strong>Why Us</strong></Nav.Link>
-                                    <Nav.Link href="#testimonials"><strong>Testimonials</strong></Nav.Link>
-                                    <Nav.Link href="#faq"><strong>FAQ</strong></Nav.Link>
+                                    <Nav.Link><strong>Our Services</strong></Nav.Link>
+                                    <Nav.Link><strong>Why Us</strong></Nav.Link>
+                                    <Nav.Link><strong>Testimonials</strong></Nav.Link>
+                                    <Nav.Link><strong>FAQ</strong></Nav.Link>
                                     <Button style={{backgroundColor: "#5CB85F", fontWeight: "bold", padding:"7px"}}> Register </Button>
                                 </Nav>
                             </Container>
@@ -88,14 +97,19 @@ const Pembayaran = () => {
                     <div class="row" style={{margin: "20px 80px 0px 80px", paddingBottom: "10px"}}>
                         <div class="col">
                         {metodeMenu==='metode' && (
-                            <p>
+                            <p onClick={()=>navigate(-1)}>
                                 <AiOutlineArrowLeft/>
                                 <span style={{fontWeight: "bold"}}> Pembayaran </span>
                             </p>
                         )}
                         {metodeMenu==='bayar' && (
                             <>
-                                <p style={{marginBottom: "0px"}}>
+                                <p onClick={()=>{
+                                    setMetodeMenu('metode')
+                                    setMenu('true')
+                                    setMetodeMenu('metode')
+                                    setBankMenu('start')
+                                    setUploadMenu('konfirmasi')}} style={{marginBottom: "0px"}}>
                                     <AiOutlineArrowLeft/>
                                     <span style={{fontWeight: "bold"}}> {bankMenu} Transfer </span>
                                 </p>
@@ -169,8 +183,9 @@ const Pembayaran = () => {
                             <p style={{ fontWeight: "bold", fontSize: "18px" }}> Pilih Bank Transfer </p>
                             <p> Kamu bisa membayar dengan transfer melalui ATM, Internet Banking atau Mobile Banking </p>
                             <div class="row" style={{ paddingTop: "25px" }}>
-                                <div style={{ marginBottom: "30px"}} className={bankMenu==='BCA' ? 'active' : 'inactive'}
-                                    onClick={()=>setBankMenu('BCA')}>
+                                <div style={{ marginBottom: "30px"}} onClick={()=>{
+                                    setBankMenu('BCA')
+                                    setRekening('372 309 8781')}}>
                                     <div class="row">
                                         <div class="col">
                                             <p>
@@ -186,8 +201,9 @@ const Pembayaran = () => {
                                     </div>
                                     <hr style={{ margin: "10px 0px 0px 0px", color: "black" }}></hr>
                                 </div>
-                                <div style={{ marginBottom: "30px" }} className={bankMenu==='BNI' ? 'active' : 'inactive'}
-                                    onClick={()=>setBankMenu('BNI')}>
+                                <div style={{ marginBottom: "30px" }} onClick={()=>{
+                                    setBankMenu('BNI')
+                                    setRekening('800 600 6009')}}>
                                     <div class="row">
                                         <div class="col">
                                             <p>
@@ -203,8 +219,9 @@ const Pembayaran = () => {
                                     </div>
                                     <hr style={{ margin: "10px 0px 0px 0px", color: "black" }}></hr>
                                 </div>
-                                <div className={bankMenu==='Mandiri' ? 'active' : 'inactive'}
-                                    onClick={()=>setBankMenu('Mandiri')}>
+                                <div onClick={()=>{
+                                    setBankMenu('Mandiri')
+                                    setRekening('102 000 5263873')}}>
                                     <div class="row">
                                         <div class="col">
                                             <p>
@@ -321,7 +338,6 @@ const Pembayaran = () => {
                                     <div class="col">
                                         <p style={{ fontWeight: "bold" }}> Selesaikan Pembayaran Sebelum </p>
                                         <p> {moment(endTime).format('LLL')} WIB </p>
-                                        {/* <p> {expirationDate.toString()} </p> */}
                                     </div>
                                     <div class="col" style={{ marginBottom: "10px" }}>
                                         <p style={{textAlign : "right"}}>
@@ -348,21 +364,23 @@ const Pembayaran = () => {
                                 </div>
                                 <p style={{ color: "#3C3C3C" }}> Nomor Rekening </p>
                                 <p style={{ border: "1px solid black", padding: "5px", borderRadius: "2px" }}>
-                                    <span> 54104257877 </span>
-                                    <span>
+                                    <span> {rekening} </span>
+                                    <span onClick={notify}>
                                         <CopyToClipboard text="54104257877">
                                             <FiCopy size="18px" />
                                         </CopyToClipboard>
+                                        <ToastContainer/>
                                     </span>
                                 </p>
                                 <p style={{ color: "#3C3C3C" }}> Total Bayar </p>
                                 <div>
                                     <p style={{ border: "1px solid black", padding: "5px", borderRadius: "2px" }}>
                                         <span> Rp {detail?.price.toLocaleString('en-US')} </span>
-                                        <span>
+                                        <span onClick={notify}>
                                             <CopyToClipboard text={detail?.price.toLocaleString('en-US')}>
                                                 <FiCopy size="18px" />
                                             </CopyToClipboard>
+                                            <ToastContainer/>
                                         </span>
                                     </p>
                                 </div>
@@ -372,32 +390,28 @@ const Pembayaran = () => {
                                 <p style={{ fontWeight: "bold" }}> Intruksi Pembayaran </p>
                                 <div class='row'>
                                     <div class="col">
-                                        <div className={activeMenu==='atm' ? 'active' : 'inactive'}
-                                            onClick={()=>setActiveMenu('atm')}> Atm {bankMenu} 
+                                        <div onClick={()=>setActiveMenu('atm')}> Atm {bankMenu} 
                                         </div>
                                         {activeMenu==='atm' && (
                                             <p style={{borderBottom: "2px solid #5CB85F"}}> </p>
                                         )}
                                     </div>
                                     <div class="col">
-                                        <div className={activeMenu==='m-bca' ? 'active' : 'inactive'}
-                                            onClick={()=>setActiveMenu('m-bca')}> M-{bankMenu} 
+                                        <div onClick={()=>setActiveMenu('m-')}> M-{bankMenu} 
                                         </div>
-                                        {activeMenu==='m-bca' && (
+                                        {activeMenu==='m-' && (
                                             <p style={{borderBottom: "2px solid #5CB85F"}}> </p>
                                         )}
                                     </div>
                                     <div class="col">
-                                        <div className={activeMenu==='klik' ? 'active' : 'inactive'}
-                                            onClick={()=>setActiveMenu('klik')}> {bankMenu} Klik 
+                                        <div onClick={()=>setActiveMenu('klik')}> {bankMenu} Klik 
                                         </div>
                                         {activeMenu==='klik' && (
                                             <p style={{borderBottom: "2px solid #5CB85F"}}> </p>
                                         )}
                                     </div>
                                     <div class="col">
-                                        <div className={activeMenu==='banking' ? 'active' : 'inactive'}
-                                            onClick={()=>setActiveMenu('banking')}> Internet Banking 
+                                        <div onClick={()=>setActiveMenu('banking')}> Internet Banking 
                                         </div>
                                         {activeMenu==='banking' && (
                                             <p style={{borderBottom: "2px solid #5CB85F"}}> </p>
@@ -408,20 +422,18 @@ const Pembayaran = () => {
                                     {activeMenu==='atm' && (
                                         <div style={{ padding: "20px", color: "grey" }}>
                                             <li> Masukkan kartu ATM, lalu PIN </li>
-                                            <li> Pilih menu “Transaksi Lainnya” – “Transfer” – “Ke Rek {bankMenu} Virtual Account” </li>
-                                            <li> Masukkan nomor {bankMenu} Virtual Account: 70020+Order ID </li>
-                                            <p> Contoh: </p>
-                                            <p> No. Peserta: 12345678, maka ditulis 7002012345678 </p>
+                                            <li> Pilih menu “Transaksi Lainnya” – “Transfer” – “Ke Rekening {bankMenu}” </li>
+                                            <li> Masukkan nomor Rekening "{rekening}" & nominal transfer </li>
                                             <li> Layar ATM akan menampilkan konfirmasi, ikuti instruksi untuk menyelesaikan transaksi </li>
                                             <li> Ambil dan simpanlah bukti transaksi tersebut </li>
                                         </div>
                                     )}
-                                    {activeMenu==='m-bca' && (
+                                    {activeMenu==='m-' && (
                                         <div style={{ padding: "20px", color: "grey" }}>
                                             <li> Masuk ke menu M-{bankMenu} </li>
                                             <li> Klik menu “M-Transfer” kemudian tekan YES/OK </li>
-                                            <li> Pilih “antar rekening”, lalu pilih mata uang dan jumlah uang yang akan di transfer </li>
-                                            <li> Ketikkan nomor rekening 54104257877 </li>
+                                            <li> Pilih “antar rekening”, lalu pilih mata uang dan jumlah uang yang akan ditransfer </li>
+                                            <li> Masukkan nomor Rekening "{rekening}" </li>
                                             <li> Ketik PIN akun {bankMenu}mu, akan muncul keterangan berita yang dapat kamu kosongkan saja </li>
                                             <li> Lalu tekan OK </li>
                                         </div>
@@ -430,12 +442,12 @@ const Pembayaran = () => {
                                         <div style={{ padding: "20px", color: "grey" }}>
                                             <li> Buka https://ibank.klik{bankMenu}.com </li>
                                             <li> Masukkan user ID dan PIN klik {bankMenu} </li>
-                                            <li> Daftar dan masukkan nomer rekening tujuan di klik {bankMenu} individual </li>
-                                            <li> Masuk ke “Trasfer dana “, klik “Rekening {bankMenu}” </li>
+                                            <li> Daftar dan masukkan nomer Rekening "{rekening}" di klik {bankMenu} individual </li>
+                                            <li> Masuk ke “Transfer dana “, klik “Rekening {bankMenu}” </li>
                                             <li> Klik nomer rekening yang telah didaftarkan dan masukkan jumlah nominasi uang yang akan ditransfer </li>
                                             <li> Tunggu 8 digit angka untuk memasukkan ke Key{bankMenu} </li>
                                             <li> Setelah angka 8 digit masuk di respon key{bankMenu} APLLI 2, kemudian pencet “selanjutnya” </li>
-                                            <li> Tunggu nomer rekening tujuan, lalu nyalakan ulang key {bankMenu} dan tekan 1 </li>
+                                            <li> Tunggu nomor rekening tujuan, lalu nyalakan ulang key {bankMenu} dan tekan 1 </li>
                                             <li> Tunggu respon KEY{bankMenu} APLLI 1, kirim dan tunggu bukti transfer uang muncul </li>
                                         </div>
                                     )}
@@ -443,7 +455,7 @@ const Pembayaran = () => {
                                         <div style={{ padding: "20px", color: "grey" }}>
                                             <li> Login dengan user ID dan password pada Internet Banking anda </li>
                                             <li> Pilih menu "Transfer". Pilih pilihan "Transfer Antar Bank" </li>
-                                            <li> Isi nomor rekening tujuan, bank tujuan, nominal transfer dan tekan tombol "Kirim" </li>
+                                            <li> Pilih bank {bankMenu}, Isi nomor Rekening "{rekening}", nominal transfer dan tekan tombol "Kirim" </li>
                                             <li> Masukan password dan klik "Permintaan M-Token", lalu klik tombol "Kirim" </li>
                                             <li> Ambil dan simpanlah bukti transfer </li>
                                         </div>
@@ -457,8 +469,7 @@ const Pembayaran = () => {
                             {uploadMenu==='konfirmasi' && (
                                 <>
                                 <p> Klik konfirmasi pembayaran untuk mempercepat proses pengecekan </p>
-                                <div className={uploadMenu==='konfirmasi' ? 'active' : 'inactive'}
-                                    onClick={()=>setUploadMenu('upload')}>
+                                <div onClick={()=>setUploadMenu('upload')}>
                                         <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
                                             <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Konfirmasi </p>
                                         </button>     

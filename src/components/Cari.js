@@ -14,7 +14,7 @@ const Cari = () => {
     const loadCars = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.get("https://bootcamp-rent-car.herokuapp.com/admin/car", {
+            const { data } = await axios.get("https://bootcamp-rent-cars.herokuapp.com/customer/car/", {
                 signal: controller.signal,
             });
             setCars(data);
