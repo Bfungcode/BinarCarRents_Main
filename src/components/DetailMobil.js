@@ -22,9 +22,11 @@ const DetailMobil = () => {
     const loadDetail = async () => {
         setLoading(true);
         try {
-            dispatch(getCarById(id))
-                .unwrap()
-                .then((data) => setDetail(data));
+            const url = "https://bootcamp-rent-cars.herokuapp.com/customer/car/" + id;
+            const { data } = await axios.get(url, {
+                signal: controller.signal,
+            });
+            setDetail(data);
         } catch (error) {
             console.log(error);
         }
@@ -82,7 +84,7 @@ const DetailMobil = () => {
                             </div>
                         </Col>
                         <Col>
-                        ini halaman kanan
+                            ini halaman kanan
                             <div className="paketMobil">
                                 <Card className="cardstyle">
                                     {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
@@ -106,9 +108,9 @@ const DetailMobil = () => {
 
                                     </Card.Body>
                                     <div>
-                                    <Link to={"/Pembayaran/" + id}>
-                                        <Button className="btn-success2">Mulai Sewa Mobil</Button>
-                                    </Link>
+                                        <Link to={"/Pembayaran/" + id}>
+                                            <Button className="btn-success2">Mulai Sewa Mobil</Button>
+                                        </Link>
                                     </div>
                                     {/* <Button className="lanjutkanpembayaran" onClick={() => navigate(`${urlPage}/pembayaran`)}>Lanjutkan</Button> */}
                                 </Card>
