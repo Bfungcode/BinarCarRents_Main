@@ -366,7 +366,7 @@ const Pembayaran = () => {
                                 <p style={{ border: "1px solid black", padding: "5px", borderRadius: "2px" }}>
                                     <span> {rekening} </span>
                                     <span onClick={notify}>
-                                        <CopyToClipboard text="54104257877">
+                                        <CopyToClipboard text={rekening}>
                                             <FiCopy size="18px" />
                                         </CopyToClipboard>
                                         <ToastContainer/>
