@@ -1,7 +1,7 @@
 .formlogin {
     justify-content: center;
     justify-items: center;
-    margin: 20%;
+    margin: 15%;
 }
 
 .wrapper {
@@ -49,6 +49,12 @@
     text-align: center;
     padding-top: 20px;
     font-size: 16px;
+}
+
+.bgImage {
+    position: fixed; 
+    width: auto;
+    height: auto;
 }
 
 @media screen and (max-width: 480px) {

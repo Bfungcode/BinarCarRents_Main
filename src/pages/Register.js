@@ -55,7 +55,7 @@ const Register = () => {
     return (
         <>
             <Row className="rowRegister">
-                <Col>
+                <Col >
                     <div className="formregister">
                         <div className="smallrectangle"></div>
                         <br></br>
@@ -123,13 +123,14 @@ const Register = () => {
                 </Col>
 
                 <Col className="rightCol">
-                    <Card inverse>
+                    <img class="bgImage" src="../Rectangle.jpg" alt="" />
+                    {/* <Card inverse>
                         <CardImg
                             alt="Card image cap"
                             src="../Rectangle.jpg"
                             width="100%"
                             height="50%" />
-                    </Card>
+                    </Card> */}
                 </Col>
 
             </Row>

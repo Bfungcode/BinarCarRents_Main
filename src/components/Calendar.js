@@ -12,6 +12,9 @@ import 'react-date-range/dist/theme/default.css'
 import '../styling/detailMobil.css'
 
 import moment from 'moment';
+// Indonesian locale
+var idLocale = require('moment/locale/id'); 
+moment.locale('id', idLocale);
 
 const CalendarView = () => {
     const [detail, setDetail] = useState(null);
@@ -73,6 +76,7 @@ const CalendarView = () => {
         setOpen(open => !open);
         localStorage.setItem("tanggalMulai", range[0].startDate);
         localStorage.setItem("tanggalSelesai", range[0].endDate);
+        localStorage.setItem("selisihHari", Difference_In_Days);
         console.log(range);
         e.preventDefault();
 
@@ -116,7 +120,7 @@ const CalendarView = () => {
                                 direction="horizontal"
                                 className="calendarElement"
                             />
-                            <Button onClick={(e) => { pilihtanggal(e) }}>Pilih Tanggal</Button>
+                            <Button className="btnCalendar" onClick={(e) => { pilihtanggal(e) }}>Pilih Tanggal</Button>
                         </Row>
                     }
                 </div>

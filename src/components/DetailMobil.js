@@ -43,9 +43,9 @@ const DetailMobil = () => {
             <Header />
             <CariMobil />
             <div className="detailmobil-sty">
-                <div className="container">
-                    <div className="row">
-                        <div className="col">
+                <Container>
+                    <Row>
+                        <Col>
                             <div className="paragraf1">
                                 <h4>Tentang Paket</h4>
                                 <br></br>
@@ -80,8 +80,9 @@ const DetailMobil = () => {
                                     <li>Tidak termasuk akomodasi penginapan</li>
                                 </ul>
                             </div>
-                        </div>
-                        <div className="col">
+                        </Col>
+                        <Col>
+                        ini halaman kanan
                             <div className="paketMobil">
                                 <Card className="cardstyle">
                                     {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
@@ -104,19 +105,21 @@ const DetailMobil = () => {
                                         </div>
 
                                     </Card.Body>
+                                    <div>
                                     <Link to={"/Pembayaran/" + id}>
-                                        <Button className="btn-success">Mulai Sewa Mobil</Button>
+                                        <Button className="btn-success2">Mulai Sewa Mobil</Button>
                                     </Link>
+                                    </div>
                                     {/* <Button className="lanjutkanpembayaran" onClick={() => navigate(`${urlPage}/pembayaran`)}>Lanjutkan</Button> */}
                                 </Card>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
             <Footer />
         </div>
     );
 };
 
-export default DetailMobil
+export default DetailMobil;
