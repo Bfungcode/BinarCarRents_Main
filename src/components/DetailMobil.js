@@ -6,18 +6,24 @@ import { getCarById } from "../features/rental/rentalSlice";
 import Header from "./Header";
 import Footer from "./Footer";
 import CariMobil from "./CariMobil";
+import { getAuthHeader } from "../features/auth/tokenHeader";
 import CalendarView from "./Calendar";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import moment from 'moment';
+import 'moment/locale/id';
 import * as Icon from "react-bootstrap-icons";
 import '../styling/detailMobil.css'
+import userEvent from "@testing-library/user-event";
 
 const DetailMobil = () => {
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
     const { id } = useParams();
     const controller = new AbortController();
-    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [startRent, setStartRent] = useState();
+    const [finishRent, setFinishRent] = useState();
     //spread operator -> mengeluarkan properti dari object
     const loadDetail = async () => {
         setLoading(true);
@@ -32,9 +38,29 @@ const DetailMobil = () => {
         }
         setLoading(false);
     };
-
+    const handleSubmit = (e) => {
+        const user = JSON.parse(localStorage.getItem("user"))
+        let url = 'https://bootcamp-rent-cars.herokuapp.com/customer/order'
+        try {
+            return axios.post(url, {
+                car_id: id,
+                finish_rent_at: startRent,
+                start_rent_at: startRent,
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    access_token: user.access_token,
+                }
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
     useEffect(() => {
         loadDetail();
+        setStartRent(moment(localStorage.getItem("tanggalMulai")).format("YYYY-MM-DD"));
+        setFinishRent(moment(localStorage.getItem("tanggalSelesai")).format("YYYY-MM-DD"));
         return () => {
         };
     }, []);
@@ -109,7 +135,9 @@ const DetailMobil = () => {
                                     </Card.Body>
                                     <div>
                                         <Link to={"/Pembayaran/" + id}>
-                                            <Button className="btn-success2">Mulai Sewa Mobil</Button>
+                                            <Button className="btn-success2" type="submit" onClick={(e) => {
+                                                handleSubmit(e)
+                                            }}>Mulai Sewa Mobil</Button>
                                         </Link>
                                     </div>
                                     {/* <Button className="lanjutkanpembayaran" onClick={() => navigate(`${urlPage}/pembayaran`)}>Lanjutkan</Button> */}

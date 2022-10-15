@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -18,6 +19,7 @@ const Tiket = () => {
     const [pageNumber, setPageNumber] = useState(1);
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
+    const { isLoggedIn } = useSelector((state) => state.auth);
     const { id } = useParams();
     const controller = new AbortController();
 

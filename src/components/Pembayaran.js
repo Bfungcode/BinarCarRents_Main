@@ -15,6 +15,7 @@ import Countdown from './Countdown';
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getCarById } from "../features/rental/rentalSlice";
 
 const Pembayaran = () => {
 
@@ -33,6 +34,7 @@ const Pembayaran = () => {
     const selisihHari = localStorage.getItem("selisihHari");
     const [tanggalMulaiSewa, setTanggalMulaiSewa] = useState();
     const [tanggalAkhirSewa, setTanggalAkhirSewa] = useState();
+    const dispatch = useDispatch();
 
     const endTime = new Date().getTime() + 3600000 * 24;
     moment.locale("id");
@@ -59,16 +61,11 @@ const Pembayaran = () => {
     const loadDetail = async () => {
         setLoading(true);
         try {
-            const url = "https://bootcamp-rent-cars.herokuapp.com/admin/car/" + id;
+            const url = "https://bootcamp-rent-cars.herokuapp.com/customer/car/" + id;
             const { data } = await axios.get(url, {
                 signal: controller.signal,
             });
             setDetail(data);
-            setTanggalMulaiSewa(moment(localStorage.getItem("tanggalMulai")).format("LL"));
-            setTanggalAkhirSewa(moment(localStorage.getItem("tanggalSelesai")).format("LL"));
-            // dispatch(getOrder(id))
-            //     .unwrap()
-            //     .then((data) => setDetail(data));
         } catch (error) {
             console.log(error);
         }
@@ -80,6 +77,8 @@ const Pembayaran = () => {
 
     useEffect(() => {
         loadDetail();
+        setTanggalMulaiSewa(moment(localStorage.getItem("tanggalMulai")).format("LL"));
+        setTanggalAkhirSewa(moment(localStorage.getItem("tanggalSelesai")).format("LL"));
     }, []);
     React.useEffect(() => {
         if (!isLoggedIn) {

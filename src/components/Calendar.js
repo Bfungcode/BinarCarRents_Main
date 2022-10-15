@@ -13,7 +13,7 @@ import '../styling/detailMobil.css'
 
 import moment from 'moment';
 // Indonesian locale
-var idLocale = require('moment/locale/id'); 
+var idLocale = require('moment/locale/id');
 moment.locale('id', idLocale);
 
 const CalendarView = () => {

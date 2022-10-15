@@ -9,7 +9,7 @@ const getALlCars = () => {
 };
 
 const getCarById = (id) => {
-    const response = axios.get(`${API_URL}admin/car/${id}`)
+    const response = axios.get(`${API_URL}customer/car/${id}`)
     return response;
 }
 
