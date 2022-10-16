@@ -58,6 +58,7 @@ const Pembayaran = () => {
             toastId: customId
         })
     }
+    
     const loadDetail = async () => {
         setLoading(true);
         try {
@@ -72,19 +73,21 @@ const Pembayaran = () => {
         setLoading(false);
     };
 
-    const biayaHarian = detail?.price / 5;
-    console.log(biayaHarian);
-
     useEffect(() => {
         loadDetail();
         setTanggalMulaiSewa(moment(localStorage.getItem("tanggalMulai")).format("LL"));
         setTanggalAkhirSewa(moment(localStorage.getItem("tanggalSelesai")).format("LL"));
     }, []);
+
     React.useEffect(() => {
         if (!isLoggedIn) {
             navigate('/');
         }
     }, [!isLoggedIn])
+
+    const biayaHarian = detail?.price / selisihHari;
+    console.log(selisihHari);
+    
     return (
         <>
             {/* HEADER */}
@@ -277,7 +280,7 @@ const Pembayaran = () => {
                                         <p style={{ fontWeight: "bold" }}> Harga </p>
                                         <div class="row">
                                             <div class="col-8">
-                                                <p> Sewa Mobil Rp {biayaHarian.toLocaleString('en-US')} x 5 hari </p>
+                                                <p> Sewa Mobil Rp {biayaHarian.toLocaleString('en-US')} x {selisihHari} hari </p>
                                             </div>
                                             <div class="col">
                                                 <p class="text-end"> Rp {detail?.price.toLocaleString('en-US')} </p>
