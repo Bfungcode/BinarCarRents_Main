@@ -86,8 +86,8 @@ const Pembayaran = () => {
         }
     }, [!isLoggedIn])
 
-    const biayaHarian = detail?.price / selisihHari;
-    console.log(selisihHari);
+    const totalBiaya = detail?.price * selisihHari;
+    console.log(totalBiaya);
     
     return (
         <>
@@ -274,17 +274,17 @@ const Pembayaran = () => {
                                             <p> Total </p>
                                         </div>
                                         <div class="col">
-                                            <p class="text-end" style={{ fontWeight: "bold" }}> Rp {detail?.price.toLocaleString('en-US')} </p>
+                                            <p class="text-end" style={{ fontWeight: "bold" }}> Rp {totalBiaya.toLocaleString('en-US')} </p>
                                         </div>
                                     </div>
                                     <div>
                                         <p style={{ fontWeight: "bold" }}> Harga </p>
                                         <div class="row">
                                             <div class="col-8">
-                                                <p> Sewa Mobil Rp {biayaHarian.toLocaleString('en-US')} x {selisihHari} hari </p>
+                                                <p> Sewa Mobil Rp {detail?.price.toLocaleString('en-US')} x {selisihHari} hari </p>
                                             </div>
                                             <div class="col">
-                                                <p class="text-end"> Rp {detail?.price.toLocaleString('en-US')} </p>
+                                                <p class="text-end"> Rp {totalBiaya.toLocaleString('en-US')} </p>
                                             </div>
                                         </div>
                                         <p style={{ fontWeight: "bold" }}> Biaya Lainnya </p>
@@ -308,7 +308,7 @@ const Pembayaran = () => {
                                                 <p style={{ fontWeight: "bold" }}> Total </p>
                                             </div>
                                             <div class="col">
-                                                <p class="text-end" style={{ fontWeight: "bold" }}> Rp {detail?.price.toLocaleString('en-US')} </p>
+                                                <p class="text-end" style={{ fontWeight: "bold" }}> Rp {totalBiaya.toLocaleString('en-US')} </p>
                                             </div>
                                         </div>
                                         {bankMenu === 'start' && (
