@@ -81,7 +81,8 @@ const Pembayaran = () => {
 
     React.useEffect(() => {
         if (!isLoggedIn) {
-            navigate('/');
+            alert("Silakan login untuk melanjutkan pemesanan");
+            navigate('/login');
         }
     }, [!isLoggedIn])
 
