@@ -43,9 +43,9 @@ const DetailMobil = () => {
         let url = 'https://bootcamp-rent-cars.herokuapp.com/customer/order'
         try {
             return axios.post(url, {
-                car_id: id,
-                finish_rent_at: startRent,
                 start_rent_at: startRent,
+                finish_rent_at: startRent,
+                car_id: id,
             }, {
                 headers: {
                     "Content-Type": "application/json",
