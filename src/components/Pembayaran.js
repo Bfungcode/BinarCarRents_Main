@@ -398,7 +398,7 @@ const Pembayaran = () => {
                                     <p style={{ color: "#3C3C3C" }}> Total Bayar </p>
                                     <div>
                                         <p style={{ border: "1px solid black", padding: "5px", borderRadius: "2px" }}>
-                                            <span> Rp {detail?.price.toLocaleString('en-US')} </span>
+                                            <span> Rp {totalBiaya.toLocaleString('en-US')} </span>
                                             <span onClick={notify}>
                                                 <CopyToClipboard text={detail?.price.toLocaleString('en-US')}>
                                                     <FiCopy size="18px" />
