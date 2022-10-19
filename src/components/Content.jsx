@@ -30,7 +30,7 @@ const Content = () => {
                             <div className='tulisan1'>
                                 <h2>Best Car Rental for any kind of trip in Tangerang!</h2>
                                 <br></br>
-                                <h5>Sewa mobil di Tangerang bersama Binar Car Rental jaminan harga lebih murah dibandingkan yang lain, kondisi mobil baru, serta kualitas pelayanan terbaik untuk perjalanan wisata, bisnis, wedding, meeting, dll.</h5>
+                                <p>Sewa mobil di Tangerang bersama Binar Car Rental jaminan harga lebih murah dibandingkan yang lain, kondisi mobil baru, serta kualitas pelayanan terbaik untuk perjalanan wisata, bisnis, wedding, meeting, dll.</p>
                                 <div className='listverif'>
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="12" r="12" fill="#CFD4ED" />
@@ -132,7 +132,7 @@ const Content = () => {
                                                 <path d="M12.8416 17.575L11.8333 25.1667L15.9999 22.6667L20.1666 25.1667L19.1583 17.5667" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                             <h2>Sopir Profesional</h2>
-                                            <p>Sopir yang dijamin profesional, berpengalaman, jujur, ramah dan selalu tepat waktu</p>
+                                            <p>Sopir yang dijamin profesional, berpengalaman, jujur, ramah dan tepat waktu</p>
                                         </Card.Body>
                                     </Card>
                                 </div>
@@ -223,9 +223,10 @@ const Content = () => {
                                 </div>
                             </SwiperSlide>
                         </div>
+
                     </Swiper>
                 </div>
-            </Container>
+            </Container >
             <Container>
                 <div className='mini4'>
                     <div className='paragraf'>
@@ -244,7 +245,7 @@ const Content = () => {
                     <div className='row'>
                         <div className='col-lg-6'>
                             <h1>Frequently Asked Question</h1>
-                            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint atque saepe modi voluptatibus! Reiciendis, odio!</h5>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint atque saepe modi voluptatibus! Reiciendis, odio!</p>
                         </div>
                         <div className='col-lg-6'>
                             <div className='row- mx-1'>

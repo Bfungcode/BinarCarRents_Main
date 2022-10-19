@@ -7,7 +7,7 @@ import { FcOk } from "react-icons/fc";
 import { BiArrowToBottom } from "react-icons/bi";
 import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineArrowLeft, AiOutlineLine } from "react-icons/ai";
-import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5';
+import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.parcel';
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import PropagateLoader from "react-spinners/PropagateLoader";
@@ -15,7 +15,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/5
 
 const Tiket = () => {
 
-    const [numPages, setNumPages] = useState(null);
+    const [numPages, setNumPages] = useState(1);
     const [pageNumber, setPageNumber] = useState(1);
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -100,7 +100,7 @@ const Tiket = () => {
                 </Container >
             </div>
 
-            {detail?.status ? (
+            {!detail?.status ? (
                 <>
                     <div class="text-center" style={{ marginTop: "20px" }}>
                         <FcOk size="50px" />
@@ -126,7 +126,7 @@ const Tiket = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <Document file="/PDF.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+                                        <Document file="../media/SLIP_BUKTI_PEMBAYARAN_DUMMY.pdf" onLoadSuccess={onDocumentLoadSuccess}>
                                             <Page pageNumber={pageNumber} />
                                         </Document>
                                         <p>

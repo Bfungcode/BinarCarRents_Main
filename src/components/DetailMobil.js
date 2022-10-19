@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux'
 import axios from "axios";
+import { getCarById, postOrder } from "../features/rental/rentalSlice";
 import { Navigate, useParams, useNavigate, Link } from "react-router-dom";
-import { getCarById } from "../features/rental/rentalSlice";
 import Header from "./Header";
 import Footer from "./Footer";
 import CariMobil from "./CariMobil";
@@ -25,40 +25,22 @@ const DetailMobil = () => {
     const [startRent, setStartRent] = useState();
     const [finishRent, setFinishRent] = useState();
     //spread operator -> mengeluarkan properti dari object
-    const loadDetail = async () => {
-        setLoading(true);
-        try {
-            const url = "https://bootcamp-rent-cars.herokuapp.com/customer/car/" + id;
-            const { data } = await axios.get(url, {
-                signal: controller.signal,
-            });
-            setDetail(data);
-        } catch (error) {
-            console.log(error);
-        }
-        setLoading(false);
-    };
-    const handleSubmit = (e) => {
-        const user = JSON.parse(localStorage.getItem("user"))
-        let url = 'https://bootcamp-rent-cars.herokuapp.com/customer/order'
-        try {
-            return axios.post(url, {
-                start_rent_at: startRent,
-                finish_rent_at: startRent,
-                car_id: id,
-            }, {
-                headers: {
-                    "Content-Type": "application/json",
-                    access_token: user.access_token,
-                }
-            });
-        }
-        catch (error) {
-            console.log(error);
-        }
+    const getDetail = () => {
+        dispatch(getCarById({ id }))
+            .unwrap()
+            .then((data) => {
+                setDetail(data)
+                console.log(data)
+            })
+            .catch(err => console.log(err));
+    }
+
+    const makeOrder = () => {
+        dispatch(postOrder({ start_rent_at: startRent, finish_rent_at: finishRent, car_id: id }))
+            .unwrap()
     }
     useEffect(() => {
-        loadDetail();
+        getDetail();
         setStartRent(moment(localStorage.getItem("tanggalMulai")).format("YYYY-MM-DD"));
         setFinishRent(moment(localStorage.getItem("tanggalSelesai")).format("YYYY-MM-DD"));
         return () => {
@@ -71,9 +53,9 @@ const DetailMobil = () => {
             <Header />
             <CariMobil />
             <div className="detailmobil-sty">
-                <Container>
-                    <Row>
-                        <Col>
+                <div className="container">
+                    <div className="row" id="rowF">
+                        <div className="col">
                             <div className="paragraf1">
                                 <h4>Tentang Paket</h4>
                                 <br></br>
@@ -108,9 +90,8 @@ const DetailMobil = () => {
                                     <li>Tidak termasuk akomodasi penginapan</li>
                                 </ul>
                             </div>
-                        </Col>
-                        <Col>
-                            ini halaman kanan
+                        </div>
+                        <div className="col">
                             <div className="paketMobil">
                                 <Card className="cardstyle">
                                     {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
@@ -135,20 +116,20 @@ const DetailMobil = () => {
                                     </Card.Body>
                                     <div>
                                         <Link to={"/Pembayaran/" + id}>
-                                            <Button className="btn-success2" type="submit" onClick={(e) => {
-                                                handleSubmit(e)
+                                            <Button className="btn-success2" type="submit" onClick={() => {
+                                                makeOrder()
                                             }}>Mulai Sewa Mobil</Button>
                                         </Link>
                                     </div>
                                     {/* <Button className="lanjutkanpembayaran" onClick={() => navigate(`${urlPage}/pembayaran`)}>Lanjutkan</Button> */}
                                 </Card>
                             </div>
-                        </Col>
-                    </Row>
-                </Container>
+                        </div>
+                    </div>
+                </div>
             </div>
             <Footer />
-        </div>
+        </div >
     );
 };
 

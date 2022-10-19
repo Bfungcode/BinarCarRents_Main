@@ -46,12 +46,12 @@ const Header = ({ isButtonShow }) => {
                     <div className="row d-flex justify-content-between ">
                         <div className="col-lg-6 pb-3">
                             <h1>Sewa & Rental Mobil Terbaik di kawasan Tangerang</h1>
-                            <h4 className="mt-4 mr-4">Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.</h4>
+                            <p className="mt-4 mr-4">Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.</p>
                             <a href="/car" className="text-reset text-decoration-none">
                                 {
                                     isButtonShow && (
                                         <Link to={"/SewaMobil"}>
-                                            <Button className="btn-success">Mulai Sewa Mobil</Button>
+                                            <Button className="btn-success" id='buttonHeader'>Mulai Sewa Mobil</Button>
                                         </Link>)
                                 }
                             </a>

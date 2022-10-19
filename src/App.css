@@ -1,3 +1,15 @@
+* {
+    font-size: 16px;
+}
+
+p {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
 .Header-sty {
     position: absolute;
     width: 100%;

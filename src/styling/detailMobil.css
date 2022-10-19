@@ -1,59 +1,97 @@
-.detailmobil-sty {
-    position: relative;
-    margin-top: 5%;
-    display: flex;
-}
-
-.detailmobil-sty .paketMobil {
-    width: 100%;
-    padding-left: 10%;
-    right: 15%;
-}
-
-.detailmobil-sty .paketMobil .jumlahorang {
-    display: flex;
-    padding-bottom: 10%;
-}
-
-.detailmobil-sty .paketMobil .total {
-    display: flex;
-    justify-content: space-between;
-}
-
-.lanjutkanpembayaran {
-    width: 90%;
-    margin: 20px;
-}
-
-.cardstyle {
-    padding: 20px;
-}
-
-.calendarBox {
-    max-width: 60%;
-    margin-bottom: 5%;
-}
-
-.inputBoxCalendar {
-    width: 100%;
-    padding: 5px;
-    border-color: #009C96;
-    border-radius: 5px;
-    margin-bottom: 30px;
-}
-
-.btn-success2 {
-    width: 100%;
-    background-color: #009C96;
-}
-
-@media screen and (min-width: 480px) {
-    .detailmobil-sty .paketMobil {
-        padding-left: 0%;
-        display: flex;
-    }
-
-    .calendarBox {
-        max-width: auto;
-    }
-}
+        .detailmobil-sty {
+            position: relative;
+            margin-top: 5%;
+            display: flex;
+            width: 100%;
+        }
+        
+        .detailmobil-sty .paketMobil {
+            position: relative;
+            width: 70%;
+            padding-left: 10%;
+            left: 10%;
+        }
+        
+        #rowF {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .detailmobil-sty img {
+            width: 100%;
+        }
+        
+        .detailmobil-sty .paketMobil .jumlahorang {
+            display: flex;
+            padding-bottom: 10%;
+        }
+        
+        .detailmobil-sty .paketMobil .total {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .lanjutkanpembayaran {
+            width: 90%;
+            margin: 20px;
+        }
+        
+        .paragraf1 {
+            width: 120%;
+            border-style: groove;
+            border-radius: 1.5%;
+            border-color: white;
+            padding: 5%;
+        }
+        
+        .cardstyle {
+            padding: 20px;
+        }
+        
+        .calendarBox {
+            max-width: 100%;
+            margin-bottom: 5%;
+        }
+        
+        .inputBoxCalendar {
+            width: 100%;
+            padding: 5px;
+            border-color: #009C96;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .btn-success2 {
+            width: 100%;
+            background-color: #009C96;
+        }
+        
+        @media screen and (max-width: 480px) {
+            .paragraf1 {
+                width: 100%;
+            }
+            .detailmobil-sty .paketMobil {
+                width: 100%;
+                left: 0%;
+                padding-left: 0%;
+            }
+            #rowF {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        
+        @media only screen and (min-width: 480px) and (max-width: 990px) {
+            .paragraf1 {
+                width: 100%;
+            }
+            .detailmobil-sty .paketMobil {
+                width: 100%;
+                left: 0%;
+                padding-left: 0%;
+            }
+            #rowF {
+                display: flex;
+                flex-direction: column;
+            }
+        }

@@ -3,11 +3,31 @@
     margin-bottom: 6%;
 }
 
-.Footer-sty #service {
-    padding-left: 2%;
+#pembungkus {
+    width: 100%;
+}
+
+#service {
+    padding-left: 5%;
 }
 
 .Footer-sty #service a {
     text-decoration: none;
     color: black;
+}
+
+@media screen and (max-width: 781px) {
+    #service {
+        padding-left: 2%;
+    }
+}
+
+@media only screen and (min-width: 782px) and (max-width: 990px) {
+    #pembungkus {
+        width: 100%;
+        position: absolute;
+    }
+    #service {
+        padding-left: 5%;
+    }
 }

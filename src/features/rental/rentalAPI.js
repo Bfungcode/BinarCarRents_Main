@@ -1,14 +1,24 @@
 import axios from "axios";
-import { getAuthHeader } from "../auth/tokenHeader";
+const user = JSON.parse(localStorage.getItem('user'));
 
 const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
 
-const getALlCars = () => {
-    const response = axios.get(`${API_URL}customer/v2/car`);
+const getCars = (name, category, isRented, minPrice, maxPrice, page, pageSize) => {
+    const response = axios.get(`${API_URL}admin/v2/car`, {
+        params: {
+            name,
+            category,
+            isRented,
+            minPrice,
+            maxPrice,
+            page,
+            pageSize
+        },
+    });
     return response;
 };
 
-const getCarById = (id) => {
+const getCarById = id => {
     const response = axios.get(`${API_URL}customer/car/${id}`)
     return response;
 }
@@ -18,21 +28,66 @@ const postOrder = (start_rent_at, finish_rent_at, car_id) => {
         start_rent_at,
         finish_rent_at,
         car_id
-    }, { headers: getAuthHeader() })
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            access_token: user.access_token
+        }
+    })
 }
 
-const getOrder = (id) => {
-    return axios.get(`${API_URL}customer/order/${id}`, { headers: getAuthHeader() }
-    )
+const getOrder = id => {
+    const response = axios.get(`${API_URL}customer/order/${id}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            access_token: user.access_token
+        }
+    });
+    return response;
 }
 
+const deleteOrder = id => {
+    const response = axios.delete(`${API_URL}customer/order/${id}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            access_token: user.access_token
+        }
+    })
+    return response
+}
+
+const uploadSLip = id => {
+    const response = axios.delete(`${API_URL}customer/order/${id}/slip`, {
+        headers: {
+            'Content-Type': 'application/json',
+            access_token: user.access_token
+        }
+    })
+    return response
+}
+const listOrder = (page, pageSize) => {
+    const response = axios.get(`${API_URL}/customer/v2/order`, {
+        params: {
+            page,
+            pageSize,
+        },
+        headers: {
+            'Content-Type': 'application/json',
+            access_token: user.access_token
+        }
+    })
+    return response
+}
 
 
 const rentalAPI = {
-    getALlCars,
+    getCars,
     getCarById,
     postOrder,
-    getOrder
+    getOrder,
+    deleteOrder,
+    uploadSLip,
+    listOrder,
 };
 
 export default rentalAPI;

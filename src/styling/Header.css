@@ -1,7 +1,15 @@
 * {
-    font-size: 16px;
+    font-size: 14px;
     margin: 0%;
     padding: 0%;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h4 {
+    font: 14px;
 }
 
 a:link {
@@ -68,10 +76,11 @@ a:link {
 }
 
 .Header-sty .car-img {
-    width: 100%;
+    width: 80%;
     position: relative;
     z-index: 2;
     height: 100%;
+    left: 20%;
 }
 
 @media screen and (max-width: 480px) {
@@ -98,5 +107,14 @@ a:link {
     }
     .mini4 .paragraf {
         width: 50%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 990px) {
+    .car-img {
+        width: 50%;
+        position: relative;
+        height: 50%;
+        left: 15px;
     }
 }

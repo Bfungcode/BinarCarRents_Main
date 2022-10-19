@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import rentalAPI from './rentalAPI';
 
-export const getAllCars = createAsyncThunk("cars/getAll",
-    async (args, thunkAPI) => {
+export const getCars = createAsyncThunk("cars/getAll",
+    async ({ name, category, isRented, minPrice, maxPrice, page, pageSize }, thunkAPI) => {
         try {
-            const response = await rentalAPI.getALlCars();
+            const response = await rentalAPI.Cars(name.category, isRented, minPrice, maxPrice, page, pageSize);
             return response.data;
         }
         catch (err) {
@@ -47,6 +47,40 @@ export const getOrder = createAsyncThunk("customer/getOrder",
         }
     }
 )
+export const uploadSlip = createAsyncThunk("customer/uploadSlip",
+    async ({ id }, thunkAPI) => {
+        try {
+            const response = await rentalAPI.uploadSLip(id);
+            return response.data
+        }
+        catch (err) {
+            return thunkAPI.rejectWithValue();
+        }
+    }
+)
+export const deleteOrder = createAsyncThunk("customer/deleteOrder",
+    async ({ id }, thunkAPI) => {
+        try {
+            const response = await rentalAPI.deleteOrder(id);
+            return response.data
+        }
+        catch (err) {
+            return thunkAPI.rejectWithValue();
+        }
+    }
+)
+
+export const listOrder = createAsyncThunk("customer/listOrder",
+    async ({ id }, thunkAPI) => {
+        try {
+            const response = await rentalAPI.listOrder(id);
+            return response.data
+        }
+        catch (err) {
+            return thunkAPI.rejectWithValue();
+        }
+    }
+)
 
 const initialState = {
     car: null,
@@ -56,10 +90,10 @@ const rentalSlice = createSlice({
     name: "cars",
     initialState,
     extraReducers: {
-        [getAllCars.fulfilled]: (state, action) => {
+        [getCars.fulfilled]: (state, action) => {
             state.mobil = action.payload;
         },
-        [getAllCars.rejected]: (state, action) => {
+        [getCars.rejected]: (state, action) => {
             state.mobil = null;
         },
         [getCarById.fulfilled]: (state, action) => {
@@ -78,6 +112,24 @@ const rentalSlice = createSlice({
             state.order = action.payload;
         },
         [getOrder.rejected]: (state, action) => {
+            state.order = null;
+        },
+        [uploadSlip.fulfilled]: (state, action) => {
+            state.order = action.payload;
+        },
+        [uploadSlip.rejected]: (state, action) => {
+            state.order = null;
+        },
+        [deleteOrder.fulfilled]: (state, action) => {
+            state.order = action.payload;
+        },
+        [deleteOrder.rejected]: (state, action) => {
+            state.order = null;
+        },
+        [listOrder.fulfilled]: (state, action) => {
+            state.order = action.payload;
+        },
+        [listOrder.rejected]: (state, action) => {
             state.order = null;
         },
     }
