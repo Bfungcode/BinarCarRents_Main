@@ -81,10 +81,10 @@ export const listOrder = createAsyncThunk("customer/listOrder",
         }
     }
 )
-
+//daftar semua state yang akan dipakai, didaftarkan nilai defaultnya
 const initialState = {
-    car: null,
-    order: null,
+    cars: null,
+    order: null
 }
 const rentalSlice = createSlice({
     name: "cars",
