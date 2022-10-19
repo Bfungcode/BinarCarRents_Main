@@ -103,7 +103,7 @@ const Login = () => {
                         </form>
                     </div>
                 </Col>
-
+                
                 <Col className="rightCol">
                     <img class="bgImage" src="../Rectangle.jpg" alt="" />
                     {/* <Card inverse>
