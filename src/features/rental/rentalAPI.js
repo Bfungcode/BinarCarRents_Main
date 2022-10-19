@@ -5,7 +5,7 @@ const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
 
 const getCars = (name, category, isRented, minPrice, maxPrice, page, pageSize) => {
     const params = {};
-    if(!!name){
+    if (!!name) {
         params.name = name;
     }
 
