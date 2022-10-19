@@ -4,7 +4,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
 
 const getCars = (name, category, isRented, minPrice, maxPrice, page, pageSize) => {
-    const response = axios.get(`${API_URL}admin/v2/car`, {
+    const response = axios.get(`${API_URL}customer/v2/car`, {
         params: {
             name,
             category,
