@@ -4,7 +4,7 @@ import rentalAPI from './rentalAPI';
 export const getCars = createAsyncThunk("cars/getAll",
     async ({ name, category, isRented, minPrice, maxPrice, page, pageSize }, thunkAPI) => {
         try {
-            const response = await rentalAPI.Cars(name.category, isRented, minPrice, maxPrice, page, pageSize);
+            const response = await rentalAPI.getCars(name.category, isRented, minPrice, maxPrice, page, pageSize);
             return response.data;
         }
         catch (err) {
@@ -81,10 +81,10 @@ export const listOrder = createAsyncThunk("customer/listOrder",
         }
     }
 )
-
+//daftar semua state yang akan dipakai, didaftarkan nilai defaultnya
 const initialState = {
-    car: null,
-    order: null,
+    cars: null,
+    order: null
 }
 const rentalSlice = createSlice({
     name: "cars",
