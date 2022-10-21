@@ -110,10 +110,10 @@ const DetailMobil = () => {
                             </div>
                         </Col>
                         <Col>
-                            ini halaman kanan
+                            {/* ini halaman kanan */}
                             <div className="paketMobil">
                                 <Card className="cardstyle">
-                                    {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
+                                    {detail?.image ? (<img className="detailimage" src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
                                     <Card.Body>
                                         <h5>{detail?.name}</h5>
                                         <div className="jumlahorang">

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import Footer from "./Footer";
-import Header from "./Header";
+import { useSelector, useDispatch } from "react-redux";
 import { FcOk } from "react-icons/fc";
 import { BiArrowToBottom } from "react-icons/bi";
 import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineArrowLeft, AiOutlineLine } from "react-icons/ai";
-import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5';
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
+import { pdfjs } from 'react-pdf';
 import PropagateLoader from "react-spinners/PropagateLoader";
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/5.7.2/pdf.worker.js`;
+import Footer from "./Footer";
+import '../styling/PembayaranTiket.css';
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const Tiket = () => {
 
@@ -24,6 +25,11 @@ const Tiket = () => {
     const controller = new AbortController();
 
     const navigate = useNavigate();
+
+    const [sidebar, setSidebar] = useState('collapse')
+    window.addEventListener('scroll', () => {
+        setSidebar('collapse');
+    })
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
@@ -59,40 +65,54 @@ const Tiket = () => {
             {/* HEADER */}
             <div className='Header-sty'>
                 <Container>
-                    <div className='navbar1'>
-                        <Navbar>
-                            <Container>
-                                <Navbar.Brand href="/">
-                                    <h3>Binar Cartal</h3>
-                                </Navbar.Brand>
-                                <Nav>
-                                    <Nav.Link><strong>Our Services</strong></Nav.Link>
-                                    <Nav.Link><strong>Why Us</strong></Nav.Link>
-                                    <Nav.Link><strong>Testimonials</strong></Nav.Link>
-                                    <Nav.Link><strong>FAQ</strong></Nav.Link>
-                                    <Button style={{ backgroundColor: "#5CB85F", fontWeight: "bold", padding: "7px" }}> Register </Button>
-                                </Nav>
-                            </Container>
-                        </Navbar>
-                    </div>
-                    <div class="row" style={{ margin: "20px 80px 0px 80px", paddingBottom: "10px" }}>
-                        <div class="col">
+                    <nav className="navbar navbar-expand-lg navbar-light">
+                            <div className="container mt-3">
+                                <a href="/" className='navbar-brand'>
+                                    <h4>Binar Cartal</h4>
+                                </a>
+                                <button onClick={() => sidebar === 'collapse' ? setSidebar(null) : setSidebar('collapse')}
+                                    className="navbar-toggler" type="button">
+                                    <span className="navbar-toggler-icon"></span>
+                                </button>
+                                <div className={`navbar-collapse ${sidebar}`} id='navbarNav'>
+                                    <ul className="navbar-nav ml-auto mr-5">
+                                        <li className="nav-item mr-3 fw-bold">
+                                            <a className="nav-link" href="/#ourServices">Our Services</a>
+                                        </li>
+                                        <li className="nav-item mr-3 fw-bold">
+                                            <a className="nav-link" href="/#whyUs">Why Us</a>
+                                        </li>
+                                        <li className="nav-item mr-3 fw-bold">
+                                            <a className="nav-link" href="/#testimonial">Testimonial</a>
+                                        </li>
+                                        <li className="nav-item mr-3 fw-bold">
+                                            <a className="nav-link" href="/#faq">FAQ</a>
+                                        </li>
+                                        <button className="nav-item mr-3 fw-bold" id='buttonHeader'>
+                                            <a className="nav-link" id="aHeader" href="/register">Register</a>
+                                        </button>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    <div className="headerMetode" style={{ margin: "20px 80px 0px 80px", paddingBottom: "10px" }}>
+                        <div className="headerMetode4">
                             <p onClick={() => navigate(-1)} style={{ marginBottom: "0px" }}>
                                 <AiOutlineArrowLeft />
                                 <span style={{ fontWeight: "bold" }}> Tiket </span>
                             </p>
                             <p style={{ marginLeft: "20px", fontSize: "14px" }}> Order ID: xxxxxxxx </p>
                         </div>
-                        <div class="col" style={{ textAlign: "right" }}>
+                        <div className="headerMetode1">
                             <p>
                                 <span style={{ border: "1px solid #0D28A6", padding: "0px 3px", borderRadius: "50%", color: "white", backgroundColor: "#0D28A6" }}><AiOutlineCheck color="white" size="15px" /></span>
-                                <span> Pilih Metode </span>
+                                <span className="headerMetode2"> Pilih Metode </span>
                                 <span> <AiOutlineLine size="25px" color="#0D28A6" /> </span>
                                 <span style={{ border: "1px solid #0D28A6", padding: "0px 3px", borderRadius: "50%", color: "white", backgroundColor: "#0D28A6" }}><AiOutlineCheck color="white" size="15px" /></span>
-                                <span> Bayar </span>
+                                <span className="headerMetode2"> Bayar </span>
                                 <span> <AiOutlineLine size="25px" color="#0D28A6" /> </span>
                                 <span style={{ border: "1px solid #0D28A6", padding: "0px 6px", borderRadius: "50%", color: "white", backgroundColor: "#0D28A6" }}>3</span>
-                                <span> Tiket </span>
+                                <span className="headerMetode2"> Tiket </span>
                             </p>
 
                         </div>
@@ -126,7 +146,7 @@ const Tiket = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <Document file="/PDF.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+                                        <Document file="/pdf.pdf" onLoadSuccess={onDocumentLoadSuccess}>
                                             <Page pageNumber={pageNumber} />
                                         </Document>
                                         <p>
