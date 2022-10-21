@@ -7,11 +7,10 @@ import { FcOk } from "react-icons/fc";
 import { BiArrowToBottom } from "react-icons/bi";
 import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineArrowLeft, AiOutlineLine } from "react-icons/ai";
-import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.parcel';
+import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5';
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import PropagateLoader from "react-spinners/PropagateLoader";
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/5.7.2/pdf.worker.js`;
 
 const Tiket = () => {
 

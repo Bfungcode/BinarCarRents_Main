@@ -7,6 +7,23 @@
     z-index: 1;
 }
 
+.tempatPagination {
+    position: relative;
+    left: 80%;
+    margin-top: 2%;
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+    background-color: white;
+    border-style: groove;
+    border-radius: 5%;
+    border-color: white;
+}
+
+.buttonDiv {
+    padding: 2%;
+}
+
 #contCari {
     background-attachment: #FFFFFF;
     border-radius: 8px;
@@ -18,5 +35,17 @@
     #row {
         display: flex;
         flex-direction: column;
+    }
+    .tempatPagination {
+        position: relative;
+        margin-top: 2%;
+        display: flex;
+        left: 0%;
+        width: 100%;
+        justify-content: space-between;
+        background-color: white;
+        border-style: groove;
+        border-radius: 5%;
+        border-color: white;
     }
 }

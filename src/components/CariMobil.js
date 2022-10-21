@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCars } from '../features/rental/rentalSlice';
 import '../App'
 import '../styling/Carimobil.css'
+import Pagination from './Pagination';
 import {
     CardBody, Card, Button, Form, FormText, FormGroup,
     Input, Label, Container, Row, Col
@@ -11,106 +12,142 @@ import axios from 'axios';
 
 
 
-const CariMobil = ({ cars, setFilteredCars }) => {
+
+
+
+const CariMobil = ({ cars, setFilteredCars, }) => {
     const [formNamaMobil, setFormNamaMobil] = useState('');
     const [formCategory, setFormCategory] = useState('');
     const [formPrice, setFormPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
     const [formStatus, setFormStatus] = useState('')
+    const [count, setCount] = useState(null);
+    const [pageCount, setPageCount] = useState(null);
+    const [pageSize, setPageSize] = useState(12);
     const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(10);
+    const [current, setCurrent] = useState(1);
+    const [onload, setOnload] = useState(false);
     const dispatch = useDispatch();
-
-    const getAllCars = () => {
-        dispatch(getCars({
-            name: formNamaMobil,
-            category: formCategory,
-            isRented: formStatus,
-            minPrice: formPrice,
-            page: page,
-            pageSize: pageSize,
-        }))
-            .unwrap()
-            .then(data => {
-                setFilteredCars(data.cars)
-                console.log(data);
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     dispatch(getCars({ formNamaMobil, formCategory, formStatus, formPrice, hal, halaman }))
+    // const getAllCars = () => {
+    //     dispatch(getCars({
+    //         name: formNamaMobil,
+    //         category: formCategory,
+    //         isRented: formStatus,
+    //         minPrice: formPrice,
+    //         page: current,
+    //         pageSize: pageSize,
+    //     }))
     //         .unwrap()
     //         .then(data => {
     //             setFilteredCars(data.cars)
+    //             setCount(data.pageCount)
+    //             setPageCount(data.pageCount)
+    //             console.log(data);
+    //             console.log(data.count)
     //         })
-    //         // let url = 'https://bootcamp-rent-cars.herokuapp.com/customer/v2/car'
-    //         // try {
-    //         //     const res = await axios.get(url, {
-    //         //         params: {
-    //         //             page: 1,
-    //         //             pageSize: 10,
-    //         //             name: formNamaMobil ? formNamaMobil : '',
-    //         //             category: formCategory ? formCategory : '',
-    //         //             isRented: formStatus ? formStatus : '',
-    //         //             minPrice: formPrice ? formPrice : '',
-    //         //         }
-    //         //     });
-    //         //     let data = res.data
-    //         //     setFilteredCars(res.data.cars)
-    //         //     return data;
-    //         .catch(err => console.error(err))
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
     // }
-    // const getAllCars = 
+    useEffect(() => {
+        if (onload) {
+            dispatch(getCars({
+                name: formNamaMobil,
+                category: formCategory,
+                isRented: formStatus,
+                minPrice: formPrice,
+                page: current,
+                pageSize: pageSize,
+            }))
+                .unwrap()
+                .then(data => {
+                    setFilteredCars(data.cars)
+                    setCount(data.pageCount)
+                    setPageCount(data.pageCount)
+                    console.log(data);
+                    console.log(data.count)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+    }, [current, onload]);
+
+
     return (
-        <div className='container' id='contCari'>
-            <div className='row' id='row'>
-                <div className='col'>
-                    <Label>Nama</Label>
-                    <FormGroup>
-                        <Input type="text" placeholder='Nama Mobil' id="namamobil" onChange={(e) => { setFormNamaMobil(e.target.value) }} ></Input>
-                    </FormGroup>
-                </div>
-                <div className='col'>
-                    <Label>Kategori</Label>
-                    <FormGroup>
-                        <Input type='select' id="kategori" onChange={(e) => setFormCategory(e.target.value)}>
-                            <option value="">Pilih kapasitas mobil</option>
-                            <option value={'small'}> 2 - 4 orang</option>
-                            <option value={'medium'}> 4 - 6 orang</option>
-                            <option value={'large'}> 6 - 8 orang</option>
-                        </Input>
-                    </FormGroup>
-                </div>
-                <div className='col'>
-                    <Label>Harga</Label>
-                    <FormGroup>
-                        <Input type='text' id="harga" onChange={(e) => setFormPrice(parseInt(e.target.value))}>
-                        </Input>
-                    </FormGroup>
-                </div>
-                <div className='col'>
-                    <Label>Status</Label>
-                    <FormGroup>
-                        <Input type='select' id='harga' onChange={(e) => setFormStatus(e.target.value)}>
-                            <option value="">Status Mobil</option>
-                            <option value={true}>Disewakan</option>
-                            <option value={false}>Tidak Disewakan</option>
-                        </Input>
-                    </FormGroup>
-                </div>
-                <div className='col'>
-                    <FormGroup>
-                        <br></br>
-                        <Button className="btn-success" type="submit" onClick={() => { getAllCars() }}> Cari Mobil</Button>
-                    </FormGroup>
-                </div>
+        <div>
+            <div>
+                <div className='container' id='contCari'>
+                    <div className='row' id='row'>
+                        <div className='col'>
+                            <Label>Nama</Label>
+                            <FormGroup>
+                                <Input type="text" placeholder='Nama Mobil' id="namamobil" onChange={(e) => { setFormNamaMobil(e.target.value) }} ></Input>
+                            </FormGroup>
+                        </div>
+                        <div className='col'>
+                            <Label>Kategori</Label>
+                            <FormGroup>
+                                <Input type='select' id="kategori" onChange={(e) => setFormCategory(e.target.value)}>
+                                    <option value="">Pilih kapasitas mobil</option>
+                                    <option value={'small'}> 2 - 4 orang</option>
+                                    <option value={'medium'}> 4 - 6 orang</option>
+                                    <option value={'large'}> 6 - 8 orang</option>
+                                </Input>
+                            </FormGroup>
+                        </div>
+                        <div className='col'>
+                            <Label>Harga</Label>
+                            <FormGroup>
+                                <Input type='text' id="harga" onChange={(e) => setFormPrice(parseInt(e.target.value))}>
+                                </Input>
+                            </FormGroup>
+                        </div>
+                        <div className='col'>
+                            <Label>Status</Label>
+                            <FormGroup>
+                                <Input type='select' id='harga' onChange={(e) => setFormStatus(e.target.value)}>
+                                    <option value="">Status Mobil</option>
+                                    <option value={true}>Disewakan</option>
+                                    <option value={false}>Tidak Disewakan</option>
+                                </Input>
+                            </FormGroup>
+                        </div>
+                        <div className='col'>
+                            <FormGroup>
+                                <br></br>
+                                <Button className="btn-success" type="submit" onClick={() => {
+                                    setOnload(true);
+                                }}> Cari Mobil</Button>
+                            </FormGroup>
+                        </div>
+                    </div>
+                    {console.log('tes', current)}
+                </div >
             </div>
-        </div >
+            {count >= 1 ? (
+                <div className='container'>
+                    <div className='tempatPagination'>
+                        <div className='button1'>
+                            <button className="btn btn-light" disabled={current <= 1} onClick={() => setCurrent(current - 1)}>Prev</button>
+                        </div>
+
+                        <div className='buttonDiv'>{current}</div>
+                        <div className='button2'>
+                            <button className="btn btn-light" disabled={current == pageCount} onClick={() => setCurrent(current + 1)}
+                            >Next</button>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <>
+                    <div></div>
+                </>
+            )}
+        </div>
     )
 }
+
 
 
 
