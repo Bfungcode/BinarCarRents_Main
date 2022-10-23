@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import '../styling/PembayaranTiket.css';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -17,7 +18,7 @@ import 'moment/locale/id';
 import 'react-toastify/dist/ReactToastify.css';
 import Dropzone from 'react-dropzone';
 import DetailMobil from "./DetailMobil";
-import '../styling/PembayaranTiket.css';
+
 
 
 const Pembayaran = () => {
@@ -232,26 +233,26 @@ const Pembayaran = () => {
 
             {menu ? (
                 <>
-                    <div class="container" style={{ width: "78%" }}>
+                    <div class="container" id="detailP" style={{ width: "80%" }}>
                         <div class="row justify-content-md-center" style={{ borderRadius: "10px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", padding: "8px" }}>
                             <p style={{ fontWeight: "bold", paddingLeft: "12px", fontSize: "18px" }}> Detail Pesananmu </p>
                             <div class="col-12">
-                                <div class="row">
+                                <div class="row" id="detailP">
                                     <div class="col">
-                                        <p> Nama/Tipe Mobil </p>
-                                        <p style={{ color: "gray" }}> {detail?.name} </p>
+                                        <p > Nama/Tipe Mobil </p>
+                                        <p style={{ color: "black", fontWeight: "bold" }}> {detail?.name} </p>
                                     </div>
                                     <div class="col">
                                         <p> Kategori </p>
-                                        <p style={{ color: "gray" }}> {detail?.category} </p>
+                                        <p style={{ color: "black", fontWeight: "bold" }}> {detail?.category} </p>
                                     </div>
                                     <div class="col">
                                         <p> Tanggal Mulai Sewa </p>
-                                        <p style={{ color: "gray" }}> {tanggalMulaiSewa} </p>
+                                        <p style={{ color: "black", fontWeight: "bold" }}> {tanggalMulaiSewa} </p>
                                     </div>
                                     <div class="col">
                                         <p> Tanggal Akhir Sewa </p>
-                                        <p style={{ color: "gray" }}> {tanggalAkhirSewa}</p>
+                                        <p style={{ color: "black", fontWeight: "bold" }}> {tanggalAkhirSewa}</p>
                                     </div>
                                 </div>
                             </div>
@@ -259,8 +260,9 @@ const Pembayaran = () => {
                     </div>
 
                     <div class="container" style={{ marginTop: "20px" }}>
-                        <div class="row justify-content-md-center" style={{ gap: "20px" }}>
-                            <div class="col-6" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
+                        <div class="row justify-content-md-center" id="luarFL" style={{ gap: "20px" }}>
+
+                            <div class="col-6" id="pilihBank" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
                                 <div>
                                     <p style={{ fontWeight: "bold", fontSize: "18px" }}> Pilih Bank Transfer </p>
                                     <p> Kamu bisa membayar dengan transfer melalui ATM, Internet Banking atau Mobile Banking </p>
@@ -269,7 +271,7 @@ const Pembayaran = () => {
                                             setBankMenu('BCA')
                                             setRekening('372 309 8781')
                                         }}>
-                                            <div class="row">
+                                            <div class="row" id="bankRow">
                                                 <div class="col">
                                                     <p>
                                                         <span style={{ color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> BCA </span>
@@ -326,7 +328,7 @@ const Pembayaran = () => {
                                 </div>
                             </div>
 
-                            <div class="col-4" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px" }}>
+                            <div class="col-4" id="detailPE" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px" }}>
                                 <div>
                                     <div style={{ marginBottom: "30px" }}>
                                         <p style={{ fontWeight: "bold", lineHeight: "0px" }}> {detail?.name} </p>
@@ -419,8 +421,8 @@ const Pembayaran = () => {
 
                 <>
                     <div class="container" style={{ marginTop: "30px" }}>
-                        <div class="row justify-content-md-center" style={{ gap: "20px" }}>
-                            <div class="col-6">
+                        <div class="row justify-content-md-center" id="selesaiKan" style={{ gap: "20px" }}>
+                            <div class="col-6" id="pemba">
                                 <div style={{ boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", marginBottom: "20px", padding: "20px" }}>
                                     <div class="row">
                                         <div class="col">
@@ -553,7 +555,7 @@ const Pembayaran = () => {
                             </div>
 
 
-                            <div class="col-4" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
+                            <div class="col-4" id="pemba" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
                                 {uploadMenu === 'konfirmasi' && (
                                     <>
                                         <p> Klik konfirmasi pembayaran untuk mempercepat proses pengecekan </p>
@@ -612,7 +614,8 @@ const Pembayaran = () => {
                         </div>
                     </div>
                 </>
-            )}
+            )
+            }
             <Footer />
         </>
     )

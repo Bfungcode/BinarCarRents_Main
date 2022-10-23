@@ -2,12 +2,23 @@
     position: relative;
     margin-top: 5%;
     display: flex;
+    width: 100%;
 }
 
 .detailmobil-sty .paketMobil {
-    width: 100%;
+    position: relative;
+    width: 70%;
     padding-left: 10%;
-    right: 15%;
+    left: 10%;
+}
+
+#rowF {
+    display: flex;
+    flex-direction: row;
+}
+
+.detailmobil-sty img {
+    width: 100%;
 }
 
 .detailmobil-sty .paketMobil .jumlahorang {
@@ -25,12 +36,20 @@
     margin: 20px;
 }
 
+.paragraf1 {
+    width: 120%;
+    border-style: groove;
+    border-radius: 1.5%;
+    border-color: white;
+    padding: 5%;
+}
+
 .cardstyle {
     padding: 20px;
 }
 
 .calendarBox {
-    max-width: 60%;
+    max-width: 100%;
     margin-bottom: 5%;
 }
 
@@ -47,22 +66,32 @@
     background-color: #009C96;
 }
 
-.detailimage {
-    width: 550px;
-}
-
-@media screen and (min-width: 480px) {
-    .detailmobil-sty .paketMobil {
-        padding-left: 0%;
-        display: flex;
-    }
-    .calendarBox {
-        max-width: auto;
-    }
-}
-
 @media screen and (max-width: 480px) {
-    .detailimage {
-        width: 270px;
+    .paragraf1 {
+        width: 100%;
+    }
+    .detailmobil-sty .paketMobil {
+        width: 100%;
+        left: 0%;
+        padding-left: 0%;
+    }
+    #rowF {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 990px) {
+    .paragraf1 {
+        width: 100%;
+    }
+    .detailmobil-sty .paketMobil {
+        width: 100%;
+        left: 0%;
+        padding-left: 0%;
+    }
+    #rowF {
+        display: flex;
+        flex-direction: column;
     }
 }

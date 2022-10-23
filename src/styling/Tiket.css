@@ -1,0 +1,35 @@
+@media only screen and (max-width: 480px) {
+    #idTiket {
+        width: 100%;
+    }
+    #idTiket2 {
+        width: 100%;
+    }
+    #idTiket3 {
+        width: 100%;
+    }
+    #idTiket4 {
+        width: 100%;
+    }
+    #idTiket5 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 990px) {
+    #idTiket {
+        width: 100%;
+    }
+    #idTiket2 {
+        width: 100%;
+    }
+    #idTiket3 {
+        width: 100%;
+    }
+    #idTiket4 {
+        width: 100%;
+    }
+    #idTiket5 {
+        width: 100%;
+    }
+}

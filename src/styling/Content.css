@@ -128,20 +128,12 @@
         justify-content: center;
         background-color: #F1F3FF;
     }
-    /* .mini4 {
-        width: 100%;
-    }
-    .mini4 .paragraf {
-        width: 100%;
-        justify-content: center;
-    }
-    .faq-content #row-style {
-        display: flex;
-        flex-direction: column;
-    } */
 }
 
 @media only screen and (min-width: 480px) and (max-width: 990px) {
+    .Content-sty {
+        width: 100%;
+    }
     .Content-sty .gambarService {
         width: 80%;
     }

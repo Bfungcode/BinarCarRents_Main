@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import '../styling/Tiket.css'
 import { useSelector, useDispatch } from "react-redux";
 import { FcOk } from "react-icons/fc";
 import { BiArrowToBottom } from "react-icons/bi";
@@ -127,9 +128,9 @@ const Tiket = () => {
                     </div>
 
                     <div>
-                        <div class="container" >
-                            <div class="row justify-content-md-center">
-                                <div class="col-5" style={{ boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", padding: "20px", borderRadius: "5px" }}>
+                        <div class="container" id="idTiket" >
+                            <div class="row justify-content-md-center" id="idTiket2">
+                                <div class="col-5" id="idTiket3" style={{ boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", padding: "20px", borderRadius: "5px" }}>
                                     <div class="row">
                                         <div class="col-6">
                                             <p style={{ fontWeight: "bold" }}> Invoice </p>

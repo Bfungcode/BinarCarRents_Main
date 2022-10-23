@@ -12,12 +12,29 @@
         display: contents;
         text-align: left;
     }
-
+    #detailP {
+        display: flex;
+        flex-direction: column;
+    }
     .headerMetode1 {
         text-align: center;
     }
-    
     .headerMetode2 {
         font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 990px) {
+    .paragraf1 {
+        width: 100%;
+    }
+    .detailmobil-sty .paketMobil {
+        width: 100%;
+        left: 0%;
+        padding-left: 0%;
+    }
+    #rowF {
+        display: flex;
+        flex-direction: column;
     }
 }
