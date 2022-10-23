@@ -271,7 +271,7 @@ const Pembayaran = () => {
                                             setBankMenu('BCA')
                                             setRekening('372 309 8781')
                                         }}>
-                                            <div class="row" id="bankRow">
+                                            <div class="row">
                                                 <div class="col">
                                                     <p>
                                                         <span style={{ color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> BCA </span>
@@ -280,7 +280,7 @@ const Pembayaran = () => {
                                                 </div>
                                                 <div class="col">
                                                     {bankMenu === 'BCA' && (
-                                                        <h5 style={{ textAlign: "right", marginRight: "30px" }}><FcCheckmark size="25px" /></h5>
+                                                        <h5 style={{ textAlign: "right", marginRight: "30px" }}> <FcCheckmark size="25px" /> </h5>
                                                     )}
                                                 </div>
                                             </div>
