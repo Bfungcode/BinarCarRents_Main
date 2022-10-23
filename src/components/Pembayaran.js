@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import Footer from "./Footer";
-import * as Icon from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { FcCheckmark } from "react-icons/fc";
 import { FiImage, FiCopy } from "react-icons/fi";
 import { AiOutlineArrowLeft, AiOutlineLine, AiOutlineCheck } from "react-icons/ai";
-import moment from 'moment';
-import 'moment/locale/id';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import Countdown from './Countdown';
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
+import Footer from "./Footer";
+import moment from 'moment';
+import Countdown from './Countdown';
+import * as Icon from "react-bootstrap-icons";
+import 'moment/locale/id';
 import 'react-toastify/dist/ReactToastify.css';
-import { getCarById } from "../features/rental/rentalSlice";
+import Dropzone from 'react-dropzone';
+import DetailMobil from "./DetailMobil";
+import '../styling/PembayaranTiket.css';
+
 
 const Pembayaran = () => {
 
@@ -27,18 +30,20 @@ const Pembayaran = () => {
     const [metodeMenu, setMetodeMenu] = useState('metode')
     const [uploadMenu, setUploadMenu] = useState('konfirmasi');
     const [rekening, setRekening] = useState('');
+    const [tanggalMulaiSewa, setTanggalMulaiSewa] = useState();
+    const [tanggalAkhirSewa, setTanggalAkhirSewa] = useState();
+    const [file, setFile] = useState();
     const { isLoggedIn } = useSelector((state) => state.auth);
     const { id } = useParams();
     const navigate = useNavigate();
     const controller = new AbortController();
     const selisihHari = localStorage.getItem("selisihHari");
-    const [tanggalMulaiSewa, setTanggalMulaiSewa] = useState();
-    const [tanggalAkhirSewa, setTanggalAkhirSewa] = useState();
     const dispatch = useDispatch();
+    const [detailOrder, setDetailOrder] = useState();
 
     const endTime = new Date().getTime() + 3600000 * 24;
     moment.locale("id");
-    console.log(endTime);
+    // console.log(endTime);
 
     const [timeLeft, setEndTime] = Countdown(endTime);
 
@@ -58,7 +63,14 @@ const Pembayaran = () => {
             toastId: customId
         })
     }
-    
+
+    const [sidebar, setSidebar] = useState('collapse')
+    window.addEventListener('scroll', () => {
+        setSidebar('collapse');
+    })
+
+    const totalBiaya = detail?.price * selisihHari;
+
     const loadDetail = async () => {
         setLoading(true);
         try {
@@ -67,14 +79,56 @@ const Pembayaran = () => {
                 signal: controller.signal,
             });
             setDetail(data);
+            console.log(detail);
         } catch (error) {
             console.log(error);
         }
         setLoading(false);
     };
 
+    // const loadOrder = async () => {
+    //     setLoading(true);
+    //     const user = JSON.parse(localStorage.getItem("user"))
+    //     try {
+    //         const url = "https://bootcamp-rent-cars.herokuapp.com/customer/order/273";
+    //         const { dataOrder } = await axios.get(url, {
+    //             signal: controller.signal,
+    //         }, {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 access_token: user.access_token,
+    //             }
+    //         });
+    //         setDetailOrder(dataOrder);
+    //         console.log(detailOrder);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //     setLoading(false);
+    // };
+
+    const handleSubmit = () => {
+        const user = JSON.parse(localStorage.getItem("user"))
+        let url = `https://bootcamp-rent-cars.herokuapp.com/customer/order/${id}/slip`
+        try {
+            return axios.put(url, {
+                id,
+                slip: file,
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    access_token: user.access_token,
+                }
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         loadDetail();
+        // loadOrder();
         setTanggalMulaiSewa(moment(localStorage.getItem("tanggalMulai")).format("LL"));
         setTanggalAkhirSewa(moment(localStorage.getItem("tanggalSelesai")).format("LL"));
     }, []);
@@ -86,32 +140,43 @@ const Pembayaran = () => {
         }
     }, [!isLoggedIn])
 
-    const totalBiaya = detail?.price * selisihHari;
-    console.log(totalBiaya);
-    
     return (
         <>
             {/* HEADER */}
             <div className='Header-sty'>
                 <Container>
-                    <div className='navbar1'>
-                        <Navbar>
-                            <Container>
-                                <Navbar.Brand href="/">
-                                    <h3>Binar Cartal</h3>
-                                </Navbar.Brand>
-                                <Nav>
-                                    <Nav.Link><strong>Our Services</strong></Nav.Link>
-                                    <Nav.Link><strong>Why Us</strong></Nav.Link>
-                                    <Nav.Link><strong>Testimonials</strong></Nav.Link>
-                                    <Nav.Link><strong>FAQ</strong></Nav.Link>
-                                    <Button style={{ backgroundColor: "#5CB85F", fontWeight: "bold", padding: "7px" }}> Register </Button>
-                                </Nav>
-                            </Container>
-                        </Navbar>
-                    </div>
-                    <div class="row" style={{ margin: "20px 80px 0px 80px", paddingBottom: "10px" }}>
-                        <div class="col">
+                    <nav className="navbar navbar-expand-lg navbar-light">
+                        <div className="container mt-3">
+                            <a href="/" className='navbar-brand'>
+                                <h4>Binar Cartal</h4>
+                            </a>
+                            <button onClick={() => sidebar === 'collapse' ? setSidebar(null) : setSidebar('collapse')}
+                                className="navbar-toggler" type="button">
+                                <span className="navbar-toggler-icon"></span>
+                            </button>
+                            <div className={`navbar-collapse ${sidebar}`} id='navbarNav'>
+                                <ul className="navbar-nav ml-auto mr-5">
+                                    <li className="nav-item mr-3 fw-bold">
+                                        <a className="nav-link" href="/#ourServices">Our Services</a>
+                                    </li>
+                                    <li className="nav-item mr-3 fw-bold">
+                                        <a className="nav-link" href="/#whyUs">Why Us</a>
+                                    </li>
+                                    <li className="nav-item mr-3 fw-bold">
+                                        <a className="nav-link" href="/#testimonial">Testimonial</a>
+                                    </li>
+                                    <li className="nav-item mr-3 fw-bold">
+                                        <a className="nav-link" href="/#faq">FAQ</a>
+                                    </li>
+                                    <button className="nav-item mr-3 fw-bold" id='buttonHeader'>
+                                        <a className="nav-link" id="aHeader" href="/register">Register</a>
+                                    </button>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div className="headerMetode" style={{ margin: "20px 80px 0px 80px", paddingBottom: "10px" }}>
+                        <div>
                             {metodeMenu === 'metode' && (
                                 <p onClick={() => navigate(-1)}>
                                     <AiOutlineArrowLeft />
@@ -134,30 +199,30 @@ const Pembayaran = () => {
                                 </>
                             )}
                         </div>
-                        <div class="col" style={{ textAlign: "right" }}>
+                        <div className="headerMetode1">
                             {metodeMenu === 'metode' && (
                                 <p>
                                     <span style={{ border: "1px solid #0D28A6", padding: "0px 6px", borderRadius: "50%", color: "white", backgroundColor: "#0D28A6" }}>1</span>
-                                    <span> Pilih Metode </span>
+                                    <span className="headerMetode2"> Pilih Metode </span>
                                     <span> <AiOutlineLine size="25px" color="#0D28A6" /> </span>
                                     <span style={{ border: "1px solid #0D28A6", padding: "0px 6px", borderRadius: "50%" }}>2</span>
-                                    <span> Bayar </span>
+                                    <span className="headerMetode2"> Bayar </span>
                                     <span> <AiOutlineLine size="25px" color="#0D28A6" /> </span>
                                     <span style={{ border: "1px solid #0D28A6", padding: "0px 6px", borderRadius: "50%" }}>3</span>
-                                    <span> Tiket </span>
+                                    <span className="headerMetode2"> Tiket </span>
                                 </p>
                             )}
 
                             {metodeMenu === 'bayar' && (
                                 <p>
                                     <span style={{ border: "1px solid #0D28A6", padding: "0px 3px", borderRadius: "50%", color: "white", backgroundColor: "#0D28A6" }}><AiOutlineCheck color="white" size="15px" /></span>
-                                    <span> Pilih Metode </span>
+                                    <span className="headerMetode2"> Pilih Metode </span>
                                     <span> <AiOutlineLine size="25px" color="#0D28A6" /> </span>
                                     <span style={{ border: "1px solid #0D28A6", padding: "0px 6px", borderRadius: "50%", color: "white", backgroundColor: "#0D28A6" }}>2</span>
-                                    <span> Bayar </span>
+                                    <span className="headerMetode2"> Bayar </span>
                                     <span> <AiOutlineLine size="25px" color="#0D28A6" /> </span>
                                     <span style={{ border: "1px solid #0D28A6", padding: "0px 6px", borderRadius: "50%" }}>3</span>
-                                    <span> Tiket </span>
+                                    <span className="headerMetode2"> Tiket </span>
                                 </p>
                             )}
                         </div>
@@ -517,12 +582,30 @@ const Pembayaran = () => {
                                         <br />
                                         <p> Upload Bukti Pembayaran </p>
                                         <p> Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa upload bukti bayarmu </p>
-                                        <p class="text-center" style={{ border: "1px dashed black", backgroundColor: "lightgrey", height: "200px", lineHeight: "200px" }}> <FiImage size="25px" /> </p>
-                                        <Link to={"Tiket"}>
-                                            <button style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
+                                        <p class="text-center" style={{ border: "1px dashed black", backgroundColor: "lightgrey", height: "200px", lineHeight: "200px" }}>
+                                            <Dropzone onDrop={setFile}>
+                                                {({ getRootProps, getInputProps }) => (
+                                                    <section>
+                                                        <div {...getRootProps()}>
+                                                            <input {...getInputProps()} />
+                                                            <p>Drag 'n' drop some files here, or click to select files</p>
+                                                        </div>
+                                                    </section>
+                                                )}
+                                            </Dropzone>
+                                        </p>
+                                        {file ? (
+                                            <Link to={"Tiket"}>
+                                                <button onClick={handleSubmit} style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
+                                                    <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Upload </p>
+                                                </button>
+                                            </Link>
+                                        ) : (
+                                            <button style={{ backgroundColor: "#DEF1DF", width: "100%", height: "40px", marginBottom: "10px" }}>
                                                 <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Upload </p>
                                             </button>
-                                        </Link>
+                                        )}
+
                                     </>
                                 )}
                             </div>
