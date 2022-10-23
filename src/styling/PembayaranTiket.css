@@ -1,0 +1,23 @@
+.headerMetode {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.headerMetode1 {
+    text-align: right;
+}
+
+@media screen and (max-width: 480px) {
+    .headerMetode {
+        display: contents;
+        text-align: left;
+    }
+
+    .headerMetode1 {
+        text-align: center;
+    }
+    
+    .headerMetode2 {
+        font-size: 14px;
+    }
+}
