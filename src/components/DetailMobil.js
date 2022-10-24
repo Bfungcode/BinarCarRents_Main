@@ -38,6 +38,11 @@ const DetailMobil = () => {
     const makeOrder = () => {
         dispatch(postOrder({ start_rent_at: startRent, finish_rent_at: finishRent, car_id: id }))
             .unwrap()
+            .then((data) => {
+                localStorage.setItem("idOrder", JSON.stringify(data?.id));
+            })
+            .catch(err => console.log(err));
+
     }
     useEffect(() => {
         getDetail();
@@ -94,7 +99,7 @@ const DetailMobil = () => {
                             {/* ini halaman kanan */}
                             <div className="paketMobil">
                                 <Card className="cardstyle">
-                                    {detail?.image ? (<img className="detailimage" src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
+                                    {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
                                     <Card.Body>
                                         <h5>{detail?.name}</h5>
                                         <div className="jumlahorang">
