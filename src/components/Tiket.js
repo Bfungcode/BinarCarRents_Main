@@ -11,10 +11,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import Footer from "./Footer";
 import { Viewer } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'; 
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-import { Worker } from '@react-pdf-viewer/core'; 
+import { Worker } from '@react-pdf-viewer/core';
 
 const Tiket = () => {
 
@@ -118,7 +118,7 @@ const Tiket = () => {
                 </Container >
             </div>
 
-            {detail?.status ? (
+            {!detail?.status ? (
                 <>
                     <div class="text-center" style={{ marginTop: "20px" }}>
                         <FcOk size="50px" />
@@ -143,10 +143,10 @@ const Tiket = () => {
                                             </a>
                                         </div>
                                     </div>
-                                    <div className="container" style={{backgroundColor: "#EEEEEE", border: "1px dashed #D0D0D0", borderRadius: "4px", padding: "10px"}}>
+                                    <div className="container" style={{ backgroundColor: "#EEEEEE", border: "1px dashed #D0D0D0", borderRadius: "4px", padding: "10px" }}>
                                         <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.12.313/build/pdf.worker.min.js">
                                             <Viewer fileUrl="/platinum.pdf"
-                                            plugins={[defaultLayoutPluginInstance]} />
+                                            />
                                         </Worker>
                                     </div>
                                 </div>
