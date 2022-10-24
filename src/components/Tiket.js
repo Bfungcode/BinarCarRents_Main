@@ -8,15 +8,16 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineArrowLeft, AiOutlineLine } from "react-icons/ai";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
-import { pdfjs } from 'react-pdf';
 import PropagateLoader from "react-spinners/PropagateLoader";
 import Footer from "./Footer";
+import { Viewer } from '@react-pdf-viewer/core';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'; 
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { Worker } from '@react-pdf-viewer/core'; 
 
 const Tiket = () => {
 
-    const [numPages, setNumPages] = useState(1);
-    const [pageNumber, setPageNumber] = useState(1);
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
     const { isLoggedIn } = useSelector((state) => state.auth);
@@ -24,15 +25,13 @@ const Tiket = () => {
     const controller = new AbortController();
 
     const navigate = useNavigate();
+    const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
     const [sidebar, setSidebar] = useState('collapse')
     window.addEventListener('scroll', () => {
         setSidebar('collapse');
     })
 
-    function onDocumentLoadSuccess({ numPages }) {
-        setNumPages(numPages);
-    }
     React.useEffect(() => {
         if (!isLoggedIn) {
             alert("Silakan login untuk melanjutkan pemesanan");
@@ -119,7 +118,7 @@ const Tiket = () => {
                 </Container >
             </div>
 
-            {!detail?.status ? (
+            {detail?.status ? (
                 <>
                     <div class="text-center" style={{ marginTop: "20px" }}>
                         <FcOk size="50px" />
@@ -144,13 +143,11 @@ const Tiket = () => {
                                             </a>
                                         </div>
                                     </div>
-                                    <div>
-                                        <Document file="/pdf.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-                                            <Page pageNumber={pageNumber} />
-                                        </Document>
-                                        <p>
-                                            Page {pageNumber} of {numPages}
-                                        </p>
+                                    <div className="container" style={{backgroundColor: "#EEEEEE", border: "1px dashed #D0D0D0", borderRadius: "4px", padding: "10px"}}>
+                                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.12.313/build/pdf.worker.min.js">
+                                            <Viewer fileUrl="/platinum.pdf"
+                                            plugins={[defaultLayoutPluginInstance]} />
+                                        </Worker>
                                     </div>
                                 </div>
                             </div>

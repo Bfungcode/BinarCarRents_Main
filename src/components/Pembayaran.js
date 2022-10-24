@@ -17,7 +17,6 @@ import * as Icon from "react-bootstrap-icons";
 import 'moment/locale/id';
 import 'react-toastify/dist/ReactToastify.css';
 import Dropzone from 'react-dropzone';
-import DetailMobil from "./DetailMobil";
 
 
 
@@ -39,12 +38,12 @@ const Pembayaran = () => {
     const navigate = useNavigate();
     const controller = new AbortController();
     const selisihHari = localStorage.getItem("selisihHari");
+    const orderID = localStorage.getItem("idOrder");
     const dispatch = useDispatch();
     const [detailOrder, setDetailOrder] = useState();
 
     const endTime = new Date().getTime() + 3600000 * 24;
     moment.locale("id");
-    // console.log(endTime);
 
     const [timeLeft, setEndTime] = Countdown(endTime);
 
@@ -80,44 +79,22 @@ const Pembayaran = () => {
                 signal: controller.signal,
             });
             setDetail(data);
-            console.log(detail);
         } catch (error) {
             console.log(error);
         }
         setLoading(false);
     };
 
-    // const loadOrder = async () => {
-    //     setLoading(true);
-    //     const user = JSON.parse(localStorage.getItem("user"))
-    //     try {
-    //         const url = "https://bootcamp-rent-cars.herokuapp.com/customer/order/273";
-    //         const { dataOrder } = await axios.get(url, {
-    //             signal: controller.signal,
-    //         }, {
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 access_token: user.access_token,
-    //             }
-    //         });
-    //         setDetailOrder(dataOrder);
-    //         console.log(detailOrder);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    //     setLoading(false);
-    // };
-
     const handleSubmit = () => {
         const user = JSON.parse(localStorage.getItem("user"))
-        let url = `https://bootcamp-rent-cars.herokuapp.com/customer/order/${id}/slip`
+        let url = `https://bootcamp-rent-cars.herokuapp.com/customer/order/${orderID}/slip`
         try {
             return axios.put(url, {
-                id,
-                slip: file,
+                id: orderID,
+                slip: file[0],
             }, {
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "multipart/form-data",
                     access_token: user.access_token,
                 }
             });
@@ -127,9 +104,10 @@ const Pembayaran = () => {
         }
     }
 
+    // console.log();
+
     useEffect(() => {
         loadDetail();
-        // loadOrder();
         setTanggalMulaiSewa(moment(localStorage.getItem("tanggalMulai")).format("LL"));
         setTanggalAkhirSewa(moment(localStorage.getItem("tanggalSelesai")).format("LL"));
     }, []);
@@ -310,13 +288,13 @@ const Pembayaran = () => {
                                             setRekening('102 000 5263873')
                                         }}>
                                             <div class="row">
-                                                <div class="col">
-                                                    <p>
-                                                        <span style={{ color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> Mandiri </span>
+                                                <div class="col-8">
+                                                    <p className="mandiri">
+                                                        <span style={{ color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px"}}> Mandiri </span>
                                                         <span style={{ color: "black" }}> Mandiri Transfer </span>
                                                     </p>
                                                 </div>
-                                                <div class="col">
+                                                <div class="col-4">
                                                     {bankMenu === 'Mandiri' && (
                                                         <h5 style={{ textAlign: "right", marginRight: "30px" }}><FcCheckmark size="25px" /></h5>
                                                     )}
@@ -585,7 +563,14 @@ const Pembayaran = () => {
                                         <p> Upload Bukti Pembayaran </p>
                                         <p> Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa upload bukti bayarmu </p>
                                         <p class="text-center" style={{ border: "1px dashed black", backgroundColor: "lightgrey", height: "200px", lineHeight: "200px" }}>
-                                            <Dropzone onDrop={setFile}>
+                                            <Dropzone onDrop={acceptedFiles => {
+                                                if (acceptedFiles[0].type.includes("image")) {
+                                                    setFile(acceptedFiles);
+                                                } else {
+                                                    alert("format file tidak mendukung");
+                                                }
+                                                console.log(acceptedFiles)}
+                                                }>    
                                                 {({ getRootProps, getInputProps }) => (
                                                     <section>
                                                         <div {...getRootProps()}>
