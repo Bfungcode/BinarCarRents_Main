@@ -10,6 +10,7 @@ import { AiOutlineArrowLeft, AiOutlineLine, AiOutlineCheck } from "react-icons/a
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Container } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
+import { getCarById, uploadSlip } from "../features/rental/rentalSlice";
 import Footer from "./Footer";
 import moment from 'moment';
 import Countdown from './Countdown';
@@ -71,43 +72,25 @@ const Pembayaran = () => {
 
     const totalBiaya = detail?.price * selisihHari;
 
-    const loadDetail = async () => {
-        setLoading(true);
-        try {
-            const url = "https://bootcamp-rent-cars.herokuapp.com/customer/car/" + id;
-            const { data } = await axios.get(url, {
-                signal: controller.signal,
-            });
-            setDetail(data);
-        } catch (error) {
-            console.log(error);
-        }
-        setLoading(false);
-    };
+    const getDetail = () => {
+        dispatch(getCarById({ id }))
+            .unwrap()
+            .then((data) => {
+                setDetail(data)
+                console.log(data)
+            })
+            .catch(err => console.log(err));
+    }
 
-    const handleSubmit = () => {
-        const user = JSON.parse(localStorage.getItem("user"))
-        let url = `https://bootcamp-rent-cars.herokuapp.com/customer/order/${orderID}/slip`
-        try {
-            return axios.put(url, {
-                id: orderID,
-                slip: file[0],
-            }, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    access_token: user.access_token,
-                }
-            });
-        }
-        catch (error) {
-            console.log(error);
-        }
+    const putSlip = () => {
+        dispatch(uploadSlip({ id, slip: file[0] }))
+            .unwrap()
     }
 
     // console.log();
 
     useEffect(() => {
-        loadDetail();
+        getDetail();
         setTanggalMulaiSewa(moment(localStorage.getItem("tanggalMulai")).format("LL"));
         setTanggalAkhirSewa(moment(localStorage.getItem("tanggalSelesai")).format("LL"));
     }, []);
@@ -290,7 +273,7 @@ const Pembayaran = () => {
                                             <div class="row">
                                                 <div class="col-8">
                                                     <p className="mandiri">
-                                                        <span style={{ color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px"}}> Mandiri </span>
+                                                        <span style={{ color: "black", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px", marginRight: "15px" }}> Mandiri </span>
                                                         <span style={{ color: "black" }}> Mandiri Transfer </span>
                                                     </p>
                                                 </div>
@@ -569,8 +552,9 @@ const Pembayaran = () => {
                                                 } else {
                                                     alert("format file tidak mendukung");
                                                 }
-                                                console.log(acceptedFiles)}
-                                                }>    
+                                                console.log(acceptedFiles)
+                                            }
+                                            }>
                                                 {({ getRootProps, getInputProps }) => (
                                                     <section>
                                                         <div {...getRootProps()}>
@@ -583,7 +567,7 @@ const Pembayaran = () => {
                                         </p>
                                         {file ? (
                                             <Link to={"Tiket"}>
-                                                <button onClick={handleSubmit} style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
+                                                <button onClick={putSlip} style={{ backgroundColor: "#5CB85F", width: "100%", height: "40px", marginBottom: "10px" }}>
                                                     <p style={{ color: "white", padding: "5px", fontWeight: "bold" }}> Upload </p>
                                                 </button>
                                             </Link>

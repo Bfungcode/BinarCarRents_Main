@@ -28,11 +28,17 @@
     width: 96%;
     background-attachment: #FFFFFF;
     border-radius: 8px;
-    padding: 5%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
 @media only screen and (max-width: 480px) {
+    #contCari {
+        width: 96%;
+        background-attachment: #FFFFFF;
+        border-radius: 8px;
+        padding: 5%;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    }
     #pemba {
         width: 100%;
     }
@@ -80,6 +86,13 @@
 }
 
 @media only screen and (min-width: 480px) and (max-width: 990px) {
+    #contCari {
+        width: 96%;
+        background-attachment: #FFFFFF;
+        border-radius: 8px;
+        padding: 5%;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    }
     #pemba {
         width: 100%;
     }

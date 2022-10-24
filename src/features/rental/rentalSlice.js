@@ -48,9 +48,9 @@ export const getOrder = createAsyncThunk("customer/getOrder",
     }
 )
 export const uploadSlip = createAsyncThunk("customer/uploadSlip",
-    async ({ id }, thunkAPI) => {
+    async ({ id, slip }, thunkAPI) => {
         try {
-            const response = await rentalAPI.uploadSLip(id);
+            const response = await rentalAPI.uploadSLip(id, slip);
             return response.data
         }
         catch (err) {

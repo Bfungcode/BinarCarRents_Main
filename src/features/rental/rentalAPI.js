@@ -1,5 +1,6 @@
 import axios from "axios";
 const user = JSON.parse(localStorage.getItem('user'));
+const orderId = JSON.parse(localStorage.getItem("idOrder"))
 
 const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
 
@@ -77,11 +78,14 @@ const deleteOrder = id => {
     return response
 }
 
-const uploadSLip = id => {
-    const response = axios.delete(`${API_URL}customer/order/${id}/slip`, {
+const uploadSLip = (id, slip) => {
+    const response = axios.put(`${API_URL}customer/order/${orderId}/slip`, {
+        id: orderId,
+        slip,
+    }, {
         headers: {
-            'Content-Type': 'application/json',
-            access_token: user.access_token
+            'Content-Type': 'multipart/form-data',
+            access_token: user.access_token,
         }
     })
     return response
@@ -93,7 +97,7 @@ const listOrder = (page, pageSize) => {
             pageSize,
         },
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             access_token: user.access_token
         }
     })
