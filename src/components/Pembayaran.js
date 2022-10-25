@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import '../styling/PembayaranTiket.css';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -13,12 +12,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import Footer from "./Footer";
 import moment from 'moment';
 import Countdown from './Countdown';
+import Dropzone from 'react-dropzone';
 import * as Icon from "react-bootstrap-icons";
 import 'moment/locale/id';
 import 'react-toastify/dist/ReactToastify.css';
-import Dropzone from 'react-dropzone';
-
-
+import '../styling/PembayaranTiket.css';
 
 const Pembayaran = () => {
 
@@ -39,8 +37,6 @@ const Pembayaran = () => {
     const controller = new AbortController();
     const selisihHari = localStorage.getItem("selisihHari");
     const orderID = localStorage.getItem("idOrder");
-    const dispatch = useDispatch();
-    const [detailOrder, setDetailOrder] = useState();
 
     const endTime = new Date().getTime() + 3600000 * 24;
     moment.locale("id");
@@ -60,7 +56,16 @@ const Pembayaran = () => {
             position: "top-center",
             autoClose: 1000,
             hideProgressBar: true,
-            toastId: customId
+            toastId: customId,
+        })
+    }
+
+    const notifyImg = () => {
+        toast("Format file tidak mendukung", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            toastId: customId,
         })
     }
 
@@ -103,8 +108,6 @@ const Pembayaran = () => {
             console.log(error);
         }
     }
-
-    // console.log();
 
     useEffect(() => {
         loadDetail();
@@ -422,8 +425,8 @@ const Pembayaran = () => {
                                 <div style={{ boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", marginBottom: "20px", padding: "20px" }}>
                                     <p style={{ fontWeight: "bold" }}> Lakukan Transfer Ke </p>
                                     <div class="row">
-                                        <div class="col-2">
-                                            <p class="text-center" style={{ width: "80px", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px" }}> {bankMenu} </p>
+                                        <div class="col-lg-2 col-3">
+                                            <p class="text-center" style={{ width: "70px", border: "2px solid lightgrey", padding: "5px", borderRadius: "5px" }}> {bankMenu} </p>
                                         </div>
                                         <div class="col">
                                             <p> {bankMenu} Transfer </p>
@@ -532,7 +535,6 @@ const Pembayaran = () => {
                                 </div>
                             </div>
 
-
                             <div class="col-4" id="pemba" style={{ padding: "20px", boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", borderRadius: "10px", height: "100%" }}>
                                 {uploadMenu === 'konfirmasi' && (
                                     <>
@@ -567,7 +569,7 @@ const Pembayaran = () => {
                                                 if (acceptedFiles[0].type.includes("image")) {
                                                     setFile(acceptedFiles);
                                                 } else {
-                                                    alert("format file tidak mendukung");
+                                                    notifyImg();
                                                 }
                                                 console.log(acceptedFiles)}
                                                 }>    
@@ -575,7 +577,11 @@ const Pembayaran = () => {
                                                     <section>
                                                         <div {...getRootProps()}>
                                                             <input {...getInputProps()} />
-                                                            <p>Drag 'n' drop some files here, or click to select files</p>
+                                                            {!file? (                                                                
+                                                                <p>Drag & drop image here or click to select image</p>
+                                                            ) : (
+                                                                <FiImage size="30px"/>
+                                                            )}
                                                         </div>
                                                     </section>
                                                 )}
