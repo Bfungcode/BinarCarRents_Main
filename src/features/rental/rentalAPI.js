@@ -58,8 +58,9 @@ const postOrder = (start_rent_at, finish_rent_at, car_id) => {
     })
 }
 
-const getOrder = id => {
-    const response = axios.get(`${API_URL}customer/order/${id}`, {
+const getOrder = (id) => {
+    const response = axios.get(`${API_URL}customer/order/${orderId}`, {
+        id: orderId,
         headers: {
             'Content-Type': 'application/json',
             access_token: user.access_token

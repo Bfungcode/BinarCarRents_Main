@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../styling/Tiket.css'
 import { useSelector, useDispatch } from "react-redux";
+import { getOrder } from "../features/rental/rentalSlice";
 import { FcOk } from "react-icons/fc";
 import { BiArrowToBottom } from "react-icons/bi";
 import { AiOutlineCheck } from "react-icons/ai";
@@ -15,6 +16,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { Worker } from '@react-pdf-viewer/core';
+import { getOverlappingDaysInIntervals } from "date-fns/fp";
 
 const Tiket = () => {
 
@@ -22,6 +24,7 @@ const Tiket = () => {
     const [loading, setLoading] = useState(false);
     const { isLoggedIn } = useSelector((state) => state.auth);
     const { id } = useParams();
+    const dispatch = useDispatch();
     const controller = new AbortController();
 
     const navigate = useNavigate();
@@ -39,24 +42,45 @@ const Tiket = () => {
         }
     }, [!isLoggedIn])
 
-    const loadDetail = async () => {
+    const getOrder = () => {
         setLoading(true);
         try {
-            const url = "https://bootcamp-rent-cars.herokuapp.com/customer/car" + id;
-            const { data } = await axios.get(url, {
-                signal: controller.signal,
-            });
-            setDetail(data);
-            console.log(data);
-        } catch (error) {
-            console.log(error);
+            dispatch(getOrder({ id }))
+                .unwrap
+                .then((data) => {
+                    setDetail(data);
+                })
+        }
+        catch {
+            console.log("error")
         }
         setLoading(false);
-    };
-
+    }
+    //     setLoading(true);
+    //     try {
+    //         const url = "https://bootcamp-rent-cars.herokuapp.com/customer/car" + id;
+    //         const { data } = await axios.get(url, {
+    //             signal: controller.signal,
+    //         });
+    //         setDetail(data);
+    //         console.log(data);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //     setLoading(false);
+    // };
     useEffect(() => {
-        loadDetail();
-    }, []);
+        getOrder();
+        // if (loading) {
+        //     dispatch(getOrder({
+        //         id,
+        //     }))
+        //         .unwrap()
+        //         .then(data => {
+        //             setDetail(data.status);
+        //         })
+        // }
+    }, [loading, detail])
 
     return (
         <>
@@ -118,7 +142,7 @@ const Tiket = () => {
                 </Container >
             </div>
 
-            {!detail?.status ? (
+            {detail?.status ? (
                 <>
                     <div class="text-center" style={{ marginTop: "20px" }}>
                         <FcOk size="50px" />
