@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FcOk } from "react-icons/fc";
 import { BiArrowToBottom } from "react-icons/bi";
 import { AiOutlineCheck } from "react-icons/ai";
@@ -10,10 +9,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Viewer } from '@react-pdf-viewer/core';
 import { Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import PropagateLoader from "react-spinners/PropagateLoader";
 import Footer from "./Footer";
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import '../styling/Tiket.css'
 
 const Tiket = () => {
@@ -54,18 +53,6 @@ const Tiket = () => {
         }
         setLoading(false);
     };
-
-    const downloadButton = () => {
-        fetch('SamplePDF.pdf').then(response => {
-            response.blob().then(blob => {
-                const fileURL = window.URL.createObjectURL(blob);
-                let alink = document.createElement('a');
-                alink.href = fileURL;
-                alink.download = '/platinum.pdf';
-                alink.click();
-            })
-        })
-    }
 
     useEffect(() => {
         getOrder();
@@ -158,14 +145,14 @@ const Tiket = () => {
                                             <p> *no invoice </p>
                                         </div>
                                         <div class="col-6">
-                                            <a onClick={downloadButton} style={{ color: "#0D28A6" }}>
+                                            <a href="platinum.pdf" style={{ color: "#0D28A6" }} download>
                                                 <p class="text-end" >
                                                     <span style={{ border: "2px solid #0D28A6", padding: "5px", borderRadius: "2px" }}> <BiArrowToBottom size="23px" /> Unduh </span>
                                                 </p>
                                             </a>
                                         </div>
                                     </div>
-                                    <div className="container" style={{ backgroundColor: "#EEEEEE", border: "1px dashed #D0D0D0", borderRadius: "4px", padding: "10px" }}>
+                                    <div className="container">
                                         <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.12.313/build/pdf.worker.min.js">
                                             <Viewer fileUrl="/platinum.pdf"
                                             />
