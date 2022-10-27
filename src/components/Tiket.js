@@ -27,7 +27,6 @@ const Tiket = () => {
     const { isLoggedIn } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const controller = new AbortController();
-    const timer = useRef();
     const navigate = useNavigate();
 
     const [sidebar, setSidebar] = useState('collapse')
@@ -78,35 +77,27 @@ const Tiket = () => {
     //     }, 500)
     //     console.log("test")
     // }, [])
-    useEffect(() => {
-        const interval = setInterval(async () => {
-            // const panggilOrder = () => {
-            setLoading(true);
-            try {
-                await dispatch(getOrder())
-                    .unwrap()
-                    .then((data) => {
-                        setDetail(data);
-                    })
-            }
-            catch {
-                console.log("error")
-            }
-            setLoading(false);
-            // };
-            // const response = await axios.get(`${API_URL}customer/order/${orderId}`, {
-            //     id: orderId,
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         access_token: user.access_token
-            //     }
-            // });
-            // console.log(response)
-            // setDetail(response.data)
-        }, 2000);
 
-        return () => clearInterval(interval);
-    }, []);
+    useEffect(() => {
+        if (!detail || detail.status !== true) {
+            const interval = setInterval(async () => {
+                setLoading(true);
+                try {
+                    await dispatch(getOrder())
+                        .unwrap()
+                        .then((data) => {
+                            setDetail(data);
+                        })
+                }
+                catch {
+                    console.log("error")
+                }
+            }, 2000);
+            return () => clearInterval(interval);
+        }
+    }, [detail]);
+
+
 
 
 
