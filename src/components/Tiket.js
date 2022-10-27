@@ -18,7 +18,7 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import '../styling/Tiket.css'
 const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
 const user = JSON.parse(localStorage.getItem('user'));
-const orderId = JSON.parse(localStorage.getItem("idOrder"))
+const orderID = JSON.parse(localStorage.getItem("idOrder"))
 
 const Tiket = () => {
 
@@ -155,7 +155,7 @@ const Tiket = () => {
                                 <AiOutlineArrowLeft />
                                 <span style={{ fontWeight: "bold" }}> Tiket </span>
                             </p>
-                            <p style={{ marginLeft: "20px", fontSize: "14px" }}> Order ID: xxxxxxxx </p>
+                            <p style={{ marginLeft: "20px", fontSize: "14px" }}> Order ID: {orderID} </p>
                         </div>
                         <div className="headerMetode1">
                             <p>

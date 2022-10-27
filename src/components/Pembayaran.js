@@ -92,6 +92,8 @@ const Pembayaran = () => {
             .unwrap()
     }
 
+    console.log(orderID);
+
     useEffect(() => {
         getDetail();
         setTanggalMulaiSewa(moment(localStorage.getItem("tanggalMulai")).format("LL"));
@@ -102,8 +104,15 @@ const Pembayaran = () => {
         if (!isLoggedIn) {
             alert("Silakan login untuk melanjutkan pemesanan");
             navigate('/login');
-        }
+        };
     }, [!isLoggedIn])
+
+    React.useEffect(() => {
+        if (selisihHari === "0") {
+            alert('Anda belum memilih tanggal sewa dengan benar');
+            navigate('/sewamobil');
+        }
+    }, [])
 
     return (
         <>
@@ -160,7 +169,7 @@ const Pembayaran = () => {
                                         <AiOutlineArrowLeft />
                                         <span style={{ fontWeight: "bold" }}> {bankMenu} Transfer </span>
                                     </p>
-                                    <p style={{ marginLeft: "20px", fontSize: "14px" }}> Order ID: xxxxxxxx </p>
+                                    <p style={{ marginLeft: "20px", fontSize: "14px" }}> Order ID: {orderID} </p>
                                 </>
                             )}
                         </div>
