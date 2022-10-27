@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input, FormText, Row, Col, Table, Card, CardImg } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Row, Col, Table, Card, CardImg, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import '../styling/Register.css';
 import { register } from "../features/auth/authSlice";
 import axios from "axios";
@@ -10,22 +10,41 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-const handleSubmit = async (values, actions, navigate, dispatch) => {
-    const { email, password } = values;
-    dispatch(register({ email, password }))
-        .unwrap()
-        .then(() => {
-            navigate('/login');
-        })
-        .catch(() => {
-            console.log('error')
-        })
-}
+
+
+// const handleSubmit = async (values, actions, navigate, dispatch) => {
+//     const { email, password } = values;
+
+//     dispatch(register({ email, password }))
+//         .unwrap()
+//         .then(() => {
+//             navigate('/login');
+//         })
+//         .catch(() => {
+//             console.log('error')
+//         })
+// }
 
 
 const Register = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [modal, setModal] = React.useState(false);
+    const toggle = () => setModal(!modal);
+
+    const handleSubmit = async (values, actions, navigate, dispatch) => {
+        const { email, password } = values;
+    
+        dispatch(register({ email, password }))
+            .unwrap()
+            .then(() => {
+                navigate('/login');
+            })
+            .catch(() => {
+                console.log('error')
+                toggle()
+            })
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -52,9 +71,21 @@ const Register = () => {
         },
     });
 
+    
+
     return (
         <>
             <Row className="rowRegister">
+
+                <Modal isOpen={modal}
+                    toggle={toggle}
+                    modalTransition={{ timeout: 500 }}>
+                    <ModalBody style={{ color: "red" }} >
+                            Register gagal. E-mail sudah terdaftar!
+                        
+                    </ModalBody>
+                </Modal>
+
                 <Col >
                     <div className="formregister">
                         <div className="smallrectangle"></div>
