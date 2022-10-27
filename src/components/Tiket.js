@@ -3,29 +3,32 @@ import { useSelector, useDispatch } from "react-redux";
 import { FcOk } from "react-icons/fc";
 import { BiArrowToBottom } from "react-icons/bi";
 import { AiOutlineCheck } from "react-icons/ai";
+import { getOrder } from "../features/rental/rentalSlice";
 import { AiOutlineArrowLeft, AiOutlineLine } from "react-icons/ai";
 import { Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { Viewer } from '@react-pdf-viewer/core';
 import { Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import axios from "axios";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import Footer from "./Footer";
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import '../styling/Tiket.css'
+const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
+const user = JSON.parse(localStorage.getItem('user'));
+const orderId = JSON.parse(localStorage.getItem("idOrder"))
 
 const Tiket = () => {
 
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
     const { isLoggedIn } = useSelector((state) => state.auth);
-    const { id } = useParams();
     const dispatch = useDispatch();
     const controller = new AbortController();
-
+    const timer = useRef();
     const navigate = useNavigate();
-    const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
     const [sidebar, setSidebar] = useState('collapse')
     window.addEventListener('scroll', () => {
@@ -39,33 +42,86 @@ const Tiket = () => {
         }
     }, [!isLoggedIn])
 
-    const getOrder = () => {
-        setLoading(true);
-        try {
-            dispatch(getOrder({ id }))
-                .unwrap
-                .then((data) => {
-                    setDetail(data);
-                })
-        }
-        catch {
-            console.log("error")
-        }
-        setLoading(false);
-    };
+    // setInterval(() => {
+    //     const getOrder = () => {
+    //         setLoading(true);
 
+    //         try {
+    //             dispatch(getOrder())
+    //                 .unwrap
+    //                 .then((data) => {
+    //                     setDetail(data);
+    //                 })
+    //         }
+    //         catch {
+    //             console.log("error")
+    //         }
+    //         setLoading(false);
+    //     };
+    // }, 500)
+    // useEffect(() => {
+    //     setInterval(async () => {
+    //         const getOrder = () => {
+    //             setLoading(true);
+    //             try {
+    //                 dispatch(getOrder())
+    //                     .unwrap
+    //                     .then((data) => {
+    //                         setDetail(data);
+    //                     })
+    //             }
+    //             catch {
+    //                 console.log("error")
+    //             }
+    //             setLoading(false);
+    //         };
+    //     }, 500)
+    //     console.log("test")
+    // }, [])
     useEffect(() => {
-        getOrder();
-        // if (loading) {
-        //     dispatch(getOrder({
-        //         id,
-        //     }))
-        //         .unwrap()
-        //         .then(data => {
-        //             setDetail(data.status);
-        //         })
-        // }
-    }, [loading, detail])
+        const interval = setInterval(async () => {
+            // const panggilOrder = () => {
+            setLoading(true);
+            try {
+                await dispatch(getOrder())
+                    .unwrap()
+                    .then((data) => {
+                        setDetail(data);
+                    })
+            }
+            catch {
+                console.log("error")
+            }
+            setLoading(false);
+            // };
+            // const response = await axios.get(`${API_URL}customer/order/${orderId}`, {
+            //     id: orderId,
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         access_token: user.access_token
+            //     }
+            // });
+            // console.log(response)
+            // setDetail(response.data)
+        }, 2000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+
+
+    // useEffect(() => {
+    //     getOrder();
+    //     // if (loading) {
+    //     //     dispatch(getOrder({
+    //     //         id,
+    //     //     }))
+    //     //         .unwrap()
+    //     //         .then(data => {
+    //     //             setDetail(data.status);
+    //     //         })
+    //     // }
+    // }, [loading, detail])
 
     return (
         <>
