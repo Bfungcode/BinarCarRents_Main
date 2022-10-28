@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/auth/authSlice";
-import { Button, Form, FormGroup, Label, Input, FormText, Row, Col, Table, Card, CardImg, img } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Row, Col, Table, Card, CardImg, img, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import '../styling/Login.css';
 import axios from "axios";
 
@@ -25,6 +25,9 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { isLoggedIn } = useSelector((state) => state.auth);
+    const [modal, setModal] = React.useState(false);
+    const toggle = () => setModal(!modal);
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -43,15 +46,38 @@ const Login = () => {
             handleSubmit(values, actions, dispatch, navigate)
         },
     });
-    React.useEffect(() => {
+    // React.useEffect(() => {
+    //     if (isLoggedIn) {
+    //         navigate('/login');
+    //     } else if (!isLoggedIn) {
+    //         toggle()
+    //     }
+    // }, [isLoggedIn])
+    
+    const clickLogin = () => {     
         if (isLoggedIn) {
-            navigate('/login');
+            navigate('/login')
+        } else {
+            // alert("Hello! I am an alert box!!");
+            // toggle()
+            setTimeout(() => toggle() , 1500);
         }
-    }, [isLoggedIn])
+    }
 
     return (
         <>
             <Row className="rowLogin">
+
+                <Modal isOpen={modal}
+                    toggle={toggle}
+                    modalTransition={{ timeout: 500 }}>
+                    <ModalBody style={{ color: "red" }} >
+                            Login gagal. Mungkin E-mail atau Password salah!
+                            {/* <Button color="secondary" onClick={toggle}>X</Button> */}
+                        
+                    </ModalBody>
+                </Modal>
+
                 <Col className="leftCol">
                     <div className="formlogin">
                         <div className="smallrectangle"></div>
@@ -94,7 +120,7 @@ const Login = () => {
 
                             <div>
                                 {/* <button className="buttonlogin" type="submit" onClick={ () => navigate('/')} >Submit</button> */}
-                                <button className="buttonlogin" type="submit" >Sign In</button>
+                                <button className="buttonlogin" type="submit" onClick={ clickLogin }>Sign In</button>
                             </div>
                             <div>
                                 <p className="textsignup">Don't have an account? <a href="/register" className="textsignup">Sign Up for free</a></p>
