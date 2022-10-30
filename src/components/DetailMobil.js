@@ -1,38 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux'
-import axios from "axios";
 import { getCarById, postOrder } from "../features/rental/rentalSlice";
-import { Navigate, useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { setMessage } from "../features/auth/message-slice";
 import Header from "./Header";
 import Footer from "./Footer";
 import CariMobil from "./CariMobil";
-import { getAuthHeader } from "../features/auth/tokenHeader";
 import CalendarView from "./Calendar";
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import moment from 'moment';
 import 'moment/locale/id';
 import * as Icon from "react-bootstrap-icons";
 import '../styling/detailMobil.css'
-import userEvent from "@testing-library/user-event";
 
 const DetailMobil = () => {
     const [detail, setDetail] = useState(null);
-    const [loading, setLoading] = useState(false);
     const { id } = useParams();
-    const controller = new AbortController();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [startRent, setStartRent] = useState();
     const [finishRent, setFinishRent] = useState();
-    //spread operator -> mengeluarkan properti dari object
+
     const getDetail = () => {
         dispatch(getCarById({ id }))
             .unwrap()
             .then((data) => {
                 setDetail(data)
-                console.log(data)
             })
-            .catch(err => console.log(err));
+            .catch(err => dispatch(setMessage(err)));
     }
 
     const makeOrder = () => {
@@ -41,7 +35,7 @@ const DetailMobil = () => {
             .then((data) => {
                 localStorage.setItem("idOrder", JSON.stringify(data?.id));
             })
-            .catch(err => console.log(err));
+            .catch(err => setMessage(err));
 
     }
     useEffect(() => {
@@ -96,7 +90,6 @@ const DetailMobil = () => {
                             </div>
                         </div>
                         <div className="col">
-                            {/* ini halaman kanan */}
                             <div className="paketMobil">
                                 <Card className="cardstyle">
                                     {detail?.image ? (<img src={detail?.image} />) : (<img src={require("../media/mobil1.png")} />)}
@@ -106,18 +99,15 @@ const DetailMobil = () => {
                                             <i><Icon.People /></i>
                                             <h5>{detail?.category}</h5>
                                         </div>
-
                                         <div>
                                             <br></br>
                                             <h6>Tentukan Lama Sewa Mobil</h6>
                                             <CalendarView />
                                         </div>
-
                                         <div className="total">
                                             <h5>Total</h5>
                                             <h5>Rp {detail?.price}</h5>
                                         </div>
-
                                     </Card.Body>
                                     <div>
                                         <Link to={"/Pembayaran/" + id}>
@@ -126,7 +116,6 @@ const DetailMobil = () => {
                                             }}>Mulai Sewa Mobil</Button>
                                         </Link>
                                     </div>
-                                    {/* <Button className="lanjutkanpembayaran" onClick={() => navigate(`${urlPage}/pembayaran`)}>Lanjutkan</Button> */}
                                 </Card>
                             </div>
                         </div>
