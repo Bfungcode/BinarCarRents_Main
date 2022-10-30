@@ -1,7 +1,6 @@
 import React from 'react'
-import * as Icon from 'react-bootstrap-icons'
 import '../App'
-import Content from './Content'
+
 const Footer = () => {
     return (
         <div className='Footer-sty'>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-import axios from "axios";
-import { Navigate, useParams, useNavigate, Link } from "react-router-dom";
+import { Row, Button } from 'react-bootstrap'
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getCarById } from "../features/rental/rentalSlice";
+import { setMessage } from "../features/auth/message-slice";
 //Calendar
-import { DateRange, DateRangePicker } from 'react-date-range'
+import { DateRange } from 'react-date-range'
 import format from 'date-fns/format'
 import { addDays } from 'date-fns'
 
@@ -18,24 +20,17 @@ moment.locale('id', idLocale);
 
 const CalendarView = () => {
     const [detail, setDetail] = useState(null);
-    const [loading, setLoading] = useState(false);
     const { id } = useParams();
-    const controller = new AbortController();
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const loadDetail = async () => {
-        setLoading(true);
-        try {
-            const url = "https://bootcamp-rent-car.herokuapp.com/admin/car/" + id;
-            const { data } = await axios.get(url, {
-                signal: controller.signal,
-            });
-            setDetail(data);
-        } catch (error) {
-            console.log(error);
-        }
-        setLoading(false);
-    };
+    const getDetail = () => {
+        dispatch(getCarById({ id }))
+            .unwrap()
+            .then((data) => {
+                setDetail(data)
+            })
+            .catch(err => dispatch(setMessage(err)));
+    }
 
     // date state
     const [range, setRange] = useState([
@@ -54,7 +49,6 @@ const CalendarView = () => {
 
     // hide dropdown on ESC press
     const hideOnEscape = (e) => {
-        // console.log(e.key)
         if (e.key === "Escape") {
             setOpen(false)
         }
@@ -62,8 +56,6 @@ const CalendarView = () => {
 
     // Hide on outside click
     const hideOnClickOutside = (e) => {
-        // console.log(refOne.current)
-        // console.log(e.target)
         if (refOne.current && !refOne.current.contains(e.target)) {
             setOpen(false)
         }
@@ -72,26 +64,21 @@ const CalendarView = () => {
     // menu pilih tanggal
     const pilihtanggal = (e) => {
         // setOpen(open => !open);
-        // console.log(setRange);
         setOpen(open => !open);
         localStorage.setItem("tanggalMulai", range[0].startDate);
         localStorage.setItem("tanggalSelesai", range[0].endDate);
         localStorage.setItem("selisihHari", Difference_In_Days);
-        console.log(range);
         e.preventDefault();
 
     }
 
     useEffect(() => {
-        loadDetail();
+        getDetail();
         return () => {
         };
         document.addEventListener("keydown", hideOnEscape, true);
         document.addEventListener("click", hideOnClickOutside, true);
     }, []);
-
-    const tanggalAwal1 = localStorage.getItem("tanggalMulai");
-    const tanggalAkhir1 = localStorage.getItem("tanggalSelesai");
 
     //Hitung selisih waktu
     const Difference_In_Time = range[0].endDate.getTime() - range[0].startDate.getTime();

@@ -10,7 +10,6 @@
     height: auto;
 }
 
-
 .input {
     width: 100%;
     font-size: 13px;
@@ -25,13 +24,10 @@
 }
 
 .rectangle {
-    /* position: absolute; */
     width: 720px;
     height: 600px;
     right: 0px;
     top: 0px;
-
-    /* background: #0D28A6; */
     background-color: #abbaff;
 }
 
@@ -40,7 +36,6 @@
     height: 50px;
     background: #abbaff;
 }
-
 
 .buttonregister {
     width: 100%;
@@ -69,11 +64,9 @@
     .rowRegister {
         display: grid;
     }
-
     .rightCol {
         display: none;
     }
-
     .formregister {
         justify-content: center;
         justify-items: center;

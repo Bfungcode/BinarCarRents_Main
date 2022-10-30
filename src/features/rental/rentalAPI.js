@@ -5,26 +5,6 @@ const orderId = JSON.parse(localStorage.getItem("idOrder"))
 const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
 
 const getCars = (name, category, isRented, minPrice, maxPrice, page, pageSize) => {
-    // const params = {}
-    // if (!!name) {
-    //     params.name = name;
-    // }
-    // if (!!category) {
-    //     params.category = category;
-    // }
-    // if (!!isRented) {
-    //     params.isRented = isRented;
-    // }
-    // if (!!minPrice) {
-    //     params.minPrice = minPrice;
-    // }
-    // if (!!page) {
-    //     params.page = page;
-    // }
-    // if (!pageSize) {
-    //     params.pageSize = 2;
-    // }
-
 
     const response = axios.get(`${API_URL}customer/v2/car`, {
         params: {

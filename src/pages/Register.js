@@ -1,47 +1,28 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input, FormText, Row, Col, Table, Card, CardImg, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Row, Col, Table, Modal, ModalBody, } from 'reactstrap';
 import '../styling/Register.css';
 import { register } from "../features/auth/authSlice";
-import axios from "axios";
-
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
-
-
-// const handleSubmit = async (values, actions, navigate, dispatch) => {
-//     const { email, password } = values;
-
-//     dispatch(register({ email, password }))
-//         .unwrap()
-//         .then(() => {
-//             navigate('/login');
-//         })
-//         .catch(() => {
-//             console.log('error')
-//         })
-// }
-
+import { setMessage } from "../features/auth/message-slice";
 
 const Register = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [modal, setModal] = React.useState(false);
     const toggle = () => setModal(!modal);
-
     const handleSubmit = async (values, actions, navigate, dispatch) => {
         const { email, password } = values;
-    
+
         dispatch(register({ email, password }))
             .unwrap()
             .then(() => {
                 navigate('/login');
             })
             .catch(() => {
-                console.log('error')
+                dispatch(setMessage('error'))
                 toggle()
             })
     }
@@ -62,16 +43,10 @@ const Register = () => {
                 .min(8, "Minimum 8 characters")
                 .required("Required!")
         }),
-        // onSubmit: values => {
-        //   alert(JSON.stringify(values, null, 2));
-        // },
-
         onSubmit: (values, actions) => {
             handleSubmit(values, actions, navigate, dispatch)
         },
     });
-
-    
 
     return (
         <>
@@ -81,8 +56,8 @@ const Register = () => {
                     toggle={toggle}
                     modalTransition={{ timeout: 500 }}>
                     <ModalBody style={{ color: "red" }} >
-                            Register gagal. E-mail sudah terdaftar!
-                        
+                        Register gagal. E-mail sudah terdaftar!
+
                     </ModalBody>
                 </Modal>
 
@@ -154,14 +129,7 @@ const Register = () => {
                 </Col>
 
                 <Col className="rightCol">
-                    <img class="bgImage" src="../Rectangle.jpg" alt="" />
-                    {/* <Card inverse>
-                        <CardImg
-                            alt="Card image cap"
-                            src="../Rectangle.jpg"
-                            width="100%"
-                            height="50%" />
-                    </Card> */}
+                    <img class="bgImage" src="../Rectangle.jpg" />
                 </Col>
 
             </Row>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, Container, Nav, NavbarBrand, Button, Row, Col, NavDropdown } from 'react-bootstrap'
-import * as Icon from 'react-bootstrap-icons'
+import { Container, Button, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import '../App'
 

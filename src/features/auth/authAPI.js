@@ -1,6 +1,4 @@
 import axios from "axios";
-
-
 const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
 
 const login = (email, password) => {

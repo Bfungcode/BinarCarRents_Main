@@ -1,8 +1,6 @@
-import { Row, Col, Container, Button, Accordion, Carousel, Card } from 'react-bootstrap'
+import { Row, Col, Container, Button, Accordion, Card } from 'react-bootstrap'
 import React, { useState } from 'react'
-import * as Icon from 'react-bootstrap-icons'
 import '../App'
-import { CardBody } from 'reactstrap'
 import 'swiper/scss'
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
@@ -10,7 +8,6 @@ import 'swiper/scss/scrollbar';
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide, } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
-import axios from 'axios'
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 const Content = () => {
@@ -151,11 +148,9 @@ const Content = () => {
                 <div className='carouselReview'>
                     <Swiper
                         spaceBetween={10}
-                        slidesPerView={2}
+                        slidesPerView={2.5}
                         navigation
                         pagination={{ clickable: true }}
-                        onSlideChange={() => console.log('slide change')}
-                        onSwiper={swiper => console.log(swiper)}
                     >
                         <div className='swiperBungkus'>
                             <SwiperSlide className="container">

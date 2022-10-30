@@ -8,6 +8,7 @@ import { AiOutlineArrowLeft, AiOutlineLine, AiOutlineCheck } from "react-icons/a
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Container } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
+import { setMessage } from "../features/auth/message-slice";
 import { getCarById, uploadSlip } from "../features/rental/rentalSlice";
 import Footer from "./Footer";
 import moment from 'moment';
@@ -19,9 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styling/PembayaranTiket.css';
 
 const Pembayaran = () => {
-
     const [detail, setDetail] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [menu, setMenu] = useState(true);
     const [bankMenu, setBankMenu] = useState('start');
     const [activeMenu, setActiveMenu] = useState('atm');
@@ -34,7 +33,6 @@ const Pembayaran = () => {
     const { isLoggedIn } = useSelector((state) => state.auth);
     const { id } = useParams();
     const navigate = useNavigate();
-    const controller = new AbortController();
     const selisihHari = localStorage.getItem("selisihHari");
     const orderID = localStorage.getItem("idOrder");
     const dispatch = useDispatch();
@@ -70,6 +68,7 @@ const Pembayaran = () => {
         })
     }
 
+
     const [sidebar, setSidebar] = useState('collapse')
     window.addEventListener('scroll', () => {
         setSidebar('collapse');
@@ -82,17 +81,14 @@ const Pembayaran = () => {
             .unwrap()
             .then((data) => {
                 setDetail(data)
-                console.log(data)
             })
-            .catch(err => console.log(err));
+            .catch(err => dispatch(setMessage(err)));
     }
 
     const putSlip = () => {
         dispatch(uploadSlip({ id, slip: file[0] }))
             .unwrap()
     }
-
-    console.log(orderID);
 
     useEffect(() => {
         getDetail();
@@ -560,20 +556,20 @@ const Pembayaran = () => {
                                             <Dropzone onDrop={acceptedFiles => {
                                                 if (acceptedFiles[0].type.includes("image")) {
                                                     setFile(acceptedFiles);
+                                                    alert("slip diterima")
                                                 } else {
                                                     notifyImg();
                                                 }
-                                                console.log(acceptedFiles)
                                             }
                                             }>
                                                 {({ getRootProps, getInputProps }) => (
                                                     <section>
                                                         <div {...getRootProps()}>
                                                             <input {...getInputProps()} />
-                                                            {!file? (                                                                
+                                                            {!file ? (
                                                                 <p>Drag & drop image here or click to select image</p>
                                                             ) : (
-                                                                <FiImage size="30px"/>
+                                                                <FiImage size="30px" />
                                                             )}
                                                         </div>
                                                     </section>

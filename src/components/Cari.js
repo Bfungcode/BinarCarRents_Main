@@ -1,46 +1,16 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CariMobil from './CariMobil'
 import '../App'
-import ReactPaginate from 'react-paginate';
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 
 const Cari = () => {
-    const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(false);
-    const controller = new AbortController();
     const [filteredCars, setFilteredCars] = useState([])
-    const [count, setCount] = useState(null);
-    const [currentItems, setCurrentItems] = useState(null);
-    const [pageCount, setPageCount] = useState(0);
-    const [itemOffset, setItemOffset] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [minPage, setMinPage] = useState();
-    const [maxPage, setMaxPage] = useState();
-
-    const loadCars = async (e) => {
-        setLoading(true);
-        try {
-            const { data } = await axios.get("https://bootcamp-rent-cars.herokuapp.com/customer/v2/car", {
-                signal: controller.signal,
-            });
-            setCars(data);
-            console.log(data);
-        } catch (error) {
-            console.log(error);
-        }
-        setLoading(false);
-    }
-
-    useEffect(() => {
-        loadCars();
-    }, []);
-
 
     return (
         <section>
-            <CariMobil cars={cars} setCars={setCars} setFilteredCars={setFilteredCars} setCount={setCount} />
+            <CariMobil setFilteredCars={setFilteredCars} />
             <div className="wrappermobil">
                 <Container>
                     <Row>

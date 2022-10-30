@@ -1,54 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCars } from '../features/rental/rentalSlice';
+import { setMessage } from '../features/auth/message-slice';
 import '../App'
 import '../styling/Carimobil.css'
-import Pagination from './Pagination';
-import {
-    CardBody, Card, Button, Form, FormText, FormGroup,
-    Input, Label, Container, Row, Col
-} from 'reactstrap';
-import axios from 'axios';
+import { Button, FormGroup, Input, Label, } from 'reactstrap';
 
-
-
-
-
-
-const CariMobil = ({ cars, setFilteredCars, }) => {
+const CariMobil = ({ setFilteredCars, }) => {
     const [formNamaMobil, setFormNamaMobil] = useState('');
     const [formCategory, setFormCategory] = useState('');
     const [formPrice, setFormPrice] = useState('');
-    const [maxPrice, setMaxPrice] = useState('');
     const [formStatus, setFormStatus] = useState('')
     const [count, setCount] = useState(null);
     const [pageCount, setPageCount] = useState(null);
     const [pageSize, setPageSize] = useState(12);
-    const [page, setPage] = useState(1);
     const [current, setCurrent] = useState(1);
     const [onload, setOnload] = useState(false);
     const dispatch = useDispatch();
-    // const getAllCars = () => {
-    //     dispatch(getCars({
-    //         name: formNamaMobil,
-    //         category: formCategory,
-    //         isRented: formStatus,
-    //         minPrice: formPrice,
-    //         page: current,
-    //         pageSize: pageSize,
-    //     }))
-    //         .unwrap()
-    //         .then(data => {
-    //             setFilteredCars(data.cars)
-    //             setCount(data.pageCount)
-    //             setPageCount(data.pageCount)
-    //             console.log(data);
-    //             console.log(data.count)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    // }
+
     useEffect(() => {
         if (onload) {
             dispatch(getCars({
@@ -64,11 +33,9 @@ const CariMobil = ({ cars, setFilteredCars, }) => {
                     setFilteredCars(data.cars)
                     setCount(data.pageCount)
                     setPageCount(data.pageCount)
-                    console.log(data);
-                    console.log(data.count)
                 })
                 .catch(err => {
-                    console.log(err)
+                    dispatch(setMessage(err))
                 })
         }
     }, [current, onload]);
@@ -122,7 +89,6 @@ const CariMobil = ({ cars, setFilteredCars, }) => {
                             </FormGroup>
                         </div>
                     </div>
-                    {console.log('tes', current)}
                 </div >
             </div>
             {count >= 1 ? (
