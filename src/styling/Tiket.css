@@ -1,6 +1,11 @@
+.invoice {
+    width: 100%;
+}
+
 @media only screen and (max-width: 480px) {
     #idTiket {
         width: 100%;
+        margin-left: 2.5%;
     }
     #idTiket2 {
         width: 100%;

@@ -116,7 +116,7 @@ const Tiket = () => {
             </div>
 
             {detail?.status ? (
-                <>
+                <div className="container">
                     <div class="text-center" style={{ marginTop: "20px" }}>
                         <FcOk size="50px" />
                         <p style={{ fontWeight: "bold", fontSize: "18px", marginTop: "10px" }}> Pembayaran Berhasil! </p>
@@ -126,11 +126,10 @@ const Tiket = () => {
                     <div>
                         <div class="container" id="idTiket" >
                             <div class="row justify-content-md-center" id="idTiket2">
-                                <div class="col-5" id="idTiket3" style={{ boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", padding: "20px", borderRadius: "5px" }}>
+                                <div id="idTiket3" style={{ boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)", padding: "20px", borderRadius: "5px" }}>
                                     <div class="row">
                                         <div class="col-6">
                                             <p style={{ fontWeight: "bold" }}> Invoice </p>
-                                            <p> *no invoice </p>
                                         </div>
                                         <div class="col-6">
                                             <a href="platinum.pdf" style={{ color: "#0D28A6" }} download>
@@ -150,7 +149,7 @@ const Tiket = () => {
                             </div>
                         </div>
                     </div>
-                </>
+                </div>
             ) : (
                 <>
                     <h4 class="text-center" style={{ marginTop: "40px" }}> Menunggu Konfirmasi Pembayaran </h4>
