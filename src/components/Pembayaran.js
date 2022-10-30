@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styling/PembayaranTiket.css';
 
 const Pembayaran = () => {
+    const orderId = JSON.parse(localStorage.getItem("idOrder"))
     const [detail, setDetail] = useState(null);
     const [menu, setMenu] = useState(true);
     const [bankMenu, setBankMenu] = useState('start');
@@ -86,7 +87,7 @@ const Pembayaran = () => {
     }
 
     const putSlip = () => {
-        dispatch(uploadSlip({ id, slip: file[0] }))
+        dispatch(uploadSlip({ id: orderId, slip: file[0] }))
             .unwrap()
     }
 
@@ -556,7 +557,6 @@ const Pembayaran = () => {
                                             <Dropzone onDrop={acceptedFiles => {
                                                 if (acceptedFiles[0].type.includes("image")) {
                                                     setFile(acceptedFiles);
-                                                    alert("slip diterima")
                                                 } else {
                                                     notifyImg();
                                                 }
