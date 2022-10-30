@@ -37,9 +37,9 @@ export const postOrder = createAsyncThunk("customer/order",
     }
 )
 export const getOrder = createAsyncThunk("customer/getOrder",
-    async (args, thunkAPI) => {
+    async ({ id }, thunkAPI) => {
         try {
-            const response = await rentalAPI.getOrder();
+            const response = await rentalAPI.getOrder(id);
             return response.data
         }
         catch (err) {

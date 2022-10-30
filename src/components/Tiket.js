@@ -18,7 +18,7 @@ import '../styling/Tiket.css'
 
 
 const Tiket = () => {
-    const orderID = JSON.parse(localStorage.getItem("idOrder"))
+    const orderId = JSON.parse(localStorage.getItem("idOrder"))
     const [detail, setDetail] = useState(null);
     const [loading, setLoading] = useState(false);
     const { isLoggedIn } = useSelector((state) => state.auth);
@@ -42,7 +42,7 @@ const Tiket = () => {
             const interval = setInterval(async () => {
                 setLoading(true);
                 try {
-                    await dispatch(getOrder())
+                    await dispatch(getOrder({ id: orderId }))
                         .unwrap()
                         .then((data) => {
                             setDetail(data);
@@ -96,7 +96,7 @@ const Tiket = () => {
                                 <AiOutlineArrowLeft />
                                 <span style={{ fontWeight: "bold" }}> Tiket </span>
                             </p>
-                            <p style={{ marginLeft: "20px", fontSize: "14px" }}> Order ID: {orderID} </p>
+                            <p style={{ marginLeft: "20px", fontSize: "14px" }}> Order ID: {orderId} </p>
                         </div>
                         <div className="headerMetode1">
                             <p>

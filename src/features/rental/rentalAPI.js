@@ -2,7 +2,6 @@ import axios from "axios";
 const user = JSON.parse(localStorage.getItem('user'));
 
 const API_URL = "https://bootcamp-rent-cars.herokuapp.com/";
-const orderId = JSON.parse(localStorage.getItem("idOrder"))
 const getCars = (name, category, isRented, minPrice, maxPrice, page, pageSize) => {
 
     const response = axios.get(`${API_URL}customer/v2/car`, {
@@ -38,8 +37,7 @@ const postOrder = (start_rent_at, finish_rent_at, car_id) => {
 }
 
 const getOrder = (id) => {
-    const response = axios.get(`${API_URL}customer/order/${orderId}`, {
-        id: orderId,
+    const response = axios.get(`${API_URL}customer/order/${id}`, {
         headers: {
             'Content-Type': 'application/json',
             access_token: user.access_token
