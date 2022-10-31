@@ -126,11 +126,9 @@ const DetailMobil = () => {
                                         </div>
                                     </Card.Body>
                                     <div>
-                                        {/* <Link to={"/Pembayaran/" + id}> */}
                                         <Button className="btn-success2" type="submit" onClick={() => {
                                             makeOrder()
                                         }}>Mulai Sewa Mobil</Button>
-                                        {/* </Link> */}
                                     </div>
                                 </Card>
                             </div>
