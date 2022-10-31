@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux'
 import { getCarById, postOrder } from "../features/rental/rentalSlice";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { setMessage } from "../features/auth/message-slice";
 import Header from "./Header";
 import Footer from "./Footer";
 import CariMobil from "./CariMobil";
 import CalendarView from "./Calendar";
 import { Card, Button } from 'react-bootstrap'
+import { Modal, ModalBody, } from 'reactstrap';
 import moment from 'moment';
 import 'moment/locale/id';
 import * as Icon from "react-bootstrap-icons";
@@ -17,8 +18,11 @@ const DetailMobil = () => {
     const [detail, setDetail] = useState(null);
     const { id } = useParams();
     const dispatch = useDispatch();
+    const [modal, setModal] = React.useState(false);
+    const toggle = () => setModal(!modal);
     const [startRent, setStartRent] = useState();
     const [finishRent, setFinishRent] = useState();
+    const navigate = useNavigate();
 
     const getDetail = () => {
         dispatch(getCarById({ id }))
@@ -34,8 +38,13 @@ const DetailMobil = () => {
             .unwrap()
             .then((data) => {
                 localStorage.setItem("idOrder", JSON.stringify(data?.id));
+                navigate('/Pembayaran/' + id)
             })
-            .catch(err => setMessage(err));
+            .catch(() => {
+                dispatch(setMessage('error'))
+                toggle()
+
+            })
 
     }
     useEffect(() => {
@@ -50,6 +59,13 @@ const DetailMobil = () => {
         <div className="page">
             <Header />
             <CariMobil />
+            <Modal isOpen={modal}
+                toggle={toggle}
+                modalTransition={{ timeout: 500 }}>
+                <ModalBody style={{ color: "red" }} >
+                    Server Error
+                </ModalBody>
+            </Modal>
             <div className="detailmobil-sty">
                 <div className="container">
                     <div className="row" id="rowF">
@@ -110,11 +126,9 @@ const DetailMobil = () => {
                                         </div>
                                     </Card.Body>
                                     <div>
-                                        <Link to={"/Pembayaran/" + id}>
-                                            <Button className="btn-success2" type="submit" onClick={() => {
-                                                makeOrder()
-                                            }}>Mulai Sewa Mobil</Button>
-                                        </Link>
+                                        <Button className="btn-success2" type="submit" onClick={() => {
+                                            makeOrder()
+                                        }}>Mulai Sewa Mobil</Button>
                                     </div>
                                 </Card>
                             </div>
