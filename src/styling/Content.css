@@ -7,6 +7,10 @@
     display: flex;
 }
 
+#cardIcon {
+    width: 25%;
+}
+
 .Content-sty .mini1 .listverif {
     display: flex;
     margin-top: 5%;
@@ -103,9 +107,15 @@
         justify-content: center;
         background-color: #F1F3FF;
     }
+    #cardIcon {
+        width: 100%;
+    }
 }
 
-@media only screen and (min-width: 480px) and (max-width: 990px) {
+@media only screen and (min-width: 480px) and (max-width: 1200px) {
+    #cardIcon {
+        width: 50%;
+    }
     .Content-sty {
         width: 100%;
     }

@@ -6,18 +6,18 @@ const Footer = () => {
         <div className='Footer-sty'>
             <div className='container'>
                 <div className='row' id='pembungkus'>
-                    <div className='col-sm-12 col-md-3' id='lokasi'>
+                    <div className='col-sm-12 col-md-12 col-lg-3' id='lokasi'>
                         <p>Jalan Suroyo No. 161 Mayangan Kota Probolonggo 672000</p>
                         <p>binarcarrental@gmail.com</p>
                         <p>081-233-334-808</p>
                     </div>
-                    <div className='col-sm-12 col-md-3' id='service'>
+                    <div className='col-sm-12 col-md-12 col-lg-3' id='service'>
                         <h3><a href="#ourservices">Our services</a></h3>
                         <h3><a href="#whyus">Why Us</a></h3>
                         <h3><a href="#testimonials">Testimonial</a></h3>
                         <h3><a href="#faq">FAQ</a></h3>
                     </div>
-                    <div className='col-sm-12 col-md-3' id='icon'>
+                    <div className='col-sm-12 col-md-12 col-lg-3' id='icon'>
                         <p>Connect with us</p>
                         <svg width="224" height="32" viewBox="0 0 224 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="16" cy="16" r="16" fill="#0D28A6" />
@@ -35,7 +35,7 @@ const Footer = () => {
                             <path d="M211.333 15.1666V11.8333M215.5 7.66663H200.5V21H204.667V24.3333L208 21H212.167L215.5 17.6666V7.66663ZM207.167 15.1666V11.8333V15.1666Z" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
-                    <div className='col-sm-12 col-md-3' id='copyright'>
+                    <div className='col-sm-12 col-md-12 col-lg-3' id='copyright'>
                         <p>Copyright Binar 2022</p>
                         <p>Binar Cartal</p>
                     </div>

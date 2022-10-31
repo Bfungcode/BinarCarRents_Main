@@ -82,7 +82,7 @@ const Content = () => {
                     <div className='allcard'>
                         <div className='container'>
                             <div className="row">
-                                <div className='col-sm-12 p-1 col-md-6 col-lg-3'>
+                                <div className='col-sm-12 p-1 col-md-6 col-lg-3' id="cardIcon">
                                     <Card>
                                         <Card.Body>
                                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +94,7 @@ const Content = () => {
                                         </Card.Body>
                                     </Card>
                                 </div>
-                                <div className='col-sm-12 p-1 col-md-6 col-lg-3'>
+                                <div className='col-sm-12 p-1 col-md-6 col-lg-3' id="cardIcon">
                                     <Card>
                                         <Card.Body>
                                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,11 +103,11 @@ const Content = () => {
                                                 <path d="M11.8334 11.8333H11.8417" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                             <h2>Harga Murah</h2>
-                                            <p>Harga murah dan bersaing, bisa badingkan harga kami dengan rental mobil lain</p>
+                                            <p>Harga murah dan bersaing, bisa badingkan harga kami dengan rental mobil lain yang ada</p>
                                         </Card.Body>
                                     </Card>
                                 </div>
-                                <div className='col-sm-12 p-1 col-md-6 col-lg-3'>
+                                <div className='col-sm-12 p-1 col-md-6 col-lg-3' id="cardIcon">
                                     <Card>
                                         <Card.Body>
                                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +120,7 @@ const Content = () => {
                                         </Card.Body>
                                     </Card>
                                 </div>
-                                <div className='col-sm-12 p-1 col-md-6 col-lg-3'>
+                                <div className='col-sm-12 p-1 col-md-6 col-lg-3' id="cardIcon">
                                     <Card>
                                         <Card.Body>
                                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
