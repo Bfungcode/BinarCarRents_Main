@@ -23,13 +23,13 @@ const Header = ({ isButtonShow }) => {
                         <div className={`navbar-collapse ${sidebar}`} id='navbarNav'>
                             <ul className="navbar-nav ml-auto mr-5">
                                 <li className="nav-item mr-3 fw-bold">
-                                    <a className="nav-link" href="/#ourServices">Our Services</a>
+                                    <a className="nav-link" href="/#ourservices">Our Services</a>
                                 </li>
                                 <li className="nav-item mr-3 fw-bold">
-                                    <a className="nav-link" href="/#whyUs">Why Us</a>
+                                    <a className="nav-link" href="/#whyus">Why Us</a>
                                 </li>
                                 <li className="nav-item mr-3 fw-bold">
-                                    <a className="nav-link" href="/#testimonial">Testimonial</a>
+                                    <a className="nav-link" href="/#testimonials">Testimonial</a>
                                 </li>
                                 <li className="nav-item mr-3 fw-bold">
                                     <a className="nav-link" href="/#faq">FAQ</a>
