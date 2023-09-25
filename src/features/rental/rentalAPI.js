@@ -1,6 +1,6 @@
 import axios from "axios";
 const user = JSON.parse(localStorage.getItem('user'));
-const API_URL = "https://api-car-rental.binaracademy.org";
+const API_URL = "https://api-car-rental.binaracademy.org/";
 const getCars = (name, category, isRented, minPrice, maxPrice, page, pageSize) => {
     const response = axios.get(`${API_URL}customer/v2/car`, {
         params: {
